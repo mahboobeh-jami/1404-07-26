@@ -1,0 +1,1965 @@
+<basis core="tracking" name="tracking" source="Monitoring" collectionname="activity" dbname="tracking" addcookie="true" />
+<basis core="cookie" name="trackingid" value="[##tracking.inserted.id|(0)##]" />
+<basis core="dbsource" source="trust_login8" mid="24" name="db" lid="1" rkey="[##cms.cookie.rkey##]">
+    <member name="userid" type="scalar" request="userid" preview="" />
+</basis>
+<basis core="external.fly.ws" source="cmsDbService2" name="db" procedurename="dbsource" >
+    <member method="cms" name="Panel_Invoice" query= '{
+        "name": "db",
+        "mid": "20",
+        "member": [
+            {
+                "type": "scalar",
+                "name": "q",
+                "request": "agencycatid"
+            }
+        ]
+    } ' />
+</basis>
+<basis core="group" name="Delay_1" >
+    <basis core="dbsource" source="trust_login" lid="1" name="db" catid="[##db.Panel_Invoice.result##]" userid= "[##db.userid.userid##]" ownerid="[##cms.cms.ownerid##]" >
+        <member name="checkuser" type="scalar"  request="checkagencyuser" />
+    </basis>
+<basis core="group" name="Delay_2" >
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+         <member method="cms" name="chagencyuser" query='{
+            "name": "db",
+            "mid": "20",
+            "member": [
+                {
+                    "type": "scalar",
+                    "name": "q",
+                    "request": "checkagencyuser",
+                    "counter": "[##db.checkuser.Column1##]",
+                    "userid": "[##db.userid.userid##]"
+                }
+            ]
+        }'/>
+    </basis>
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>هتل tripcenter</title>
+    <meta name="author" content="BasisCore">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <!---------------------------------CSS MAIN--------------------------------->
+    <link rel="stylesheet" type="text/css" href="/css/tripcenter_main_style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/tripcenter-reservation.css" />
+    <!---------------------------------CSS CALENDARE--------------------------------->
+    <link rel="stylesheet" type="text/css" href="/css/Basis_Calendar.css" />
+    <!---------------------------------JS LIBRARY--------------------------------->
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+</head>
+
+<body class="rightLogoOnFix" onload="onloadFunc();">
+    <div class="loginRegister"></div>
+    <div id="bg-popup-timeout" style="display:none"></div>
+    <div class="boxalert" style="display:none">
+        <div class="imgdiv"><img src="/images/time-out.png" alt="time-out" width="" height="" /></div>
+        <div class="firstdiv"><span class="firstalert">مدت زمان اعتبار جستجوی شما به پایان رسید</span></div>
+        <div class="seconddiv"> <span class="secondalert">لطفا جستجوی خود را از ابتدا انجام دهید.</span></div>
+        <div class="optionsnodata">
+            <input class="researchnodata" value="جستجوی مجدد" onclick="location.reload()" type="button" />
+            <input class="homepage" value="صفحه اصلی" onclick="window.location='/'" type="button">
+        </div>
+    </div>
+    <div class="bgLoading">
+        <div class="bg-searching hotel">
+            <div class="text-searching">
+                <div class="loading-progress"></div><span>در حال جستجوی بهترین هتل , لطفا کمی صبر کنید...</span>
+            </div>
+        </div>
+    </div>
+  <div class="boxContainer pages">
+        <basis core="call" file="header.inc" />
+        <div id="container">
+            <input type="hidden" value="[##db.chagencyuser.result##]" id="chagencyuser" />
+            <div id="tabs-filter-resize">
+                <div id="tabs-filter">
+                    <div class="wrapper_box">
+                        <div class="wraper_top_info">
+                            <div class="research">
+                                <div class="research_box">
+                                    <div id="r-hotel" class="content-HotelTour" style="display:block">
+                                        <form action="/hotel_search.bc" method="post" class="frm changedate">
+                                            <input type="hidden" value="[##cms.form.persiancurrent##]"
+                                                class="persiancurrent" name="persiancurrent" />
+                                            <div class="Wrapper-DesDep">
+                                                <div class="city">
+                                                    <input type="text" value="[##cms.form.coHotel##]" name="coHotel"
+                                                        oninput="city_search(this)" data-type='3' class="country"
+                                                        autocomplete="off" onClick="empty(this)" required
+                                                        placeholder="شهر" />
+                                                    <span class="mini-loading"><img src="/images/load.gif" width="20"
+                                                            height="20" alt="loading" /></span>
+                                                    <input value="[##cms.form.cityid##]" class="co-id" type="hidden"
+                                                        name="cityid" />
+                                                    <div class="countryFlight"></div>
+                                                    <div class="clr"></div>
+                                                    <div class="outer-searchList">
+                                                        <div class="searchList">
+                                                            <div>
+                                                                <ul>
+                                                                    <li class="category-title"><span>شهرهای پر
+                                                                            تردد</span></li>
+                                                                    <li onClick="SelectPlace(this)" data-id="1203548">
+                                                                        <span class="icon-map"></span><span>تهران -
+                                                                            Tehran</span>
+                                                                    </li>
+                                                                    <li onClick="SelectPlace(this)" data-id="1211110">
+                                                                        <span class="icon-map"></span><span>کیش - Kish
+                                                                        </span>
+                                                                    </li>
+                                                                    <li onClick="SelectPlace(this)" data-id="1177676">
+                                                                        <span class="icon-map"></span><span>استانبول -
+                                                                            Istanbul</span></li>
+                                                                    <li onClick="SelectPlace(this)" data-id="1211083">
+                                                                        <span class="icon-map"></span><span>مشهد -
+                                                                            Mashhad</span>
+                                                                    </li>
+                                                                    <li onClick="SelectPlace(this)" data-id="1173505">
+                                                                        <span class="icon-map"></span><span>دبی -
+                                                                            Dubai</span>
+                                                                    </li>
+                                                                    <li onClick="SelectPlace(this)" data-id="1168092">
+                                                                        <span class="icon-map"></span><span>آنتالیا -
+                                                                            Antalya</span></li>
+                                                                    <li onClick="SelectPlace(this)" data-id="1189731">
+                                                                        <span class="icon-map"></span><span>تفلیس -
+                                                                            Tbilisi
+                                                                        </span></li>
+                                                                    <li onClick="SelectPlace(this)" data-id="1211086">
+                                                                        <span class="icon-map"></span><span>شیراز -
+                                                                            Shiraz</span>
+                                                                    </li>
+                                                                    <li onClick="SelectPlace(this)" data-id="1211084">
+                                                                        <span class="icon-map"></span><span>اصفهان -
+                                                                            Isfahan</span></li>
+                                                                    <li onClick="SelectPlace(this)" data-id="1182348">
+                                                                        <span class="icon-map"></span><span>مسکو -
+                                                                            Moscow</span>
+                                                                    </li>
+                                                                    <li onClick="SelectPlace(this)" data-id="1211085">
+                                                                        <span class="icon-map"></span><span>تبریز -
+                                                                            Tabriz</span>
+                                                                    </li>
+                                                                    <li onClick="SelectPlace(this)" data-id="1168993">
+                                                                        <span class="icon-map"></span><span>باکو -
+                                                                            Baku</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="Basis_Date_Box">
+                                                <div class="frm-other date">
+                                                    <div class="custom-select">
+                                                        <input class="first cal Basis_Date start_date departuredate"
+                                                            onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)"
+                                                            data-active="0" data-cache="0" id="inp1" name="fdate"
+                                                            type="text" placeholder="ورود" value="[##cms.form.fdate##]"
+                                                            required readonly="true" autocomplete="off">
+                                                        <input value="[##cms.form.mstring_fdate##]"
+                                                            class="mstring_date departureMdate" type="hidden"
+                                                            name="mstring_fdate" />
+                                                    </div>
+                                                </div>
+                                                <div class="frm-other date">
+                                                    <div class="custom-select">
+                                                        <input
+                                                            class="second cal Basis_Date end_date nextCalOpening returndate"
+                                                            onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)"
+                                                            data-active="0" data-cache="0" id="inp2" name="tdate"
+                                                            type="text" placeholder="خروج" value="[##cms.form.tdate##]"
+                                                            required readonly="true" autocomplete="off">
+                                                        <input value="[##cms.form.mstring_tdate##]"
+                                                            class="mstring_date returnMdate" type="hidden"
+                                                            name="mstring_tdate" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="frm-other passinfo-field">
+                                                <div class="custom-select">
+                                                    <input type="text" placeholder="" readonly
+                                                        class="hotel-input">
+                                                    <div class="Wrapper-CountPassenger">
+                                                        <span class="count-room"></span>
+                                                        <span class="count-adultRoom"></span>
+                                                        <span class="count-childRoom"></span>
+                                                        <div class="clr"></div>
+                                                    </div>
+                                                    <div class="HotelPassengers">
+                                                        <div class="itemlable2">
+                                                            <label> <span class="notshow">تعداد اتاق</span> </label>
+                                                            <ul class="button-click-room">
+                                                                <li><a class="button secondary"><span
+                                                                            class="hide">+</span></a>
+                                                                </li>
+                                                                <li><a class="button secondary"><span
+                                                                            class="hide">-</span></a>
+                                                                </li>
+                                                                <div class="clr"></div>
+                                                            </ul>
+                                                            <input type="text" class="cat_textbox roomcount"
+                                                                maxlength="4000" value="">
+                                                        </div>
+                                                        <div class="clr"></div>
+                                                        <div class="countRoom countRoomHT">
+                                                            <div class="contentRooms">
+                                                                <div class="itemlable2">
+                                                                    <label> <span class="notshow">بزرگسال</span>
+                                                                    </label>
+                                                                    <ul class="button-click">
+                                                                        <li><a class="button secondary"><span
+                                                                                    class="hide">+</span></a>
+                                                                        </li>
+                                                                        <li><a class="button secondary"><span
+                                                                                    class="hide">-</span></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <input type="text" class="cat_textbox adultcount"
+                                                                        name="_root.rooms__1.adultcount"
+                                                                        maxlength="4000" value="1">
+                                                                    <div class="clr"></div>
+                                                                </div>
+                                                                <div class="itemlable2">
+                                                                    <label> <span class="notshow">کودک</span> </label>
+                                                                    <ul class="button-click-childRoom">
+                                                                        <li><a class="button secondary"><span
+                                                                                    class="hide">+</span></a>
+                                                                        </li>
+                                                                        <li><a class="button secondary"><span
+                                                                                    class="hide">-</span></a>
+                                                                        </li>
+                                                                        <div class="clr"></div>
+                                                                    </ul>
+                                                                    <input type="text" class="cat_textbox chcount"
+                                                                        maxlength="4000" value="0">
+                                                                </div>
+                                                                <div class="clr"></div>
+                                                                <div class="childDropdowns"></div>
+                                                                <input type="hidden"
+                                                                    name="_root.rooms__1.childcountandage"
+                                                                    class="childcountandage" value="0" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="CloseHotelPassengers">تایید</div>
+                                                    </div>
+                                                    <div class="clr"></div>
+                                                </div>
+                                            </div>
+                                            <section class="frm-submit-btn">
+                                                <div class="searchagain"><button type="submit"
+                                                        class="search-flight hvr-shutter-in-horizontal">جستجو</button>
+                                                </div>
+                                            </section>
+                                            <div class="clr"></div>
+                                        </form>
+                                    </div>
+                                    </basis>
+                                </div>
+
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="changeDate_box">
+                            <div class="prevdate"><span class="inner-next">روز قبل<i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></span></div>
+                            <div class="nextdate"><span class="inner-next">روز بعد<i class="fa fa-angle-left"
+                                        aria-hidden="true"></i></span></div>
+                        </div>
+                        <div class="inner-box-ticket" id="Result"></div>
+                    </div>
+                </div>
+                <div class="clr"></div>
+            </div>
+            <div class="clr"></div>
+        </div>
+        <basis core="call" file="footer.inc" />
+    </div>
+    <basis core="call" file="Client_Basis_Calendar.inc" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            fetch('/Client_Hotel_Json.bc', {
+            method: 'POST',
+            body: 'cityid=[##cms.form.cityid##]&fdate=[##cms.form.fdate##]&tdate=[##cms.form.tdate##]&userid=[##db.userid.userid##]&rooms=[##cms.json.header|cms.form.roomSearch##]'
+        })
+            .then(response => response.text())
+            .then(text => {
+                let Maindata = JSON.parse(text.replace(/\'/g, '"'))
+                let  LenMaindata = Maindata.length
+                if(LenMaindata !==undefined){
+                    Maindata.sort((a, b) => a.total - b.total);
+                }else if(LenMaindata==undefined){
+                     $(".sort_box").hide()
+                }
+                $('.bgLoading').hide()
+                $('.boxContainer').show()
+                load_data(Maindata)
+            }).catch(error => console.error(error))
+        })
+    </script>
+    <!---------------------------------JS PROGRESS--------------------------------->
+    <script type="text/javascript" src="/js/Progress-Bar.js"></script>
+    <!---------------------------------JS RESEARCH--------------------------------->
+    <script type="text/javascript" src="/js/ChangeDate-Scripts.js"></script>
+  <script type="text/javascript">
+    <basis core = "call" file = "Client_Basis_Calendar_js.inc"/>
+  </script>
+    <!---------------------------------JS MENU--------------------------------->
+    <script type='text/javascript' src="/js/jquery.navgoco.js"></script>
+    <script type='text/javascript' src="/js/off-canvas.js"></script>
+    <!---------------------------------LIBRARY REACT--------------------------------->
+    <script src="/js/react.production.min.js" crossorigin></script>
+    <script src="/js/react-dom.production.min.js" crossorigin></script>
+    <script src="/js/babel.min.js" crossorigin></script>
+    <script src="/js/react-library.js"></script>
+    <script type="text/babel">
+    function load_data(load_data){
+        class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                data: [],
+                data_provider:[],
+                library: null,
+                librarySecond: null,
+                perPage: 20,
+                currentPage: 1,
+                currentPage2: 2,
+                currentPage3: 3,
+                maxPage: null,
+                filterName: "",
+                filterTotalF: "",
+                filterTotalS: "",
+                rangevalTotalF: "",
+                rangevalTotalS: "",
+                visibleRoom: {},
+                loadingVisible: {},
+                resultruleRoom: {},
+                ruleRoomVisibles:{},
+                showInfoRooms: {},
+                defaultS: {},
+                priceS:{},
+                defaultactive:{},
+                priceactive:{},
+                starS:{},
+                staractive:{},
+                checkkeyprice:0,
+                checkkeystar:0,
+                activedefault: "activesort",
+                activeprice: "",
+                activestar: "",
+                activeDarrow:"activearrow",
+                activeParrow:"deactivearrow",
+                activeSarrow:"deactivearrow",
+                state_active_btn : ""
+            }
+            this.stars = [];
+            this.service = [];
+            this.availability = [];
+            this.handleClick = this.handleClick.bind(this);
+            this.handleReset = this.handleReset.bind(this);
+        }
+        componentDidMount() {
+            this.setState(state => ({
+                    ...state,
+                    data: load_data
+                }), () => {
+                    this.reorganiseLibrary()
+            })
+    
+                $(document).on('update_result', (event, service, stars, availability,checktype,checkkey) => {
+                    this.reorganiseLibrary(service, stars, availability,checktype,checkkey)
+                })
+
+            if(document.getElementById("chagencyuser").value == 1){
+            fetch('/Client_Provider_Library.bc')
+            .then(response => response.json())
+            .then(provider => {
+                this.setState({data_provider : provider})
+            }).catch(error => console.error(error))
+        }
+        }
+        componentDidUpdate() {
+        $(".unit_content").each(function () {
+             if ($(this).text() == 'ریالريال' || $(this).text() == 'ريالریال') {
+                $(this).text('ریال')
+            }
+        })
+        $(".grade_filter").sort(function (a, b) {
+            a = $(".stars", a).val().replace(/,/g, '');
+            b = $(".stars", b).val().replace(/,/g, '');
+            return a - b;
+        }).appendTo(".grade_results");
+    }
+        reorganiseLibrary = (service, stars, availability,checktype,checkkey) => {
+            const { filterName, filterTotalF, filterTotalS, perPage, data } = this.state;
+            let library = data;
+            let librarySecond = data;
+            librarySecond = _.chunk(librarySecond, perPage);
+            this.setState({
+                librarySecond,
+                currentPage: 1,
+                maxPage: librarySecond.length === 0 ? 1 : librarySecond.length
+            })
+            let defaultFilterTotalF = null;
+            defaultFilterTotalF = filterTotalF
+                ? (filterTotalF)
+                : (this.renderMinFilterTotal(librarySecond));
+            let defaultFilterTotalS = null;
+            defaultFilterTotalS = filterTotalS
+                ? (filterTotalS)
+                : (this.renderMaxFilterTotal(librarySecond));
+                if (filterTotalF !== "" || filterTotalS !== "") {
+                    let lenLibraryDef = library.length
+                   if(lenLibraryDef !==undefined){
+                    library = library.filter(item =>
+                    item.totalCom >= defaultFilterTotalF && item.totalCom <= defaultFilterTotalS
+                  )
+                  let lenLibrary = library.length
+                  $('.dataLen').text(lenLibrary)
+                   }
+            }
+            if (checktype == 'default') {
+                        library.sort((a, b) => a.total - b.total);
+                        this.setState({activedefault: "activesort"})
+                        this.setState({activeprice: ""})
+                        this.setState({activestar: ""})
+                        this.setState({activeSarrow: "deactivearrow"})
+                        this.setState({activeParrow: "deactivearrow"})
+                 }
+                
+                if (checktype == 'price') {
+                    if(checkkey == 0){
+                        library.sort((a, b) => b.total - a.total);
+                        this.setState({ checkkeyprice: 1 });
+                    }else{
+                        library.sort((a, b) => a.total - b.total);
+                        this.setState({ checkkeyprice: 0 });
+                    }
+                    this.setState( prevState => ({
+                        priceS: { ...prevState.priceS, [0]: !prevState.priceS[0] }
+                      }))
+                    this.setState({activeParrow: ""})
+                    this.setState({activeDarrow: "deactivearrow"})
+                    this.setState({activeSarrow: "deactivearrow"})
+                    this.setState({activeprice: "activesort"})
+                    this.setState({activedefault: ""})
+                    this.setState({activestar: ""})
+                }
+                
+                if (checktype == 'star') {
+                if(checkkey == 0){
+                        library.sort((a, b) => b.hotelinfo.hotelsearch.star - a.hotelinfo.hotelsearch.star);
+                        this.setState({ checkkeystar: 1 });
+                    }else{
+                        library.sort((a, b) => a.hotelinfo.hotelsearch.star - b.hotelinfo.hotelsearch.star);
+                        this.setState({ checkkeystar: 0 });
+                    } 
+                    this.setState( prevState => ({
+                      starS: { ...prevState.starS, [0]: !prevState.starS[0] }
+                      }))
+                      this.setState({activeSarrow: ""})
+                      this.setState({activeDarrow: "deactivearrow"})
+                      this.setState({activeParrow: "deactivearrow"})
+                      this.setState({activeprice: ""})
+                      this.setState({activedefault: ""})
+                      this.setState({activestar: "activesort"})
+                }
+    
+            if (filterName !== "") {
+                library = library.filter(item =>
+                    item.hotelinfo.hotelsearch.realname.toLowerCase().includes(filterName)
+                )
+                let lenLibrary = library.length
+                $('.dataLen').text(lenLibrary)
+            }
+    
+            if (stars !== undefined) {
+                if (stars !== "") {
+                    stars = stars.split(",");
+              
+                      library = library.filter(item => {
+                        if (stars.includes(this.renderStarFilter(item.hotelinfo.hotelsearch.star))) return item;
+                        })
+                }
+                  let lenLibrary = library.length
+                    $('.dataLen').text(lenLibrary)
+            }
+    
+            if (service !== undefined) {
+                if (service !== "") {
+                service = service.split(",");
+                library = library.filter(item => {
+                if (service.includes(item.families[0].services)) return item;
+                })
+                 }
+                  let lenLibrary = library.length
+                    $('.dataLen').text(lenLibrary)
+            }
+    
+            if (availability !== undefined) {
+                if (availability !== "") {
+                availability = availability.split(",");
+                 library = library.filter(item => {
+                if (this.render_availability_filter(item.families[0]).some(r=> availability.includes(r)))return item;
+                                   
+                })
+                 }
+                
+                  let lenLibrary = library.length
+                    $('.dataLen').text(lenLibrary)
+            }
+    
+            let lenLibrary = library.length
+            if(lenLibrary==undefined){
+                $('.dataLen').text(0)
+            }else{
+                $('.dataLen').text(lenLibrary)
+            }
+            library = _.chunk(library, perPage);
+            this.setState({
+                library,
+                currentPage: 1,
+                maxPage: library.length === 0 ? 1 : library.length
+            })
+        }
+        renderMinFilterTotal = (librarySecond) => {
+            return librarySecond.reduce((acc, lib) => {
+                const libMin = Math.min(...lib.map(item => item.totalCom))
+                return acc === undefined ? libMin : libMin < acc ? libMin : acc
+            }, undefined)
+        }
+        renderMaxFilterTotal = (librarySecond) => {
+            return librarySecond.reduce((acc, lib) => {
+                const libMax = Math.max(...lib.map(item => item.totalCom))
+                return libMax > acc ? libMax : acc
+            }, 0)
+        }
+        renderStarFilter(element){
+            let elementToSting =element.toString()
+            return elementToSting
+        }
+        render_availability_filter(element) {
+            let elementAdd = []
+            for (let i = 0; i < element.availablerooms.length; i++) {
+                elementAdd.push(element.availablerooms[i].info.availability)
+                }
+            return elementAdd
+        }
+                // Previous Page
+                previousPage = event => {
+                    this.handleReset(event);
+                    this.handleClick(event);
+                this.setState({
+                    currentPage: this.state.currentPage - 1,
+                    currentPage2: this.state.currentPage2 - 1,
+                    currentPage3: this.state.currentPage3 - 1
+                })
+                }
+                // Next Page 
+                nextPage = event => {
+                    this.handleReset(event);
+                    this.handleClick(event);
+                this.setState({
+                    currentPage: this.state.currentPage + 1,
+                    currentPage2: this.state.currentPage2 + 1,
+                    currentPage3: this.state.currentPage3 + 1
+                })
+                }
+                
+                // Next Page3
+                nextPage3 = event => {
+                    this.handleReset(event);
+                    this.handleClick(event);
+                this.setState({
+                    currentPage: this.state.currentPage3,
+                    currentPage2: this.state.currentPage3 + 1,
+                    currentPage3: this.state.currentPage3 + 2
+                })
+                }
+    
+       // handle filter name
+       handlerFilterName = (event) => {
+        this.handleReset(event);
+        const { state_service, state_stars, state_availability, state_checktype, state_checkkey } = this.state;
+        this.setState(
+            {
+                filterName: event.target.value.toLowerCase()
+            },
+            () => {
+                this.reorganiseLibrary(state_service, state_stars, state_availability, state_checktype, state_checkkey);
+            }
+        )
+    }
+    // start handler filter price
+    handlerFilterTotal = (event) => {
+        this.handleReset(event);
+        const { state_service, state_stars, state_availability, state_checktype, state_checkkey } = this.state;
+        let renderMax = this.renderMaxTotal()
+        let value = event.target.value
+        let key = event.target.getAttribute("data-key")
+        if (key == '1') {
+            this.setState(
+                {
+                    filterTotalF: event.target.value,
+                    rangevalTotalF: event.target.value,
+                },
+                () => {
+                    this.reorganiseLibrary(state_service, state_stars, state_availability, state_checktype, state_checkkey);
+                }
+            )
+        } else if (key == '2') {
+            event.target.max = renderMax
+            this.setState(
+                {
+                    filterTotalS: event.target.value,
+                    rangevalTotalS: event.target.value,
+                },
+                () => {
+                    this.reorganiseLibrary(state_service, state_stars, state_availability, state_checktype, state_checkkey);
+                }
+            )
+        }
+    } // end handler filter price
+
+
+       
+        // handle per page
+        handlePerPage = (evt) =>
+            this.setState({
+                perPage: evt.target.value
+            }, () => this.reorganiseLibrary());
+    
+        // handle render of library
+        renderLibrary = () => {
+            const { library, currentPage } = this.state;
+    
+            if (!library || (library && library.length === 0)) {
+                return <div className="nodata">
+                <div className="imgnodata"><img src="/images/no-result.png" alt="no-result" width="" height="" /></div>
+                <div className="tltnodata">برای جستجوی شما نتیجه ای یافت نشد!</div>
+                <div className="textnodata">شما می توانید با انجام مجدد عملیات جستجو,نتیجه مورد نظر خود را بیابید</div>
+                <div className="optionsnodata"><button className="researchnodata" onClick={this.renderResearch} type="submit">جستجوی مجدد </button><input className="homepage" value="صفحه اصلی" onClick={this.renderhomepage} type="button" /></div>
+            </div>
+            }
+            return library[currentPage - 1].map((item, i) => (
+                <div className="ticket-box">
+                    <form method="post" action="" className="hotel_item">
+                        <input type="hidden" value="[##cms.form.cityid##]" name="cityid" />
+                        <input type="hidden" value="[##cms.form.coHotel##]" name="coHotel" />
+                        <input type="hidden" value='[##cms.json.header|cms.form.roomSearch##]' name="roomSearch" className="roomSearch" />
+                        <input type="hidden" value="[##cms.form.fdate##]" name="fdate" />
+                        <input type="hidden" value="[##cms.form.tdate##]" name="tdate" />
+                        <input type="hidden" value={item.nights} name="nightLink" />
+                        <input type="hidden" value={item.supplier} name="supplier" />
+                        <input type="hidden" value={item.hotelinfo.hotelsearch.hotelid} name="hotelid" />
+                        {this.renderOptionIdFirst(item)}
+                        {this.renderproviderId(item)}
+                        {this.renderprovider(item)}
+                        {this.renderid(item)}
+                        {this.renderadultsFirst(item)}
+                        {this.renderchildwithbedFirst(item)}
+                        {this.renderchildwithoutbedFirst(item)}
+                        {this.renderinfantFirst(item)}
+                        {this.renderroomidFirst(item)}
+                        <div className="inner-box-hotel"> <div className="right-Hresrve"><div className="img-Hreserve">{this.renderImgHotel(item)}</div>
+                            <div className="info-Rhotel">
+                                <div className="realname"><a className="linkrealname"><span className="realname">{this.renderAltImage(item.hotelinfo.hotelsearch)}</span></a></div>
+                                <div className="clr"></div>
+                                <div className="rating-Rhotel"><img src={(`/images/${item.hotelinfo.hotelsearch.star}-rating.png`)} width="80" height="14" alt="rating" />{this.renderProviderName(item)}</div>
+                                <div className="first-room">
+                                    <div className="rooms_tbody">
+                                        <div className="first-row">
+                                            <div className="other-rows2"><span className="tltrow">نوع اتاق : </span>{this.renderRoomtypeFirst(item)} </div>
+                                            <div className="viewname"><span className="tltrow">نمای اتاق : </span><span>{item.hotelinfo.information.viewname}</span></div>
+                                            <div className="availability"><span className="tltrow">وضعیت : </span>{this.renderavailabFirst(item)}</div>
+                                            <div className="servicesHotel"><span className="tltrow">نوع سرویس : </span>{this.renderservicesFirst(item)}</div>
+                                        </div>
+                                        <div className="clr"></div>
+                                    </div>
+                                </div>
+                                <div className="Details-box" onClick={e => this.showDiv(e, item, i)} data-active = {`${this.state.state_active_btn[i] ? "1" : "0"}`} >
+                               <span>تغییر اتاق</span><i className={`icon icon-arrow-down-16 ${!this.state.visibleRoom[i] ? "downarrow" : "uparrow"}`} ></i>
+                         </div>
+   
+                            </div>
+                        </div>
+                        <div className="outer-left">
+                            <div className="left-side2 hotel-left-side2">
+                                <div className="cost-ticket costTotal"><span>مبلغ کل : </span><span className="costi">{new Intl.NumberFormat().format(item.total)}</span> <span className="monettypetbl">{item.moneytype}</span></div>
+                                {this.renderCommission(item)}
+                                {this.renderTotalcom(item)}
+                                <div className="reserve btnhotel">
+                                    <div className="inner-search">
+                                        <input className="linkreserve not-active-form" value="رزرو هتل" type="button" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div className="clr"></div>
+                            <div key={i} className={`section_loading ${!this.state.loadingVisible[i] ? "unvisible" : "visible"}`}>
+                            <div id="ballsWaveG">
+                                <div id="ballsWaveG_1" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_2" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_3" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_4" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_5" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_6" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_7" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_8" className="ballsWaveG"></div>
+                            </div>
+                        </div>
+                        </div>
+                        <div className="clr"></div>
+                    </form>
+                    <div className="clr"></div>
+                    <div id="box-rooms" key={i} className={`details-rooms ${!this.state.visibleRoom[i] ? "unvisible" : "visible"}`}>
+                    <div className="table">
+                        <div className="rooms-tbl">
+                            <div className="close-room" onClick={() => this.CloseRooms(i)}><span className="fa-times"></span></div>
+                            <div className="first-row">
+                                <div className="tltwebservice1"><span>نوع اتاق</span></div>
+                                <div className="tltwebservice"><span>قوانین اتاق</span></div>
+                                <div className="tltwebservice" ><span>قیمت </span></div>
+                                <div className="clr"></div>
+                            </div>
+                            <div>{this.showInfo(i,item)}</div>
+                        </div>
+                    </div>
+                </div>
+                    <div className="clr"></div>
+                </div>
+            ))
+        }
+    
+    
+    
+        render() {
+            const { library, currentPage, perPage, maxPage, rangevalTotalF, rangevalTotalS, librarySecond } = this.state;
+            let defaultRangeTotalF = null;
+            defaultRangeTotalF = rangevalTotalF
+                ? (<span>{new Intl.NumberFormat().format(rangevalTotalF)}</span>)
+                : (<span>{new Intl.NumberFormat().format(this.renderMinTotal())}</span>);
+            let defaultRangeTotalS = null;
+            defaultRangeTotalS = rangevalTotalS
+                ? (<span>{new Intl.NumberFormat().format(rangevalTotalS)}</span>)
+                : (<span>{new Intl.NumberFormat().format(this.renderMaxTotal())}</span>);
+            return (
+                <div>
+                <div id="main-box-fliter">
+                    <div className="inner-box-filter">
+                        <div className="countHotel">تعداد <span className="numbersearch"><span className="dataLen">{this.renderCount()}</span> </span> هتل یافت شد .</div>
+                        <div className="counterbox">
+                            <div className="ttcounter">مدت زمان باقی مانده فرآیند رزرو</div><span id="count"></span>
+                        </div>
+                        <div className="slide_ExteraFilter">
+                            <div className="mainTlt-filter"><span>فیلتر نتایج هتل براساس : </span></div>
+                            <div className="filter-box">
+                                <div className="title-filter"><span>نام هتل</span> </div>
+                                <div className="items-filter">
+                                    <div className="every-item">
+                                        <div className="rightCheck" data-index="0">
+                                            <input value={this.state.filterName} onChange={this.handlerFilterName} placeholder="نام هتل مورد نظر را وارد نمائید" className="hotelName" />
+                                        </div>
+                                        <div className="clr"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="filter-box">
+                                <div className="title-filter"><span>قیمت</span> </div>
+                                <div className="items-filter">
+                                    <div className="every-item">
+                                        <div className="wrappertimeTotal">
+                                            <input type="range" min={this.renderMinTotal() || 0} max='999999999'
+                                                defaultValue='999999999' step="1000" onChange={this.handlerFilterTotal} data-key="2"
+                                                className="multirange original" />
+                                            <input type="range" min={this.renderMinTotal()} max={this.renderMaxTotal()}
+                                                defaultValue={this.renderMinTotal()} step="1000" onChange={this.handlerFilterTotal}
+                                                data-key="1" className="multirange ghost" />
+                                            <div className="rangevalSecondTotal">{defaultRangeTotalS} <span>ریال</span></div>
+                                            <div className="rangevalFirstTotal">{defaultRangeTotalF} <span>ریال</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {this.ShowFilterHotel()}
+                        </div>
+                    </div>
+                </div>
+                <div className="main-box-ticket">
+                    <div className="info-loading">
+                        <div className="inner-box-ticket">
+                            <div className="sort_box hotel_sort_box">
+                                <div className="filter-sort-box">
+                                    <div className="items-filter">
+                                        <div>مرتب سازی بر اساس :</div>
+                                    </div>
+                                </div>
+                                <div className={`filter-sort-box ${this.state.activedefault}`}>
+                                    <div className="items-filter">
+                                        <div data-type="default" data-key="0" onClick={((e) => this.handleChange(e))}>پیش فرض
+                                <span className={`sorticon ${this.state.activeDarrow} ${!this.state.defaultS[0] ? "uparrow" : "downarrow"}`} ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={`filter-sort-box ${this.state.activeprice}`} >
+                                    <div className="items-filter">
+                                        <div data-type="price" data-key={this.state.checkkeyprice} onClick={((e) => this.handleChange(e))}>قیمت
+                              <span className={`sorticon ${this.state.activeParrow} ${!this.state.priceS[0] ? "uparrow" : "downarrow"}`} ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={`filter-sort-box ${this.state.activestar}`}>
+                                    <div className="items-filter">
+                                        <div data-type="star" data-key={this.state.checkkeystar} onClick={((e) =>
+                                            this.handleChange(e))}>درجه
+                                <span className={`sorticon ${this.state.activeSarrow} ${!this.state.starS[0] ? "uparrow" : "downarrow"}`}></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {this.renderLibrary()}
+                            <ul id="page-numbers">
+                                <li className="nexprev">{currentPage !== 1 && (<button onClick={this.previousPage}><span className="fa-backward"></span></button>)}</li>
+                                <li className="controls activeCnt">{this.state.currentPage}</li>
+                                {(this.state.currentPage2 < maxPage) && (<li className="controls" onClick={this.nextPage}>{this.state.currentPage2}</li>)}
+                                {(this.state.currentPage3 < maxPage) && (<li className="controls" onClick={this.nextPage3}>{this.state.currentPage3}</li>)}
+                                <li className="restControls">...</li>
+                                <li className="controls">{this.state.maxPage}</li>
+                                <li className="nexprev">{(this.state.currentPage < maxPage) && (<button onClick={this.nextPage}><span className="fa-forward"></span></button>)}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            )
+        }
+        renderhomepage = event => {
+            return window.location='/'
+        }
+        renderMinTotal = () => {
+            const { librarySecond } = this.state;
+            if (!librarySecond || (librarySecond && librarySecond.length === 0)) {
+                return ''
+            }
+            return librarySecond.reduce((acc, lib) => {
+                const libMin = Math.min(...lib.map(item => item.totalCom))
+                return acc === undefined ? libMin : libMin < acc ? libMin : acc
+            }, undefined)
+        }
+        renderMaxTotal = () => {
+            const { librarySecond } = this.state;
+    
+            if (!librarySecond || (librarySecond && librarySecond.length === 0)) {
+                return ''
+            }
+            return librarySecond.reduce((acc, lib) => {
+                const libMax = Math.max(...lib.map(item => item.totalCom))
+                return libMax > acc ? libMax : acc
+            }, 0)
+        }
+    
+        ShowFilterHotel() {
+                let element = this.state.data;
+                if (!element) return null;
+                return <div>
+                    <div className="filter-box">
+                        <div className="title-filter"><span><i className="fas "></i>درجه مکان اقامتی</span> </div>
+                      <div className="items-filter grade_results">
+                        {this.renderstars(element)}
+                            <div className="clr"></div>
+                      </div>
+                    </div>
+                     <div className="filter-box">
+                        <div className="title-filter"><span><i className="fas "></i>سرویس</span> </div>
+                        <div className="items-filter">
+                            {this.renderservice(element)}
+                     </div>
+                    </div>
+                    <div className="filter-box">
+                        <div className="title-filter"><span><i className="fas "></i>وضعیت</span> </div>
+                        <div className="items-filter">
+                            {this.renderAllavailability(element)}
+                     </div>
+                    </div>
+                 </div>
+        }
+        renderstars(element) {
+                if(element.length!== undefined){
+                 let sentences = [...(new Set(element.map(d => d['hotelinfo']['hotelsearch']['star']).flat()))]
+                 let singleSentence = sentences.map(s=><React.Fragment><div className="item2 grade_filter"><div className="right rightCheck" data-index="1"><input type="checkbox" value={s}  className="stars"  onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked}/><label for="filter"  className="lable_content"><span className="checkbox"><span><img src={(`/images/${s}-rating.png`)} width="80" height="14" alt="rating"/></span></span><span className="total_content">از <span className="min_total">{new Intl.NumberFormat().format(this.min_totalByGrade(element, s))}</span><span className="unit_content">{[...(new Set(element.map(x =>x.moneytype)))]}</span></span></label></div><div className="clr"></div></div></React.Fragment>);
+                 let output = singleSentence
+                 return (
+                   output
+                 )
+                }
+        }
+        min_totalByGrade = (data, name) => {
+                const totals = data
+                .filter(x => 
+                x.hotelinfo.hotelsearch.star === name)
+                .map(x => x.total);
+                return Math.min(...totals);
+        }
+        renderservice(element) {
+                if(element.length!== undefined){
+                 let sentences = [...(new Set(element.map(d => d['families']).flat().map(info => info['services'])))]
+                 let singleSentence = sentences.map(s=><React.Fragment><div className="item2"><div className="right rightCheck" data-index="1"><input type="checkbox" value={s}  className="service"  onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked}/><label  className="lable_content" for="filter"><span className="checkbox"><span>{s}</span></span></label></div><div className="clr"></div></div></React.Fragment>);
+                 let output = singleSentence
+                 return (
+                   output
+                 )
+                }
+        }
+        renderAllavailability(element) {
+                if(element.length!== undefined){
+                 let sentences = [...(new Set(element.map(d => d['families']).flat().map(info => info['availablerooms']).flat().map(info => info['info']['availability'])))]
+                 let singleSentence = sentences.map(s=><React.Fragment><div className="item2"><div className="right rightCheck" data-index="1"><input type="checkbox" value={s}  className="all_availability"  onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked}/><label for="filter"  className="lable_content"><span className="checkbox"><span>{s}</span></span></label></div><div className="clr"></div></div></React.Fragment>);
+                 let output = singleSentence
+                 return (
+                   output
+                 )
+                }
+        }
+    
+        handleChange = (e) => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                this.handleReset(e);
+                let checktype = e.target.getAttribute("data-type")
+                let checkkey = e.target.getAttribute("data-key")
+                let isChecked = e.target.checked
+                let valu = e.target.value
+                let classname = e.target.getAttribute("class");
+                switch (classname) {
+                    case 'service':
+                        if (isChecked) {
+                            this.service.push(valu+',')
+                        } else {
+                            this.service.splice(this.service.indexOf(valu+','), 1)
+                        }
+                        break;
+                    case 'stars':
+                        if (isChecked) {
+                            this.stars.push(valu+',')
+                        } else {
+                            this.stars.splice(this.stars.indexOf(valu+','), 1)
+                        }
+                        break;
+                        case 'all_availability':
+                        if (isChecked) {
+                            this.availability.push(valu+',')
+                        } else {
+                            this.availability.splice(this.availability.indexOf(valu+','), 1)
+                        }
+                        break;
+                        
+                }
+                $(document).trigger('update_result', [this.service.join(), this.stars.join(), this.availability.join(),checktype,checkkey])
+        }
+    
+        renderCount() {
+            let maxPage = this.state.maxPage
+            let len = this.renderLibrary().length
+            let sum = len * maxPage
+            sum = sum || 0
+            if (sum == '0') {
+                $("#page-numbers").hide()
+             } else {
+                $("#page-numbers").show()
+            }
+    
+        }
+        handleClick(event) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            })
+            this.setState({
+                currentPage: Number(event.target.id)
+            })
+        }
+    handleReset(event){
+       let maxPage = this.state.maxPage
+       let len = this.renderLibrary().length
+       let Multi = len * maxPage
+       for (let i = 0; i <= Multi; i++) {
+            this.setState(prevState => ({
+                visibleRoom: { ...prevState.visibleRoom, [i]: "" },
+                state_active_btn: { ...prevState.state_active_btn, [i]: "" },
+            }))
+        }
+    }
+    
+        renderImgHotel(ImgHotel) {
+            let imghotel_garanti = ImgHotel.hotelinfo.hotelsearch.hotelimage
+            let imghotel_ws = ImgHotel.hotelinfo.hotelsearch.webserviceimage
+            if (imghotel_garanti == '') {
+                return this.renderHotelidImg(ImgHotel,imghotel_ws)
+            } else {
+                return this.renderHotelidImg(ImgHotel,imghotel_garanti)
+            }
+        }
+        renderAltImage(AltImage) {
+            let alt = AltImage.realname
+            return alt
+        }
+        renderProviderName(element) {
+        if(this.state.data_provider.length == 0){
+            return ''
+        }else{
+            if (element.id.provider == undefined) {
+           const providerName = this.state.data_provider
+               .filter((x) => x.id === 0)
+               .map((x) => x.name);
+           return <span className="provider-info">{providerName}</span>;
+       } else {
+           const providerName = this.state.data_provider
+               .filter((x) => x.id === parseInt(element.id.provider.provider_id))
+               .map((x) => x.name);
+           return <span className="provider-info">{providerName}</span>;
+       }
+        }
+    }
+        renderRoomtype(Roomtype) {
+            let lenavailablerooms = Roomtype.availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                indents.push(<div className="txtwebservice1 availablerooms"><span className="roomtype">{Roomtype.availablerooms[i].info.room}</span></div>)
+            }
+            return (
+                indents
+            )
+        }
+        renderviewnameRooms(element) {
+            let lenavailablerooms = element.availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                let elem = element.availablerooms[i].info.viewname
+                indents.push(<span>{element.availablerooms[i].info.viewname}</span>)
+            }
+            return (
+                indents
+            )
+    
+        }
+        renderavailability(availability) {
+            let lenavailablerooms = availability.availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                let elem = availability.availablerooms[i].info.availability
+                if (elem == 'onrequest') {
+                    indents.push(<span><span className="fa-clock-o"></span><span>{availability.availablerooms[i].info.availability}</span></span>)
+                } else if (elem == 'available') {
+                    indents.push(<span><span className="fa-check2"></span><span>{availability.availablerooms[i].info.availability}</span></span>)
+                } else {
+                    indents.push(<span><span>-</span><span>{availability.availablerooms[i].info.availability}</span></span>)
+                }
+    
+            }
+            return (
+                indents
+            )
+    
+        }
+        renderservices(services) {
+            return <span>{services.services}</span>
+        }
+        renderOptionId(OptionId) {
+            return <input type="hidden" value={OptionId.optionId} name="optionId" />
+        }
+        renderOptionIdFirst(OptionIdFirst) {
+            let indents = [];
+            indents.push(<input type="hidden" value={OptionIdFirst.families[0].optionId} name="optionId" />)
+    
+            return (
+                indents
+            )
+        }
+        rendertotalPrice(totalPrice) {
+            return <span className="costi">{new Intl.NumberFormat().format(totalPrice.totalPrice)}</span>
+        }
+        renderCommission(Commission) {
+            let i = Commission.commissioncost
+            let x = Commission.moneytype
+            if (i == 0) {
+                return '';
+            } else {
+                return <div className="cost-ticket "><span>کمیسیون : </span><span className="costi">{new Intl.NumberFormat().format(i)}</span><span className="monettypetbl">{x}</span></div>
+            }
+        }
+        renderTotalcom(Totalcom) {
+            let i = Totalcom.totalCom
+            let j = Totalcom.total
+            let x = Totalcom.moneytype
+            if (i == j) {
+                return '';
+            } else {
+                return <div className="cost-ticket "><span>مبلغ نهایی: </span><span className="costi">{new Intl.NumberFormat().format(i)}</span><span className="monettypetbl">{x}</span></div>
+            }
+        }
+        renderRoomtypeFirst(Roomtype) {
+            let lenavailablerooms = Roomtype.families[0].availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                indents.push(<div className="txtwebservice1 availablerooms"><span className="roomtype">{Roomtype.families[0].availablerooms[i].info.room}</span></div>)
+    
+            }
+            return (
+                indents
+            )
+    
+        }
+        renderavailabFirst(available) {
+    
+            let lenavailablerooms = available.families[0].availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                let elem = available.families[0].availablerooms[i].info.availability
+                if (elem == 'onrequest') {
+                    indents.push(<span><span className="fa-clock-o"></span><span>{available.families[0].availablerooms[i].info.availability}</span></span>)
+                } else if (elem == 'available') {
+                    indents.push(<span><span className="fa-check2"></span><span>{available.families[0].availablerooms[i].info.availability}</span></span>)
+                } else {
+                    indents.push(<span><span>-</span><span>{available.families[0].availablerooms[i].info.availability}</span></span>)
+                }
+    
+    
+            }
+            return (
+                indents
+            )
+    
+        }
+        renderservicesFirst(servic) {
+            let indents = [];
+            indents.push(<span>{servic.families[0].services}</span>)
+            return (
+                indents
+            )
+        }
+    
+        renderadultsFirst(adultsFirst) {
+            let lenavailablerooms = adultsFirst.families[0].availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                let idx = i
+                indents.push(<input type="hidden" name={`_root.rooms__${idx}.adults`} value={adultsFirst.families[0].availablerooms[i].info.adults} />)
+            }
+            return (
+                indents
+            )
+    
+        }
+        renderchildwithbedFirst(childwithbedFirst) {
+            let lenavailablerooms = childwithbedFirst.families[0].availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                let idx = i
+                indents.push(<input type="hidden" name={`_root.rooms__${idx}.childwithbed`} value={childwithbedFirst.families[0].availablerooms[i].info.withbed} />)
+            }
+            return (
+                indents
+            )
+    
+        }
+        renderchildwithoutbedFirst(childwithoutbedFirst) {
+            let lenavailablerooms = childwithoutbedFirst.families[0].availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                let idx = i
+                indents.push(<input type="hidden" name={`_root.rooms__${idx}.childwithoutbed`} value={childwithoutbedFirst.families[0].availablerooms[i].info.withoutbed} />)
+            }
+            return (
+                indents
+            )
+    
+        }
+        renderinfantFirst(infantFirst) {
+            let lenavailablerooms = infantFirst.families[0].availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                let idx = i
+                indents.push(<input type="hidden" name={`_root.rooms__${idx}.infant`} value={infantFirst.families[0].availablerooms[i].info.infant} />)
+            }
+            return (
+                indents
+            )
+    
+        }
+        renderroomidFirst(roomidFirst) {
+            let lenavailablerooms = roomidFirst.families[0].availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                let idx = i
+                indents.push(<input type="hidden" name={`_root.rooms__${idx}.roomid`} value={roomidFirst.families[0].availablerooms[i].info.roomid} />)
+            }
+            return (
+                indents
+            )
+    
+        }
+    
+        renderadults(adults) {
+            let lenavailablerooms = adults.availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                let idx = i
+                indents.push(<input type="hidden" name={`_root.rooms__${idx}.adults`} value={adults.availablerooms[i].info.adults} />)
+            }
+            return (
+                indents
+            )
+    
+        }
+        renderchildwithbed(childwithbed) {
+            let lenavailablerooms = childwithbed.availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                let idx = i
+                indents.push(<input type="hidden" name={`_root.rooms__${idx}.childwithbed`} value={childwithbed.availablerooms[i].info.withbed} />)
+            }
+            return (
+                indents
+            )
+    
+        }
+        renderchildwithoutbed(childwithoutbed) {
+            let lenavailablerooms = childwithoutbed.availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                let idx = i
+                indents.push(<input type="hidden" name={`_root.rooms__${idx}.childwithoutbed`} value={childwithoutbed.availablerooms[i].info.withoutbed} />)
+            }
+            return (
+                indents
+            )
+        }
+        renderinfant(infant) {
+            let lenavailablerooms = infant.availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                let idx = i
+                indents.push(<input type="hidden" name={`_root.rooms__${idx}.infant`} value={infant.availablerooms[i].info.infant} />)
+            }
+            return (
+                indents
+            )
+    
+        }
+        renderroomid(roomid) {
+            let lenavailablerooms = roomid.availablerooms.length
+            let indents = [];
+            for (let i = 0; i < lenavailablerooms; i++) {
+                let idx = i
+                indents.push(<input type="hidden" name={`_root.rooms__${idx}.roomid`} value={roomid.availablerooms[i].info.roomid} />)
+            }
+            return (
+                indents
+            )
+    
+        }
+        renderprovider(element) {
+            let provider = element.id.provider
+            if (provider == undefined) {
+                return '';
+            } else {
+                return <input type="hidden" value={JSON.stringify(provider)} name="mainprovider" />
+            }
+        }
+        renderproviderId(element) {
+            let provider = element.id.provider
+            if (provider == undefined) {
+                return <input type="hidden" value="0" name="provider" />;
+            }
+            else {
+                let providerId = element.id.provider.provider_id
+                return <input type="hidden" value={providerId} name="provider" />;
+            }
+        }
+        renderid(element) {
+            let id = element.id
+            if (typeof id === 'string') {
+                return <input type="hidden" value={id} name="productid" />
+            } else if (typeof id === 'object') {
+                return <input type="hidden" value={id.hotelId} name="productid" />
+            }
+        }
+        renderhotelidRooms(elementFamily) {
+            let hotelIdFamily = elementFamily.id.hotelId
+            if (hotelIdFamily == undefined) {
+                return <input type="hidden" value={elementFamily.hotelid} name="hotelid" />
+            } else {
+                return <input type="hidden" value={hotelIdFamily} name="hotelid" />
+            }
+        }
+        rendernightsRooms(elementFamily) {
+        
+                return <input type="hidden" value={elementFamily.nights} name="nightLink" />
+          
+        }
+        rendersupplierRooms(elementFamily) {
+      
+                return <input type="hidden" value={elementFamily.supplier} name="supplier" />
+           
+        }
+        rendermoneytype(elementFamily, element) {
+            let hotelIdFamily = elementFamily.id.hotelId
+            if (hotelIdFamily == undefined) {
+                return <span className="monettypetbl">{element.moneytype}</span>
+            } else {
+                return <span className="monettypetbl">ریال</span>
+            }
+        }
+    
+    
+        renderBtn(BtnFlight, j, index) {
+            if (j == 0) {
+            return <input className="linkreserve First hover_style_dark transition not-active-form" value="انتخاب شده" type="button" />
+        } else {
+            return <input className="linkreserve hover_style_green transition not-active-form" value="انتخاب اتاق" type="button" />
+        }
+        }
+        showDiv = (e, element, i) => {
+        let active_btn = this.state.state_active_btn[i];
+        let provider = element.id.provider
+        let optionId = element.families[0].optionId
+        let mainprovider = 0
+        if (provider == undefined) {
+            mainprovider = "0"
+        } else {
+            mainprovider = element.id.provider
+        }
+        if(active_btn == '' ||  active_btn == undefined){
+        this.setState(prevState => ({
+            state_active_btn: { ...prevState.state_active_btn, [i]: !prevState.state_active_btn[i] },
+        }))
+        this.showLoading(e, element, i);
+        setTimeout(() => {
+            fetch('/Client_Hotel_ShowAllRooms.bc', {
+                method: 'POST',
+                body: 'mainprovider=' + JSON.stringify(mainprovider) + '&optionId=' + encodeURIComponent(optionId) + ''
+            })
+                .then(response => response.text())
+                .then(text => {
+                    let Maindata = JSON.parse(text.replace(/\'/g, '"'))
+                    this.setState(prevState => ({
+                        showInfoRooms: {
+                            ...prevState.showInfoRooms,
+                            [i]: Maindata,
+                        },
+                        visibleRoom: { ...prevState.visibleRoom, [i]: !prevState.visibleRoom[i] },
+                        loadingVisible: { ...prevState.loadingVisible, [i]: "" }
+                    }))
+                }).catch(error => console.error(error))
+
+        }, 1000);
+    }
+
+
+    }
+    
+
+        showInfo(i) {
+            let element = this.state.showInfoRooms[i];
+            if (!element) return null;
+            if(element.families !== undefined){
+                let lenfamilies = element.families.length
+            let indents = [];
+            for (let j = 0; j < lenfamilies; j++) {
+                let index = 0;
+                let numF = i;
+                let numS = j;
+                let stingF = numF.toString();
+                let stingS = numS.toString();
+                index = stingF + stingS
+                indents.push(<form method="post" action=""  className="info-Hotel">{this.renderOptionId(element.families[j])}
+                    {this.renderadults(element.families[j])}
+                    {this.renderchildwithbed(element.families[j])}
+                    {this.renderchildwithoutbed(element.families[j])}
+                    {this.renderinfant(element.families[j])}
+                    {this.renderroomid(element.families[j])}
+                    {this.renderid(element.families[j])}
+                    {this.renderproviderId(element.families[j])}
+                    {this.renderprovider(element.families[j])}
+                    {this.renderhotelidRooms(element.families[j])}
+                    {this.rendernightsRooms(element.families[j])}
+                    {this.rendersupplierRooms(element.families[j])}
+                    <input type="hidden" value="[##cms.form.cityid##]" name="cityid" />
+                    <input type="hidden" value="[##cms.form.coHotel##]" name="coHotel" />
+                    <input type="hidden" value='[##cms.json.header|cms.form.roomSearch##]' name="roomSearch" className="roomSearch" />
+                    <input type="hidden" value="[##cms.form.fdate##]" name="fdate" />
+                    <input type="hidden" value="[##cms.form.tdate##]" name="tdate" /><div className="eachroom"><div className="other-rows"><div className="other-rows2"><span className="tltrow">نوع اتاق : </span> {this.renderRoomtype(element.families[j])}</div>
+                        <div className="viewname"><span className="tltrow">نمای اتاق : </span><span>{this.renderviewnameRooms(element.families[j])}</span></div><div className="availability"><span className="tltrow">وضعیت : </span>{this.renderavailability(element.families[j])}
+                        </div>
+                        <div className="servicesHotel"><span className="tltrow">نوع سرویس : </span>{this.renderservices(element.families[j])}{this.renderProviderName(element.families[j])}</div>
+                    </div><div className="txtwebservice renderruleRoom">
+                            <span className="txtRul" key={index} onClick={e => this.handelruleRoom(e, element.families[j], index)}>قوانین اتاق</span>
+    
+                        </div><div className="txtwebservice"><div className="f-part">{this.rendertotalPrice(element.families[j])}
+                            {this.rendermoneytype(element.families[j], element)}
+                        </div><div className="s-part">{this.renderBtn(element, j, index)}</div> </div><div className="clr"></div>
+                        <div key={index} className={`${!this.state.loadingVisible[index] ? "unvisible" : "visible"}`}>
+                            <div id="ballsWaveG">
+                                <div id="ballsWaveG_1" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_2" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_3" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_4" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_5" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_6" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_7" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_8" className="ballsWaveG"></div>
+                            </div>
+                        </div>
+                        <div  key={index} className={`popup-ruleRoom ${!this.state.ruleRoomVisibles[index] ? "unvisible" : "visible"}`}  onClick={() => this.closeruleRoom(index)}>
+                            <div className="close-ruleromm" onClick={() => this.CloseRuleRoom(i)}><span className="fa-times"></span></div>
+                            <div className="outer-resultruleRoom"><div className="resultruleRoom" key={index}  dir="auto"  dangerouslySetInnerHTML={{__html: this.state.resultruleRoom[index]}}></div></div>
+                        </div> 
+    
+                    </div>
+                </form>
+                )
+            }
+            return (
+                indents
+            )
+            }
+
+    
+        }
+    
+        handelruleRoom = (e, DetailsRoomJ, index) => {
+            let mainprovider = DetailsRoomJ.id.provider
+            let optionId = DetailsRoomJ.optionId
+            if (mainprovider == undefined) {
+                return ''
+            } else {
+                this.showLoading(e, DetailsRoomJ, index);
+                setTimeout(() => {
+                    let return_rule = function () {
+                        let tmp = null;
+                        $.ajax({
+                            'async': false,
+                            'type': "POST",
+                            'global': false,
+                            'dataType': 'html',
+                            'url': "Client_Room_Rule.bc",
+                            'data': { 'mainprovider': JSON.stringify(mainprovider), 'optionId': optionId, },
+                            'success': (response) => {
+                                tmp = response;
+                            }
+                        });
+    
+                        return tmp;
+                    }();
+                    return this.setState(prevState => ({
+                        resultruleRoom: { ...prevState.resultruleRoom, [index]: return_rule },
+                        ruleRoomVisibles: { ...prevState.ruleRoomVisibles, [index]: !prevState.ruleRoomVisibles[index] },
+                        loadingVisible: { ...prevState.loadingVisible, [index]: "" }
+                    }))
+    
+                }, 1000)
+            }
+    
+        }
+        closeruleRoom = (index) => {
+           this.setState( prevState => ({
+          ruleRoomVisibles: {[index]: !prevState.ruleRoomVisibles[index] }
+          }))
+        }
+    
+
+    renderHotelidImg(element,image){
+            return <form method="post" action='/Client_Hotel_Information.bc' target="_blank">
+                    {this.renderproviderid_hotelInfo(element)}
+                    <input type="hidden" name="optionId-hotel" value={element.families[0].optionId}/>
+                    <input type="hidden" value="[##cms.form.cityid##]" name="cityid"/>
+                    <input type="hidden" value="[##cms.form.coHotel##]" name="coHotel"/>
+                    <input type="hidden" value='[##cms.json.header | cms.form.roomSearch##]' name="roomSearch" />
+                    <input type="hidden" value="[##cms.form.fdate##]" name="fdate"/>
+                    <input type="hidden" value="[##cms.form.tdate##]" name="tdate"/>
+                    <input type="hidden" value={element.hotelinfo.hotelsearch.hotelid} name="hotelid"/>
+                    <button type="submit" className="LinkToHotelInfo">
+                    <div className="effect-6 effects clearfix"><div className="img"><img src={image} title="جزئیات هتل" width="200" height="200" alt={this.renderAltImage(element.hotelinfo.hotelsearch)} /><div className="overlay"><span className="expand">+</span></div></div></div></button>
+                   </form>
+    }
+    renderproviderid_hotelInfo(element) {
+            let provider = element.id.provider
+            if (provider == undefined) {
+                return <input type="hidden" value="0" name="provider-hotel" />;
+            }
+            else {
+                let providerId = element.id.provider.provider_id
+                return <input type="hidden" value={providerId} name="provider-hotel" />;
+            }
+    }
+        CloseRooms = (elem) => {
+            this.setState(prevState => ({
+                visibleRoom: { ...prevState.visibleRoom, [elem]: "" },
+                state_active_btn: { ...prevState.state_active_btn, [elem]: "" },
+            }))
+        }
+        CloseRuleRoom = (elem) => {
+            this.setState(prevState => ({
+                ruleRoomVisibles: { ...prevState.ruleRoomVisibles, [elem]: "" }
+            }))
+        }
+        showLoading = (e, elem, val) => {
+            this.setState(prevState => ({
+                loadingVisible: { ...prevState.loadingVisible, [val]: !prevState.loadingVisible[val] }
+            }))
+        }
+    }
+    ReactDOM.render(<App />, document.getElementById('Result'))
+    }
+        </script>
+    <script type="text/javascript">
+var progress = $(".loading-progress").progressTimer({
+    timeLimit: 40,
+    onFinish: function () {
+
+    }
+});
+$.ajax({
+    url: "/"
+});
+
+function onloadFunc() {
+    var counter = 600;
+    setInterval(function () {
+        counter--;
+        var m = parseInt(counter / 60);
+        var s = counter % 60;
+        if (counter >= 0) {
+            span = document.getElementById("count");
+            if(span !== null){
+                if (s < 10) {
+                    s = "0" + s;
+                }
+                if (m < 10) {
+                    m = "0" + m;
+                }
+                if (m < 2) {
+                    document.getElementById("count").classList.add("blink_me")
+                }
+                span.innerHTML = "00:" + m + ":" + s;
+            }
+        }
+        if (counter === 0) {
+            $(".boxalert,#bg-popup-timeout").fadeIn();
+            $(".boxalert").css("top", "200px")
+            clearInterval(counter);
+        }
+    }, 1000);
+
+};
+
+//<!---------------------------------JS RESEARCH--------------------------------->
+//<!-----------JS SUBMIT----------->
+$(".frm").submit(function (event) {
+    $(this).find("input[name=fdate],input[name=tdate]").each(function () {
+        if ($(this).val() == '' && !$(this).is(':disabled')) {
+            event.preventDefault();
+            $(this).css('border', '1px solid red')
+        }
+    })
+})
+
+$('.hotel-input, .count-room, .count-adultRoom, .count-childRoom').click(function (e) {
+    $(this).closest('.frm-other').find('.HotelPassengers').toggleClass("block");
+    e.preventDefault();
+    return false;
+});
+$('.CloseHotelPassengers').click(function (e) {
+    $(this).closest('.frm-other').find('.HotelPassengers').removeClass("block");
+    e.preventDefault();
+    return false;
+});
+$(".search-flight").click(function () {
+    s = $(this).closest("form").find(".childcountinput").val();
+    if (s == "0,") {
+        $(this).closest("form").find(".childcountinput").val(0)
+    }
+    $(this).closest("form").find(".contentRooms").each(function () {
+        var childCount = $(this).find(".chcount").val();
+        var childAge = "";
+        $(this).find(".select-age").each(function () {
+            childAge = childAge + ',' + $(this).val();
+        });
+        $(this).find(".childcountandage").val(childCount + childAge);
+    });
+});
+//<!-----------JS PASSENGERS----------->
+$(".content-HotelTour").each(function () {
+    var json = [##cms.json.header | cms.form.roomSearch##]
+    var room = json.rooms.length
+    var ad = ""
+    var ch = ""
+    for (var i = 0; i < room; i++) {
+        ad = ad + json.rooms[i].adultcount + ','
+        ch = ch + json.rooms[i].childcountandage + '*'
+    }
+    ad = ad.slice(0, -1)
+    ch = ch.slice(0, -1)
+    $(".roomcount").val(room)
+    $(this).find(".count-room").text('تعداد اتاق: ' + room)
+    var m = room;
+    var n = ad
+    var x = ch
+    var sp = n.split(",");
+    var sp2 = x.split("*")
+
+    var ad = 0;
+    var sum = 0;
+    for (var y = 0; y < sp.length; y++) {
+        var adultcount = parseInt(sp[y])
+        ad += adultcount;
+    }
+    sum = parseInt(ad)
+    $(this).find(".count-adultRoom").text('بزرگسال : ' + sum)
+
+    var ch = 0;
+    var sum2 = 0;
+    for (var z = 0; z < sp2.length; z++) {
+        var q = sp2[z]
+        var p = q.split(",")
+        var childcount = parseInt(p[0])
+        ch += childcount;
+
+    }
+    sum2 = parseInt(ch)
+    $(this).find(".count-childRoom").text('کودک: ' + sum2)
+    $(this).find(".countRoom").empty()
+    for (i = 1; i <= m; i++) {
+
+        $(this).find(".countRoom").addClass("tttest")
+        var childage = ""
+        var q = sp2[i - 1]
+        var p = q.split(",")
+        var s = p.length
+        if (p[0] > 0) {
+            var age = ""
+            var chage = ""
+            for (var j = 1; j < s; j++) {
+                age = age + '<div class="age-selection"><label class="label">سن کودک ' + j +
+                    '</label><select class="select-age"><option value="' + p[
+                        j] + '">' + p[j] +
+                    '</option><option value="1">تا 1 سال</option><option value="2">1 تا 2</option><option value="3">2 تا 3</option><option value="4">3 تا 4</option><option value="5">4 تا 5</option><option value="6">5 تا 6</option><option value="7">6 تا7</option><option value="8">7 تا 8</option><option value="9">8 تا 9</option><option value="10">9 تا 10</option><option value="11">10 تا 11</option><option value="12">11 تا 12</option></select><div class="clr"></div></div>'
+                chage = chage + p[j] + ','
+            }
+            chage = chage.slice(0, -1);
+            childage = childage + p[0] + ',' + chage
+            $(this).find(".countRoom").append(
+                '<div class="contentRooms"><div class="numberOfRooms">اتاق' + i +
+                '</div><div class="itemlable2"><label> <span class="notshow">بزرگسال</span> </label><ul class="button-click defaultAdNum"><li><a class="button secondary"><span class="hide">+</span></a></li><li><a class="button secondary"><span class="hide">-</span></a></li></ul><input type="text" class="cat_textbox adultcount" name="_root.rooms__' +
+                i + '.adultcount" maxlength="4000" value="' + sp[i - 1] +
+                '"> <div class="clr"></div></div><div class="itemlable2"> <label> <span class="notshow">کودک</span> </label><ul class="button-click-childRoom defaultChNum"><li><a class="button secondary"><span class="hide">+</span></a></li><li><a class="button secondary"><span class="hide">-</span></a></li><div class="clr"></div></ul><input type="text" class="cat_textbox chcount"  maxlength="4000" value="' +
+                p[0] + '"></div><div class="clr"></div><div class="childDropdowns">' + age +
+                '</div><input type="hidden" name="_root.rooms__' + i +
+                '.childcountandage" class="childcountandage" value="' + childage +
+                '" /></div></div>')
+
+        } else {
+            $(this).find(".countRoom").append(
+                '<div class="contentRooms"><div class="numberOfRooms">اتاق' + i +
+                '</div><div class="itemlable2"><label> <span class="notshow">بزرگسال</span> </label><ul class="button-click defaultAdNum"><li><a class="button secondary"><span class="hide">+</span></a></li><li><a class="button secondary"><span class="hide">-</span></a></li></ul><input type="text" class="cat_textbox adultcount" name="_root.rooms__' +
+                i + '.adultcount" maxlength="4000" value="' + sp[i - 1] +
+                '"> <div class="clr"></div></div><div class="itemlable2"> <label> <span class="notshow">کودک</span> </label><ul class="button-click-childRoom defaultChNum"><li><a class="button secondary"><span class="hide">+</span></a></li><li><a class="button secondary"><span class="hide">-</span></a></li><div class="clr"></div></ul><input type="text" class="cat_textbox chcount"  maxlength="4000" value="' +
+                p[0] +
+                '"></div><div class="clr"></div><div class="childDropdowns"></div><input type="hidden" name="_root.rooms__' +
+                i + '.childcountandage" class="childcountandage" value="0" /></div></div>')
+        }
+    }
+
+});
+
+$(".button-click-room a").on("click", function () {
+    var button = $(this);
+    var oldVal = parseInt(button.closest("ul").next().val());
+    var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+    var total_value = "";
+    if (newVal >= 5) return;
+    if (newVal < 1) return;
+    button.closest("ul").next().val(newVal);
+    if (oldVal < newVal) {
+        var room = newVal;
+        button.closest("form").find('.countRoom').empty()
+        for (i = 1; i <= room; i++) {
+            button.closest("form").find('.countRoom').append(
+                '<div class="contentRooms"><div class="numberOfRooms">اتاق' + i +
+                '</div><div class="itemlable2"><label> <span class="notshow">بزرگسال</span> </label><ul class="button-click"><li><a class="button secondary" onclick="increaseAdult(this)"><span class="hide">+</span></a></li><li><a class="button secondary"  onclick="decreaseAdult(this)"><span class="hide">-</span></a></li></ul><input type="text" class="cat_textbox adultcount" name="_root.rooms__' +
+                i +
+                '.adultcount" maxlength="4000" value="1"> <div class="clr"></div></div><div class="itemlable2"> <label> <span class="notshow">کودک</span> </label><ul class="button-click-childRoom"><li><a class="button secondary" onclick="increaseChild(this)"><span class="hide">+</span></a></li><li><a class="button secondary" onclick="decreaseChild(this)"><span class="hide">-</span></a></li><div class="clr"></div></ul><input type="text" class="cat_textbox chcount"  maxlength="4000" value="0"></div><div class="clr"></div><div class="childDropdowns"></div><input type="hidden" name="_root.rooms__' +
+                i + '.childcountandage" class="childcountandage" /></div></div>')
+        }
+    } else if (oldVal > newVal) {
+        destroyRoomDropdown(button.closest("form").find('.countRoom'), newVal);
+    }
+    total_value = total_value.substring(0, total_value.length - 2);
+    button.closest("form").find(".count-room").text('تعداد اتاق: ' + newVal)
+    button.closest("form").find(".count-adultRoom").text('بزرگسال : ' + newVal)
+    button.closest("form").find(".count-childRoom").text('کودک : 0')
+});
+var destroyRoomDropdown = function ($el, i) {
+    if (i < 1) return;
+    $el.find('div.contentRooms').get(i).remove();
+};
+
+function increaseAdult(a) {
+    var button = $(a);
+    var oldVal = parseInt(button.closest("ul").next().val());
+    var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+    if (newVal >= 10) return;
+    button.closest("ul").next().val(newVal);
+    SumAdult(a)
+}
+
+function decreaseAdult(a) {
+    var button = $(a);
+    var oldVal = parseInt(button.closest("ul").next().val());
+    var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+    if (newVal < 1) return;
+    button.closest("ul").next().val(newVal);
+    SumAdult(a)
+}
+
+function SumAdult(a) {
+    var ad = 0;
+    var sum = 0;
+    $(a).closest("form").find(".countRoomHT").find(".contentRooms").each(function () {
+        var adultcount = parseInt($(this).find(".adultcount").val())
+        ad += adultcount;
+    })
+    sum = parseInt(ad)
+    $(a).closest("form").find(".count-adultRoom").text('بزرگسال : ' + sum)
+
+}
+
+function increaseChild(a) {
+    var button = $(a);
+    var oldVal = parseInt(button.closest("ul").next().val());
+    var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+    var total_value = "";
+    if (newVal >= 5) return;
+    button.closest("ul").next().val(newVal);
+    if (oldVal < newVal) {
+        var childCount = newVal;
+        button.closest(".contentRooms").find('.childDropdowns').empty()
+        for (i = 1; i <= childCount; i++) {
+            button.closest(".contentRooms").find('.childDropdowns').append(
+                '<div class="age-selection"><label class="label">سن کودک ' + i +
+                '</label><select class="select-age"><option value="1">تا 1 سال</option><option value="2">1 تا 2</option><option value="3">2 تا 3</option><option value="4">3 تا 4</option><option value="5">4 تا 5</option><option value="6">5 تا 6</option><option value="7">6 تا7</option><option value="8">7 تا 8</option><option value="9">8 تا 9</option><option value="10">9 تا 10</option><option value="11">10 تا 11</option><option value="12">11 تا 12</option></select><div class="clr"></div></div>'
+            );
+        }
+
+    }
+    total_value = total_value.substring(0, total_value.length - 2);
+    SumChild(a)
+}
+
+function decreaseChild(a) {
+    var button = $(a);
+    var oldVal = parseInt(button.closest("ul").next().val());
+    var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+    var total_value = "";
+    button.closest("ul").next().val(newVal);
+    if (oldVal > newVal) {
+        var childCount = newVal;
+        destroyChildDropdownRoom(button.closest(".contentRooms").find('.childDropdowns'), newVal);
+    }
+    total_value = total_value.substring(0, total_value.length - 2);
+    SumChild(a)
+}
+
+function SumChild(a) {
+    var ch = 0;
+    var sum = 0;
+    $(a).closest("form").find(".countRoomHT").find(".contentRooms").each(function () {
+        var chcount = parseInt($(this).find(".chcount").val())
+        ch += chcount;
+    })
+    sum = parseInt(ch)
+    $(a).closest("form").find(".count-childRoom").text('کودک : ' + sum)
+
+}
+$(".button-click a").on("click", function () {
+    var button = $(this);
+    var oldVal = parseInt(button.closest("ul").next().val());
+    var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+    if (newVal >= 10) return;
+    if (newVal < 1) return;
+    button.closest("ul").next().val(newVal);
+    $(".cat_textbox").each(function () {
+        var cat = $(this).next('span').text();
+    });
+    $(".count-adultRoom").text('بزرگسال : ' + newVal)
+});
+$(".button-click-childRoom a").on("click", function () {
+    var button = $(this);
+    var oldVal = parseInt(button.closest("ul").next().val());
+    var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+    var total_value = "";
+    if (newVal >= 5) return;
+    button.closest("ul").next().val(newVal);
+    $(".count-childRoom").text('کودک : ' + newVal)
+    if (oldVal < newVal) {
+        var childCount = newVal;
+        button.closest(".contentRooms").find('.childDropdowns').empty()
+        for (i = 1; i <= childCount; i++) {
+            button.closest(".contentRooms").find('.childDropdowns').append(
+                '<div class="age-selection"><label class="label">سن کودک ' + i +
+                '</label><select class="select-age"><option value="1">تا 1 سال</option><option value="2">1 تا 2</option><option value="3">2 تا 3</option><option value="4">3 تا 4</option><option value="5">4 تا 5</option><option value="6">5 تا 6</option><option value="7">6 تا7</option><option value="8">7 تا 8</option><option value="9">8 تا 9</option><option value="10">9 تا 10</option><option value="11">10 تا 11</option><option value="12">11 تا 12</option></select><div class="clr"></div></div>'
+            );
+        }
+
+    } else if (oldVal > newVal) {
+        destroyChildDropdownRoom(button.closest(".contentRooms").find('.childDropdowns'),
+            newVal);
+    }
+    total_value = total_value.substring(0, total_value.length - 2);
+});
+var destroyChildDropdownRoom = function ($el, i) {
+    $el.find('div.age-selection').get(i).remove();
+};
+
+
+function roomCount(a) {
+    var room = $(a).val();
+    $(a).closest("form").find(".infoRooms").empty()
+    for (i = 1; i <= room; i++) {
+        $(a).closest("form").find(".infoRooms").append(
+            '<div class="contentRooms counRoom2"><div class="numberOfRooms">اتاق' + i +
+            '</div><div class="passengerInfo"><div class="label"><span>بزرگسال</span><span class="age-range">بالای 12 سال</span></div><div class="textbox"><select  name="_root.rooms__' +
+            i +
+            '.adultcount" class="adultcountHotel"><option value="1">1 بزرگسال</option><option value="2">2 بزرگسال</option><option value="3">3 بزرگسال</option><option value="4">4 بزرگسال</option><option value="5">5 بزرگسال</option><option value="6">6 بزرگسال</option><option value="7">7 بزرگسال</option><option value="8">8 بزرگسال</option><option value="9">9 بزرگسال</option></select></div></div><div class="passengerInfo"><div class="label"><span>کودک</span><span class="age-range">1 تا 12 سال</span></div><div class="textbox"><select name="child" onchange="childCount2(this)" class="childCount">       <option value="0">بدون کودک</option><option value="1">1 کودک</option><option value="2">2 کودک</option><option value="3">3 کودک</option><option value="4">4 کودک</option><option value="5">5 کودک</option><option value="6">6 کودک</option></select></div></div><div class="selectAge"></div><input type="hidden"  name="_root.rooms__' +
+            i + '.childcountandage" class="childcountandage"/></div>')
+    }
+}
+
+function childCount2(a) {
+    var age = $(a).val();
+    $(a).closest(".contentRooms").find(".selectAge").empty()
+    for (var j = 1; j <= age; j++) {
+        $(a).closest(".contentRooms").find(".selectAge").append(
+            '<div class="createChildDropdown"><label  class="label">سن کودک ' + j +
+            '</label><select  class="select-age"><option value="1">تا 1 سال</option><option value="2">1 تا 2</option><option value="3">2 تا 3</option><option value="4">3 تا 4</option><option value="5">4 تا 5</option><option value="6">5 تا 6</option><option value="7">6 تا7</option><option value="8">7 تا 8</option><option value="9">8 تا 9</option><option value="10">9 تا 10</option><option value="11">10 تا 11</option><option value="12">11 تا 12</option></select><div class="clr"></div></div>'
+        );
+    }
+}
+//<!-----------JS DESTINATIO/DEPARTURE----------->
+$('.country').each(function () {
+    $(this).on('keyup', function (e) {
+        $(this).closest(".city").find(".outer-searchList").slideUp()
+        $(this).closest(".city").find(".searchList").slideUp()
+    });
+    $(this).on('blur', function () {
+        if ($(this).closest(".city").find(".countryFlight").text().length > 0) {
+            if (hoverelse == 0) {
+                var defresult = $(this).closest(".city").find(".countryFlight")
+                    .children(".selectCountry:first").find(".txtcountry")
+                    .text();
+                var spl = defresult.split(" ");
+                var defresultid = $(this).closest(".city").find(
+                    ".countryFlight").children(".selectCountry:first").find(
+                    ".countryid").val();
+                $(this).closest(".city").find(".country").val(defresult);
+                $(this).closest(".city").find(".co-id").val(defresultid);
+                $(this).closest(".city").find(".countryFlight").empty();
+            }
+
+
+
+        } else {
+
+            $(this).closest(".city").find(".mini-loading").css("display",
+                "none")
+            $(this).closest(".city").find(".country").val('');
+            $(this).closest(".city").find(".co-id").val('');
+        }
+    });
+
+});
+
+function city_search(a) {
+    if (a.which !== 0 && !a.ctrlKey && !a.metaKey && !a.altKey) {
+        upper_case = $(a).val().substr(0, 1).toUpperCase() + $(a).val().substr(1).toLowerCase();
+        $(a).val(upper_case)
+
+        if ($(a).val().length > 2) {
+            $(a).closest(".city").find(".mini-loading").show();
+
+            $.ajax({
+                url: '/Client_City_Search.bc',
+                type: 'get',
+                data: {
+                    term: $(a).val(),
+                    type: $(a).attr('data-type')
+                },
+                success: function (result) {
+                    $(a).closest(".city").find(".mini-loading").hide();
+                    $(a).closest(".city").find(".countryFlight").empty().html(result)
+                }
+            });
+        } else
+            $(a).closest(".city").find(".countryFlight").empty()
+    }
+}
+
+function SelectPlace(element) {
+    var idSelected = $(element).attr("data-id")
+    var textSelected = $(element).find("span").text()
+    $(element).closest(".city").find(".country").val(textSelected)
+    $(element).closest(".city").find(".co-id").val(idSelected)
+    $(element).closest(".city").find(".outer-searchList").slideUp()
+    $(element).closest(".city").find(".searchList").slideUp()
+}
+$(document).on('click', function (event) {
+    if (!$(event.target).closest('.searchList,.country,.outer-searchList').length) {
+        $(".outer-searchList").slideUp();
+        $(".searchList").slideUp();
+    }
+})
+
+function empty(a) {
+    $(a).val('')
+    $(a).closest(".city").find(".co-id").val('')
+    $(a).closest(".city").find(".outer-searchList").slideDown()
+    $(a).closest(".city").find(".searchList").slideDown()
+    $(a).closest(".city").siblings(".city").find(".outer-searchList").slideUp()
+    $(a).closest(".city").siblings(".city").find(".searchList").slideUp()
+}
+//<!-----------JS CALENDARE----------->
+$(document).ready(function () {
+    if ($(window).width() <= 750) {
+                $(".frm").attr('action', '/M_Hotel_Search.bc')
+    }
+    if ($(".departuredate").val() == $(".persiancurrent").val()) {
+        $(".prevdate").hide()
+        $('.nextdate').click(NextDate);
+    } else {
+        $('.prevdate').click(PrevDate);
+        $('.nextdate').click(NextDate);
+    }
+});
+
+function openNextCal(e) {
+    let returnDate = $('#r-hotel').find('.nextCalOpening').val();
+    if (returnDate == '') {
+        $('#r-hotel').find('.nextCalOpening').trigger("onclick");
+    }
+};
+</script>
+</body>
+</html>

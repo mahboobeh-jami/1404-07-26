@@ -1,0 +1,483 @@
+<basis core="dbsource" source="trust_login" mid="24" name="db" lid="1" rkey="[##cms.cookie.rkey##]">
+    <member name="useridmain" type="scalar" request="userid"/>
+  </basis>
+  <!doctype html>
+  <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <link rel="stylesheet" type="text/css" href="css/all.min.css">
+        <link  href="/css/Basis_Calendar.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="css/tripcenter_main_style.css">
+        <link rel="stylesheet" type="text/css" href="/css/DatePicker_New.css"/>
+        <link href="[##cms.cms.cdn##]/css/owl_carousel.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" lang="javascript" src="js/jquery.min.js"></script>
+       <script type="text/javascript" src="[##cms.cms.cdn##]/js/owl_carousel.js"></script>
+        <script type='text/javascript' src="js/jquery.navgoco.js"></script> <!--js menu--> 
+        <script type='text/javascript' src="js/off-canvas.js" ></script><!--js menu-->
+        <script type='text/javascript' src="js/jquery.devrama.slider.js" ></script><!--js slider-->
+        <title>تریپ سنتر | Trip Center | تامین کننده گردشگری | پرواز، هتل، تور</title>
+   <meta name="description" content="Trip Center تریپ سنتر یک پلتفرم منحصر به فرد برای رزرو و توزیع است که از طریق رابط کاربری خود ، وب سرویس ، وایت لیبل و ساین ، موجودی چندین تامین کننده از محصولات سفر را ارائه می دهد.">
+    </head>
+    <body>
+        <div id="container">
+            <div class="loginRegister"></div>
+            <basis core="call" file="header.inc"/>
+            <basis core="group" name="g1" if="'[##db.useridmain.userid##]'='0'">
+                <div id="slider-resize" class="slider-is-visible">
+                    <div id="my-slide">
+                        <div>
+                            <h3 data-pos="['22%', '11%']" data-duration="1000" data-effect="fadein" style="display: none; position: absolute; top: 22%; left: 11%; opacity: 1;">
+                              <span class="first"><p>WholeSaler B2B </p></span> <span class="second"><p>Travel Agents</p></span>
+                            </h3>
+                            <div class="description" data-pos="['48%', '43%']" data-duration="700" data-delay="300" data-effect="fadein" style="display: none; position: absolute; top: 48%; left: 43%; opacity: 1;">
+                                <span class="first2"><p>Travel Provider</p></span><span class="second2"><p>Tourism Companies</p></span>
+                             </div>
+                             <div class="description description2" data-pos="['56%', '47%']" data-duration="700" data-delay="300" data-effect="fadein" style="display: none; position: absolute; top: 56%; left: 47%; opacity: 1;">
+                                <span class="first3"><p>With Multi Channel <span class="en-font">B2B</span> Reservation System</p> </span><span class="second3"><p>With all necessary tools for online operations</p></span>
+                             </div>
+                             <img data-lazy-src="images/slide6.gif" />
+                        </div>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            </basis>
+                <div id="search-box-resize" class="search-box-hidden">
+                    <div class="inner-resize">
+                        <div id="search-box">
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            <div id="expert-resize">
+                <div class="inner-resize">
+                    <h4>چرا ما بهترین هستیم</h4>
+                    <div class="exp-text">
+                        <span>شناخت صحیح نیاز آژانس های مسافرتی، دسترسی به تمامی تأمین کنندگان، قیمت های رقابتی</span>
+                     </div>
+                     <div class="content-expert">
+  
+                        <div class="expert-inner">
+                            <div class="content-inset">
+                            <div class="expert-image"><img src="images/expert1.png" alt="expert"></div>
+                            <div class="expert-explain">
+                            <div class="expert-title"><span>بورس پکیج های مسافرتی</span></div>
+                            <div class="expert-text"><span class="EnNum">بازارچه ای از پکیج های متنوع مسافرتی از توراپراتورهای مطرح کشور (تورهای داخلی، تورهای خارجی) با تضمین بالاترین کیفیت و نرخ دست اول.</span></div>
+                            </div>
+                            <div class="clr"></div>
+                            </div>
+                        </div>
+  
+                        <div class="expert-inner">
+                            <div class="content-inset">
+                            <div class="expert-image"><img src="images/expert3.png" alt="expert"></div>
+                            <div class="expert-explain">
+                            <div class="expert-title"><span>بزرگترین بانک پرواز</span></div>
+                            <div class="expert-text"><span class="EnNum">پوشش 360 درجه ای تمامی پروازهای مورد نیاز شرکت های خدمات مسافرتی شامل کلیه پروازهای داخلی و خارجی، پروازهای Low Cost Carriers ، پروازهای SOTO </span></div>
+                            </div>
+                            <div class="clr"></div>
+                            </div>
+                        </div>
+  
+                        <div class="expert-inner">
+                            <div class="content-inset">
+                            <div class="expert-image"><img src="images/expert2.png" alt="expert"></div>
+                            <div class="expert-explain">
+                            <div class="expert-title"><span>قیمت تماماً رقابتی</span></div>
+                            <div class="expert-text"><span class="EnNum">تریپ سنتر در مقام یک تأمین کننده B2B وظیفه اول خود را به دست آوری و توزیع نرخ های رقابتی می داند تا آژانس های مسافرتی مشتری بتوانند با در اختیار داشتن بهترین نرخ ها به رقابت برای جذب مسافر بپردازند.</span></div>
+                            </div>
+                            <div class="clr"></div>
+                            </div>
+                        </div>
+  
+                        <div class="expert-inner">
+                            <div class="content-inset">
+                            <div class="expert-image"><img src="images/expert4.png" alt="expert"></div>
+                            <div class="expert-explain">
+                            <div class="expert-title"><span>شبکه هوشمند هتل</span></div>
+                            <div class="expert-text"><span class="EnNum">شبکه ای گسترده و قدرتمند از 700.000 هتل در 185 کشور دنیا و بیش از 1500 هتل زنجیره ای و بخش خصوصی در ایران با توضیحات کامل به زبان پارسی</span></div>
+                            </div>
+                            <div class="clr"></div>
+                            </div>
+                        </div>
+  <div class="clr"></div>
+                     </div>
+                     <div class="clr"></div>
+                </div>
+                <div class="clr"></div>
+            </div>
+            <div id="air-resize">
+                <div class="inner-resize">
+                    <!-- <div id="airlines-box" class="airinfo-box">
+                        <div class="text-box">
+                            <div class="text-box-inner">
+                                <div class="flight-booking-text">آنچه تریپ سنتر به شما ارائه میدهد : </div>
+                                
+                                <div class="nation-carriers">
+  •	تمامی پروازهای سیستمی داخل ایران 
+  <br>
+  •	تمامی پروازهای چارتری داخل ایران
+  <br>
+  •	تمامی پروازهای موجود بر روی سرویس آمادئوس ایران
+  <br>
+  •	تمامی پروازهای پوینت ماهان
+  <br>
+  •	پروازهای Low Cost Carriers 
+  <br>
+  •	پروازهای SOTO
+  <br>
+  •	هتل های ایران
+  <br>
+  •	هتل های بین المللی با نرخ رقابتی
+  <br>
+  
+  </div>
+                                <div class="air-submit"><a href="#" class="b2b-btn">مطالعه مقاله</a></div>
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="logo-box">
+                            <div class="logo-box-inner">
+                                <div class="flight-img-div">
+                                    <div class="each-logo"><div class="each-logo-inner"><img src="images/airlines1.png" alt="airline-logo" /></div></div>
+                                    <div class="each-logo"><div class="each-logo-inner"><img src="images/airlines1.png" alt="airline-logo" /></div></div>
+                                    <div class="each-logo"><div class="each-logo-inner"><img src="images/airlines1.png" alt="airline-logo" /></div></div>
+                                    <div class="each-logo"><div class="each-logo-inner"><img src="images/airlines1.png" alt="airline-logo" /></div></div>
+                                    <div class="each-logo"><div class="each-logo-inner"><img src="images/airlines1.png" alt="airline-logo" /></div></div>
+                                    <div class="each-logo"><div class="each-logo-inner"><img src="images/airlines1.png" alt="airline-logo" /></div></div>
+                                    <div class="each-logo"><div class="each-logo-inner"><img src="images/airlines1.png" alt="airline-logo" /></div></div>
+                                    <div class="each-logo"><div class="each-logo-inner"><img src="images/airlines1.png" alt="airline-logo" /></div></div>
+                                    <div class="each-logo"><div class="each-logo-inner"><img src="images/airlines1.png" alt="airline-logo" /></div></div>
+                                    <div class="each-logo"><div class="each-logo-inner"><img src="images/airlines1.png" alt="airline-logo" /></div></div>
+                                    <div class="clr"></div>
+                                </div>
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="clr"></div>
+                    </div> -->
+                    <div id="providers-box" class="airinfo-box">
+                        <div class="text-box">
+                            <div class="text-box-inner">
+                                <div class="flight-booking-text">آنچه تریپ سنتر به شما ارائه میدهد : </div>
+                                <div class="nation-carriers">
+                                    <ul>
+                                        <li data-key="flight" onclick="show_logo(this)">پروازهای سیستمی داخلی و خارجی</li>
+                                        <li data-key="flight" onclick="show_logo(this)">پروازهای چارتری داخلی و خارجی</li>
+                                        <li data-key="flight" onclick="show_logo(this)">پروازهای SOTO</li>
+                                        <li data-key="hotel" onclick="show_logo(this)">هتل های آنلاین خارجی</li>
+                                        <li data-key="hotel" onclick="show_logo(this)">هتل های آنلاین داخلی</li>
+                                        <li data-key="insurance" onclick="show_logo(this)">بیمه مسافرتی</li>
+                                    </ul>
+                                  </div>
+                                <!-- <div class="air-submit"><a href="#" class="b2b-btn">مطالعه مقاله</a></div> -->
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="logo-box">
+                            <div class="logo-box-inner">
+                                <div class="flight-img-div">
+                                    <div class="each-logo" data-type="flight"><div class="each-logo-inner"><img src="images/amadeus.jpg" alt="amadeus" /></div></div>
+                                    <div class="each-logo" data-type="flight"><div class="each-logo-inner"><img src="images/travelfusion.jpg" alt="travelfusion" /></div></div>
+                                    <div class="each-logo" data-type="flight"><div class="each-logo-inner"><img src="images/armenia.jpg" alt="armenia" /></div></div>
+                                    <div class="each-logo" data-type="flight"><div class="each-logo-inner"><img src="images/mahan.jpg" alt="mahan" /></div></div>
+                                    <div class="each-logo" data-type="flight"><div class="each-logo-inner"><img src="images/iranairtour.jpg" alt="iranairtour" /></div></div>
+                                    <div class="each-logo" data-type="hotel"><div class="each-logo-inner"><img src="images/hotelbeds.jpg" alt="hotelbeds" /></div></div>
+                                    <div class="each-logo" data-type="hotel"><div class="each-logo-inner"><img src="images/giata.jpg" alt="giata" /></div></div>
+                                    <div class="each-logo" data-type="hotel"><div class="each-logo-inner"><img src="images/paximum.jpg" alt="paximum" /></div></div>
+                                    <div class="each-logo" data-type="hotel"><div class="each-logo-inner"><img src="images/parsian.jpg" alt="parsian" /></div></div>
+                                    <div class="each-logo" data-type="flight"><div class="each-logo-inner"><img src="images/nira.jpg" alt="nira" /></div></div>
+                                    <div class="each-logo" data-type="flight"><div class="each-logo-inner"><img src="images/sepehr.jpg" alt="sepehr" /></div></div>
+                                    <div class="each-logo" data-type="flight"><div class="each-logo-inner"><img src="images/ravis.jpg" alt="ravis" /></div></div>
+                                    <div class="each-logo" data-type="insurance"><div class="each-logo-inner"><img src="images/pasargad.jpg" alt="pasargad" /></div></div>
+                                    <div class="each-logo" data-type="insurance"><div class="each-logo-inner"><img src="images/saman.jpg" alt="saman" /></div></div>
+  
+                                    <div class="clr"></div>
+                                </div>
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+                <div class="clr"></div>
+            </div>
+  
+  
+            <div id="services-resize">
+                <div class="inner-resize">
+                    <h4>خدمات ما</h4>
+                    <div class="content-services">
+                        <div class="services-inner">
+                        <div class="content-inset">
+                        <div class="services-image"><img src="images/webservice1.png" alt="services-flight"></div>
+                        <div class="services-explain">
+                        <div class="services-title"><a href="#"><span>Web Service</span><span class="more-details">مشاهده جزئیات</span></a></div>
+                        </div>
+                        <div class="clr"></div>
+                        </div>
+                        </div>
+  
+                        <div class="services-inner">
+                        <div class="content-inset">
+                        <div class="services-image"><img src="images/white-label1.png" alt="services"></div>
+                        <div class="services-explain">
+                        <div class="services-title"><a href="#"><span>White Label</span><span class="more-details">مشاهده جزئیات</span></a></div>
+                        </div>
+                        <div class="clr"></div>
+                        </div>
+                        </div>
+  
+                        <!-- <div class="services-inner">
+                            <div class="content-inset">
+                            <div class="services-image"><img src="images/b2b1.png" alt="services"></div>
+                            <div class="services-explain">
+                            <div class="services-title"><a href="#"><span class="en-font">Sign B2Bتجربه اختصاصی و شخصی در سطح جهانی</span><span class="more-details">مشاهده جزئیات</span></a></div>
+                            </div>
+                            <div class="clr"></div>
+                            </div>
+                        </div> -->
+  
+                        <div class="clr"></div>
+                        </div>
+                </div>
+            </div>
+  
+  
+            <div id="about-trip-resize">
+                <div class="inner-resize">
+                    <div class="content-about-trip">
+  
+                        <div class="about-trip-inner">
+                        <div class="content-inset">
+                        <div class="about-trip-image"><img src="images/flight-icon.png" alt="about-trip-flight"></div>
+                        <div class="about-trip-explain">
+                        <div class="about-trip-title"><span>ما کی هستیم؟</span></div>
+                        <div class="about-trip-text"><span class="EnNum">تریپ سنتر در واقع پاسخی است به نیاز ایجاد شده برای شرکت های خدمات مسافرتی در دوران بحرانی اخیر. تریپ سنتر در نقش یک تأمین کننده B2B خدمات گردشگری، کمک به آنلاین شدن کسب و کارهای سنتی گردشگری با سریعترین، ساده ترین و ارزان ترین راهکارهای موجود را به عنوان هویت وجودی خود می شناسد.</span></div>
+                        </div>
+                        <div class="clr"></div>
+                        </div>
+                        </div>
+  
+                        <div class="about-trip-inner">
+                        <div class="content-inset">
+                        <div class="about-trip-image"><img src="images/serve-icon.png" alt="serve"></div>
+                        <div class="about-trip-explain">
+                        <div class="about-trip-title"><span>به چه کسی خدمت می کنیم؟</span></div>
+                        <div class="about-trip-text"><span class="EnNum">مشتریان ما آن دسته از شرکت های خدمات مسافرتی هستند که دغدغه فروش آنلاین خدمات گردشگری را داشته و باور دارند آینده این صنعت در گرو پیوند صحیح آن با تکنولوژی خواهد بود. این مشتریان راهکارهای مرتبط با تکنولوژی های مسافرتی را تنها راه بقا در بازار متلاطم امروزی یافته اند </span></div>
+                        </div>
+                        <div class="clr"></div>
+                        </div>
+                        </div>
+  
+                        <div class="about-trip-inner">
+                        <div class="content-inset">
+                        <div class="about-trip-image"><img src="images/services-icon.png" alt="about-trip"></div>
+                        <div class="about-trip-explain">
+                        <div class="about-trip-title"><span>خدمات ما</span></div>
+                        <div class="about-trip-text"><span class="EnNum">تریپ سنتر به 3 روش وب سرویس، وایت لیبل و ساین به کسب و کار شما کمک می کند تا به راحتی و بدون کوچکترین نیازی به تیم IT مدرن ترین و کامل ترین محصولات گردشگری الکترونیک را با قیمت رقابتی در اختیار مسافرین خود قرار دهید.</span></div>
+                        </div>
+                        <div class="clr"></div>
+                        </div>
+                        </div>
+  
+                        <div class="clr"></div>
+                        </div>
+                </div>
+            </div>
+            <!-- <div id="Experience-resize">
+                <div class="inner-resize">
+                    <h3>تجربه اختصاصی و شخصی در سطح جهانی</h3>
+                    <div class="exp-text">
+                       <span>با امکانات ویژه و خدمات منحصر به فرد طراحی شده برای ارتباط شما با افرادی که ملاقات می کنید و مکانهایی که بازدید می کنید ، از تجربه عالی سفر لذت ببرید.</span>
+                    </div>
+                    <div class="exp-main-box">
+                        <div class="col_main_left">
+                            <div class="col_main_box">
+                            <a href="#">
+                            <img src="images/scapes1.jpg" alt="scapes">
+                            <div class="col_main_box_txt">
+                            <div class="col_main_box_txt_main">
+                            <div class="col_main_box_txt_main_inner">
+                                از یک تفریح ​​شخصی در ساحل لذت ببرید که زیبایی ، فرهنگ و طبیعت مقصد شما را از طریق گشت و گذار ویژه و تجربیات مهیج جشن می گیرد.</div>
+                            </div>
+                            </div>
+                            </a>
+                            </div>
+                            <div class="col_main_box">
+                            <a href="#">
+                            <img src="images/journeys1.jpg" alt="journeys">
+                            <div class="col_main_box_txt">
+                            <div class="col_main_box_txt_main">
+                            <div class="col_main_box_txt_main_inner">
+                                در این سفرهای سفارشی به حماسه ترین مقصدهای جهان با اضافه کردن سرویس شخصی از Travel Butler ، فهرست سرگردان خود را شروع کنید.</div>
+                            </div>
+                            </div>
+                            </a>
+                            </div>
+                            <div class="col_main_box">
+                            <a href="#">
+                            <img src="images/city1.jpg" alt="city">
+                            <div class="col_main_box_txt">
+                            <div class="col_main_box_txt_main">
+                            <div class="col_main_box_txt_main_inner">
+                                با این سفرهای سریع به شاخص ترین شهرهای اروپا ، کانادا و ایالات متحده آمریکا ، که با راهنمایی محلی City Insider تقویت می شود ، به یک ماجراجویی شهری بپردازید.</div>
+                            </div>
+                            </div>
+                            </a>
+                            </div>
+                            </div>
+                            <div class="col_main_right">
+                                <a href="#">
+                                <img src="images/mytime1.jpg" alt="mytime">
+                                <div class="col_main_box_txt">
+                                <div class="col_main_box_txt_main">
+                                <div class="col_main_box_txt_main_inner">
+                                    از یک تفریح ​​شخصی در ساحل لذت ببرید که زیبایی ، فرهنگ و طبیعت مقصد شما را از طریق گشت و گذار ویژه و تجربیات مهیج جشن می گیرد.</div>
+                                </div>
+                                </div>
+                                </a>
+                                </div>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+                <div class="clr"></div>
+            </div> -->
+            <div id="partners-resize">
+                <div class="inner-resize">
+                    <h4>شرکای تجاری ما</h4>
+                    <div class="exp-text">
+                        <span>تعدادی از آژانس ها و شرکت های گردشگری که با ما همکاری میکنند.</span>
+                    </div>
+                    <div id="demo2">
+                        <div id="owl-demo2" class="owl-carousel">
+                            <div class="each-partner"><a href="#"><img src="/images/partner1.png" alt="partner1" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner2.png" alt="partner2" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner3.png" alt="partner3" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner4.png" alt="partner4" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner5.png" alt="partner5" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner6.png" alt="partner6" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner7.png" alt="partner7" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner8.png" alt="partner8" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner9.png" alt="partner9" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner10.gif" alt="partner10" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner11.png" alt="partner11" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner12.png" alt="partner12" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner13.png" alt="partner13" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner14.png" alt="partner14" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner15.png" alt="partner15" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner16.png" alt="partner16" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner17.png" alt="partner17" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner18.png" alt="partner18" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner19.png" alt="partner19" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner20.png" alt="partner20" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner21.png" alt="partner21" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner22.png" alt="partner22" /></a></div>
+                            <div class="each-partner"><a href="#"><img src="/images/partner23.png" alt="partner23" /></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <basis core="call" file="footer.inc"/>
+        </div>
+  
+        <script type="text/javascript">
+  
+            $(document).ready(function(){
+                $('#my-slide').DrSlider({
+                    width: 1920, 
+                    height: 550  
+                });
+                setInterval(function(){ 
+                        
+                        if($('#my-slide .first:visible').length !== 0){
+                           $("#my-slide .first").hide()
+                           $("#my-slide .first2").hide()
+                           $("#my-slide .first3").hide()
+                           $("#my-slide .second").hide()
+                           $("#my-slide .second2").hide()
+                           $("#my-slide .second3").hide()
+                           $("#my-slide .second").show()
+                           $("#my-slide .second2").show(1500)
+                           $("#my-slide .second3").show(2000)
+                           $("#my-slide .first p").fadeTo( 2000, 0 );
+                           $("#my-slide .second p").fadeTo( 2000, 1 );
+                           $("#my-slide .first2 p").fadeTo( 2500, 0 );
+                           $("#my-slide .second2 p").fadeTo( 2500, 1 );
+                           $("#my-slide .first3 p").fadeTo( 2800, 0 );
+                           $("#my-slide .second3 p").fadeTo( 2800, 1 );
+  
+                       }else {
+                           $("#my-slide .first").hide()
+                           $("#my-slide .first2").hide()
+                           $("#my-slide .first3").hide()
+                           $("#my-slide .second").hide()
+                           $("#my-slide .second2").hide()
+                           $("#my-slide .second3").hide()
+                           $("#my-slide .first").show();
+                           $("#my-slide .first2").show(1500);
+                           $("#my-slide .first3").show(2000);
+                           $("#my-slide .second p").fadeTo( 2000, 0 );
+                           $("#my-slide .first p").fadeTo( 2000, 1 );
+                           $("#my-slide .second2 p").fadeTo( 2500, 0 );
+                           $("#my-slide .first2 p").fadeTo( 2500, 1 );
+                           $("#my-slide .second3 p").fadeTo( 2800, 0 );
+                           $("#my-slide .first3 p").fadeTo( 2800, 1 );
+                       }
+                   }, 7000);
+            });
+  
+            $( document ).ready(function() {
+                $('#search-box').load('/search_box.bc');
+            });
+             
+             function show_logo(element){
+                 $(element).addClass('active-logo')
+                 $(element).siblings().removeClass('active-logo')
+                 $(".each-logo").each(function(){
+                     if($(this).attr("data-type") == $(element).attr("data-key")){
+                        $(this).show()
+                     }else{
+                        $(this).hide()
+                     }
+                 }) 
+             }
+
+        $(document).ready(function () {
+
+            $("#owl-demo2").owlCarousel({
+                items: 5,
+                loop: true,
+                autoplay: true,
+                nav: true,
+                dots: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                mouseDrag: true,
+                smartSpeed: 1100,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:1,
+                        nav:true
+                    },
+                    800:{
+                        items:3,
+                        nav:false
+                    },
+                    1200:{
+                        items:5,
+                        nav:true,
+                        loop:false
+                    }
+                }
+            });
+        });
+
+
+        </script>
+  
+    </body>
+  </html>

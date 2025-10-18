@@ -1,0 +1,61 @@
+<basis core="dbsource" source="basiscore" name="db" mid="5" lid="2" usedforid="[##cms.cms.ownerid##]">
+    <member core="view" name="companyname" type="view" postsql="select text from [db.companyname] where prpID = '7994'" ></member>
+   </basis>
+ 
+   <basis core="group" name="DelayFirst">
+    <basis core="dbsource" source="hosting" name="site">
+        <member name="address" type="list" request="siteaddress" />
+    </basis>
+       <basis core="external.fly.ws" source="cmsDbService2" name="db" procedurename="dbsource">
+           <member method="cms" name="webservice_detail" query='{
+           "name": "db",
+           "mid": "20",
+           "member": [
+              {
+                 "name": "q",
+                 "type": "list",
+                 "request": " webservice_Detail",
+                 "id": 14,
+                 "dmnid": [##cms.cms.domainid##]
+              }
+           ]
+        }' />
+       </basis>
+       <basis core="group" name="DelaySecond">
+           <basis core="inlinesource" name="db">
+               <member name="host" format="json" postsql="select value from [db.host] where field = 'host'">
+                   {"root":[##db.webservice_detail.result##]}</member>
+               <member name="port" format="json" postsql="select value from [db.port] where field = 'port'">
+                   {"root":[##db.webservice_detail.result##]}</member>
+               <member name="username" format="json" postsql="select value from [db.username] where field = 'username'">
+                   {"root":[##db.webservice_detail.result##]}</member>
+               <member name="password" format="json" postsql="select value from [db.password] where field = 'password'">
+                   {"root":[##db.webservice_detail.result##]}</member>
+               <member name="ssl" format="json" postsql="select value from [db.ssl] where field = 'ssl'">
+                   {"root":[##db.webservice_detail.result##]}</member>
+           </basis>
+   
+           <basis core="group" name="DelayThird">
+               <basis core="emails" name="q" ishtml="true" host="[##db.host.Value##]" from="[##db.username.Value##]"
+                   pass="[##db.password.Value##]" ssl="[##db.ssl.Value##]" port="[##db.port.Value##]">
+                   <email to="[##cms.query.email##]">
+                       <subject>"Confirm registration/[##db.companyname.text##]"</subject>
+                       <body>
+                           <div style="background-color:#eeeeee;width:100%!important; text-align: center;padding: 2em;">
+                               <div style="background-color:#fff;width: 80%;margin: 2em auto;">
+                                   <div
+                                       style="direction: ltr;display: block;padding: 1.5em 0;color: #fff;font-size: 2em;background: #509ad3;">
+                                       Please click on the submitted link to complete the registration process
+                                   </div>
+                                   <div><a style="text-decoration: none;background: #f5821f;color: #fff;font-size: 2em;font-weight: bold;margin: 1em 0; display: inline-block;padding: 0.5em;border: none;
+              " href="[##site.address.domain##]/RegisterView_En.bc?rkey=[##cms.form.rkey##]">Complete registration</a></div>
+                                   <div><img src="https://cdn.basiscore.net/basisfly.com/images/trust-logo.png"></div>
+                               </div>
+   
+                           </div>
+                       </body>
+                   </email>
+               </basis>
+           </basis>
+       </basis>
+   </basis>

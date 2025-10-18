@@ -1,0 +1,40 @@
+<basis core="group" name="checkrkey" if="'[##cms.cookie.rkey##]'<>''">
+    <basis core="dbsource" source="trust_login8" mid="24" name="db" lid="1" rkey="[##cms.cookie.rkey##]">
+        <member name="useridmain" type="scalar" request="userid" preview="" />
+    </basis>
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+        <member method="cms" name="agencycatid" query='{
+            "name": "db",
+            "mid": "20",
+            "member": [
+                {
+                    "type": "scalar",
+                    "name": "q",
+                    "request": "agencycatid"
+                }
+            ]
+        } ' preview="" />
+    </basis>
+    <basis core="group" name="Delay-1">
+        <basis core="dbsource" source="trust_login" lid="1" name="db" catid="[##db.agencycatid.result##]"
+            userid="[##db.useridmain.userid##]" ownerid="[##cms.cms.ownerid##]">
+            <member name="checkuser" type="scalar" request="checkagencyuser" preview="" />
+        </basis>
+        <basis core="group" name="Delay-2">
+            <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+                <member method="cms" name="chagencyuser" query='{
+                "name": "db",
+                "mid": "20",
+                "member": [
+                    {
+                        "type": "scalar",
+                        "name": "q",
+                        "request": "checkagencyuser",
+                        "counter": "[##db.checkuser.Column1##]",
+                        "userid": "[##db.useridmain.userid##]"
+                    }
+                ]
+            }' preview="" />
+            </basis>
+
+            [##db.chagencyuser.result##]

@@ -1,0 +1,231 @@
+<basis core="call" file="submit-email.inc" method="post" triggers="cms.email" run="atclient"
+    if="{##cms.email.run|(false)##}" name="{##cms.email.name##}" email="{##cms.email.email##}"
+    subject="{##cms.email.subject##}" message="{##cms.email.message##}" form-type="{##cms.email.form-type##}">
+</basis>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>[##cms.seo.title|(Tripcenter)##]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[##cms.seo.description|(Tripcenter)##]">
+    <link rel="canonical" href="[##cms.cms.full-url##]" />
+    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
+        <member type="list" name="list" request="taglist" preview=""></member>
+    </basis>
+    <basis core="print" datamembername="tag.list">
+        <face filter="key = 'canonical'">
+            <link rel="canonical" href="@value" />
+        </face>
+        <face>
+            <meta property="@key" content="@value" />
+        </face>
+    </basis>
+    <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_js_library.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="[##cms.cms.cdn##]/css/tripcenter-pages-en.css">
+    <link rel="stylesheet" href="[##cms.cms.cdn##]/css/tripcenter-styles-en.css">
+
+</head>
+
+<body class="body">
+    <basis core="call" file="header-en.inc"></basis>
+    <div class="clear-both"></div>
+    <main class="z-10 mx-auto mt-20 max-[1220px]:-mb-0 max-w-7xl max-xl:w-11/12">
+
+        <section>
+            <h1 class="font-MazzardH-ExtraBold text-[49.46px] text-black uppercase">
+                Contacts
+            </h1>
+            <h2 class="text-[24.73px] text-black font-MazzardH-Light my-4">We are happy to answer any questions you may
+                have. Fill out the form below to ask for more information.</h2>
+
+            <div id="contact-us" class="flex justify-between max-xl:block">
+                <div
+                    class="bg-gradient-to-br from-startColor_box to-endColor_box p-5 rounded-3xl w-8/12 max-xl:w-full max-xl:my-4">
+                    <div class="form-container confirm-form form-container1">
+                        <div class="free-form-container">
+                            <basis core="schema" run="atclient"
+                                schemaurl="/schema/domainform/AF2EAAA2-1501-42FA-896B-F73D671A7AE3/6A684BC7-0D27-4A76-9632-1D12AF72D861/en/contactus"
+                                displaymode="new" button="[data-btn-upload1]" resultsourceid="upload1.data"
+                                OnRendered="RenderForm1">
+                            </basis>
+                            <basis core="api" if="{##cms.upload1.run|(false)##}" run="atclient"
+                                url="https://basispanel.ir/schema/domainform/AF2EAAA2-1501-42FA-896B-F73D671A7AE3/en/editobject"
+                                method="post"
+                                body="object_edit={##cms.upload1.value##}&captcha={##cms.upload1.captcha##}&captchaid={##cms.upload1.captchaid##}"
+                                content-type="application/x-www-form-urlencoded" triggers='cms.upload1'
+                                OnProcessed="OnProcessedEditObject1">
+                            </basis>
+
+                            <div class="free-form-content flex">
+                                <div id="captchaContainer" class="captchaContainerclass captcha-sefaresh"
+                                    data-bc-answer-container data-bc-schema-info-multi="0" data-bc-schema-info-word="58"
+                                    data-bc-schema-info-part="1" data-bc-schema-info-part-0-type="text">
+                                    <basis core="dbsource" source="trust_login" name="captcha" run="atclient"
+                                        triggers="captcha.refresh1">
+                                        <member name="code1" type="scalar" request="captcha"></member>
+                                    </basis>
+                                    <basis datamembername="captcha.code1" core="print" run="atclient"
+                                        OnRendered="captchaRendered1">
+                                        <face>
+                                            <script type="text/template">
+                                                <div class="inline-block">
+                                                    <div class="flex">
+                                                <div class="w-1/2">
+                                                    <input type="text" class="contactUsInput codeinputm" name="captcha" maxlength="4" />
+                                                    <input type="hidden" name="captchaid" value="@captcha@" />
+                                                </div>
+                                                <div  class="flex items-center w-1/2">
+                                                    <svg class="cursor-pointer captcha-floating-form" width="35" height="25" onclick="refreshCaptcha1()" viewBox="0 0 16 17" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M13.6498 3.34999C12.0198 1.71999 9.70978 0.779992 7.16978 1.03999C3.49978 1.40999 0.479777 4.38999 0.0697772 8.05999C-0.480223 12.91 3.26978 17 7.99978 17C11.1898 17 13.9298 15.13 15.2098 12.44C15.5298 11.77 15.0498 11 14.3098 11C13.9398 11 13.5898 11.2 13.4298 11.53C12.2998 13.96 9.58978 15.5 6.62978 14.84C4.40978 14.35 2.61978 12.54 2.14978 10.32C1.30978 6.43999 4.25978 2.99999 7.99978 2.99999C9.65978 2.99999 11.1398 3.68999 12.2198 4.77999L10.7098 6.28999C10.0798 6.91999 10.5198 7.99999 11.4098 7.99999H14.9998C15.5498 7.99999 15.9998 7.54999 15.9998 6.99999V3.40999C15.9998 2.51999 14.9198 2.06999 14.2898 2.69999L13.6498 3.34999Z"
+                                                        fill="#000000" />
+                                                </svg>
+                                                <img src="/@captcha@" width="88" height="35" alt="captcha" />
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                       
+                                        </script>
+                                        </face>
+                                    </basis>
+                                </div>
+                                <basis core="callback" run="atclient" method="uploadDocument1" triggers="upload1.data">
+                                </basis>
+                                <button class="data-body-btn bg-primary freeform-btn" type="button" data-btn-upload1>
+                                    <span>Send</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="message-api text-center"></div>
+                        <div class="clr"></div>
+                    </div>
+                </div>
+                <div class="w-4/12 max-xl:w-full max-xl:my-4 ml-4 max-xl:ml-0">
+                    <div class="bg-primary text-white  rounded-3xl px-12 py-6 h-[176px]">
+                        <p class="font-MazzardH-Bold text-[25px]">Phone Number</p>
+                        <basis core="view" datamembername="db.info">
+                            <face level="1" filter="prpid=8000">
+                                @child
+                            </face>
+                            <face level="2" filter="prpid=8000"> <a href="tel:@Answer" class="block text-[25px]">@Answer</a></face>
+                        </basis>
+
+                    </div>
+                    <div class="bg-primary text-white  rounded-3xl mt-3 px-12 py-6 h-[176px]">
+                        <p class="font-MazzardH-Bold text-[25px]">Email</p>
+                        <basis core="view" datamembername="db.info">
+                            <face level="1" filter="prpid=8001">
+                                @child
+                            </face>
+                            <face level="2" filter="prpid=8001"> <a href="mailto:@Answer" class="block text-[25px]">@Answer</a>
+                            </face>
+                        </basis>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <div class="clear-both"></div>
+    </main>
+    <div class="clear-both"></div>
+    <basis core="call" file="footer-en.inc"></basis>
+
+
+    <script src="[##cms.cms.cdn##]/_js/basiscore-2.30.1.js" type="text/javascript"></script>
+    <script src="[##cms.cms.cdn##]/_js/alasql.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var host = {
+            "repositories": {
+                "grid.grid": "https://cdn.basiscore.net/_js/basiscore.grid.component.js",
+                "calendar.datepicker": "https://basispanel.ir/asset/js/basiscore.calendar.component.js",
+                "bc.timepicker": "https://cdn.basiscore.net/_js/basiscore.timepicker.js",
+            },
+            "settings": {
+                "connection.web.reference": "https://basispanel.ir/client/",
+                "connection.web.panel_basisfly": "https://basisfly.com/panel/basisfly/[##cms.cookie.rkey##]",
+                "connection.web.basisfly": "https://basisfly.com/panel/main/basisfly/[##cms.cookie.rkey##]",
+                "connection.web.callcommand": "",
+                "connection.web.basiscore": "https://basispanel.ir/apicms",
+                "connection.web.accounting": "https://basispanel.ir/apicms",
+                "connection.web.media": "https://basispanel.ir/apicms",
+                "connection.web.trust_login": "https://basiscore.net/apicms",
+                "connection.web.panel_basiscore": "https://basispanel.ir/basiscore_client/",
+                "default.dbsource.verb": "post",
+                "default.call.verb": "get",
+                "default.viewCommand.groupColumn": "prpid",
+                "default.dmnid": "[##cms.cms.domainid##]",
+                "default.binding.regex": "\\{##([^#]*)##\\}"
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        function uploadDocument1(args) {
+            const captcha = document.querySelector(".form-container1").querySelector("#captchaContainer input[name='captcha']").value;
+            const captchaid = document.querySelector(".form-container1").querySelector("#captchaContainer input[name='captchaid']").value;
+            const stringJson = JSON.stringify(args.source?.rows[0]);
+            $bc.setSource("cms.upload1", {
+                value: stringJson,
+                captcha: captcha,
+                captchaid: captchaid,
+                run: true
+            });
+        };
+
+
+
+
+        function refreshCaptcha1(e) {
+            $bc.setSource("captcha.refresh1", true);
+        };
+
+
+        function captchaRendered1() {
+            document.querySelector(".contactUsInput").placeholder = "captcha";
+        }
+
+
+        async function OnProcessedEditObject1(args) {
+            var response = args.response;
+            var json = await response.json();
+            var errorid = json.errorid;
+            if (errorid == "6") {
+                document.querySelector("#contact-us").querySelector(".message-api").innerHTML = "Your request has been successfully registered";
+                $bc.setSource(`cms.email`, [{
+                    "name": document.querySelector(".name").querySelector("input").value,
+                    "email": document.querySelector(".email").querySelector("input").value,
+                    "subject": document.querySelector(".subject").querySelector("input").value,
+                    "message": document.querySelector(".message").querySelector("__textarea").value,
+                    "form-type": "contacts",
+                    "run": true
+                }]);
+
+            } else {
+                refreshCaptcha1()
+                setTimeout(() => {
+                    document.querySelector("#contact-us").querySelector(".message-api").innerHTML = "An error occurred, please try again";
+                }, 2000);
+            }
+
+        }
+
+
+
+        async function RenderForm1() {
+            document.querySelector(".name").querySelector("input").placeholder = "Name";
+            document.querySelector(".email").querySelector("input").placeholder = "Email";
+            document.querySelector(".subject").querySelector("input").placeholder = "subject";
+            document.querySelector(".message").querySelector("_textarea").placeholder = "Message";
+        }
+
+    </script>
+
+</body>
+
+</html>

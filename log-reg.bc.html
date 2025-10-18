@@ -1,0 +1,338 @@
+<basis core="dbsource" source="trust_login" name="db">
+    <member name="captcha" request="captcha" type="scalar" preview="" />
+</basis>
+<div class="signIn" id="bg-popup2"> </div>
+<div id="Login_box" class="simple_login_box">
+    <section class="popup-header"><span class="close-popup"><span class="fa-times"></span></span> </section>
+    <div class="login">
+        <h1 class="popup-tlt"> <span>ورود</span> </h1>
+        <div class="Login-inner">
+            <form method="post" action="/Client_Login_Confirmation.bc" class="Form_User Wrapper-logininfo">
+                <input type="hidden" value="" name="test" class="test">
+                <p class="alert">در صورت عضویت ، با حساب کاربری خود وارد شوید .</p>
+                <div class="c-info">
+                    <input type="text" id="email" name="Username" placeholder="ایمیل">
+                    <i class="fal fa-user"></i>
+                </div>
+                <div class="c-info">
+                    <input type="password" id="password" name="Password" placeholder="رمز عبور">
+                    <i class="far fa-lock"></i>
+                </div>
+                <div class="c-info" style="position:relative;">
+                    <input type="captcha" class="captcha" id="captcha" name="Captcha" placeholder="کد امنیتی">
+                    <span class="fa-retweet refreshingImg" style="cursor:pointer"></span> <span
+                        class="captchaa1 changecap">
+                        <img src="[##db.captcha.captcha##]" width="80" height="40" alt="کد امنیتی">
+                        <input type="hidden" value="[##db.captcha.captcha##]" name="Captchaid" />
+                    </span>
+                    <div class="fcap" style="display:none;">کد امنیتی نادرست است</div>
+                </div>
+                <div class="loadingLog">
+                    <div id="ballsWaveG">
+                        <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                    </div>
+                </div>
+                <div class="Message-Result"></div>
+                <div class="submitlogin">
+                    <div class="c-info c-infoLogin">
+                        <button class="submit" type="submit" value="ورود"> ورود </button>
+                    </div>
+                    <div class="more_Link Link-Forgetpass">فراموشی رمز عبور</div>
+                </div>
+            </form>
+
+            <form method="post" action="/Client_Recovery_Pass.bc" class="Form_User Wrapper-forgetpass">
+                <p class="alert">بازیابی کلمه عبور</p>
+                <div class="c-info">
+                    <input type="text" id="email" name="username" placeholder="ایمیل">
+                    <i class="fal fa-user"></i>
+                </div>
+                <div class="c-info" style="position:relative;">
+                    <input type="captcha" class="captcha" id="captcha" name="Captcha" placeholder="کد امنیتی">
+                    <span class="fa-retweet refreshingImg" style="cursor:pointer"></span> <span
+                        class="captchForgetpass changecap">
+                        <img src="[##db.captcha.captcha##]" width="80" height="40" alt="کد امنیتی">
+                        <input type="hidden" value="[##db.captcha.captcha##]" name="Captchaid" />
+                    </span>
+                    <div class="fcap fcapForgetpass" style="display:none;">کد امنیتی نادرست است</div>
+                </div>
+                <div class="loadingLog">
+                    <div id="ballsWaveG">
+                        <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                    </div>
+                </div>
+                <div class="Message-Result"></div>
+                <div class="submitlogin">
+                    <div class="c-info c-infoLogin">
+                        <button class="submit" type="submit" value="ارسال"> ارسال </button>
+                    </div>
+                    <div class="more_Link Link-Login">ورود اعضا</div>
+                </div>
+            </form>
+            <div class="clr"></div>
+        </div>
+    </div>
+    <div class="register2">
+        <h2 class="popup-tlt">
+
+            <span class="email-submit selected">ثبت نام Email</span> <span class="sms-submit selected">ثبت نام
+                SMS</span>
+        </h2>
+        <div class="Register-inner">
+            <div class="email-register">
+                <form method="post" action="/Client_Register_Confirmation.bc" class="Form_User RegisterForm">
+                    <p class="alert">در صورت عدم عضویت در سایت ، برای تکمیل فرآیند رزرو پرواز ثبت نام کنید.</p>
+                    <div class="c-info">
+                        <input type="text" name="Username" id="Rusername" placeholder="ایمیل">
+                        <i class="fal fa-user"></i>
+                    </div>
+                    <div class="c-info">
+                        <input type="password" name="Password" id="Rpassword" placeholder="رمز عبور">
+                        <i class="far fa-lock"></i>
+                    </div>
+                    <div class="c-info">
+                        <input type="password" name="RepeatPassword" id="Repeatpass" placeholder="تکرار رمز عبور">
+                        <i class="far fa-lock"></i>
+                    </div>
+                    <div class="c-info" style="position:relative;">
+                        <input type="captcha" class="captcha" id="captcha" name="Captcha" placeholder="کد امنیتی">
+                        <span class="fa-retweet refreshingImg2" style="cursor:pointer"></span> <span
+                            class="captchaRegMail changecap">
+                            <img src="[##db.captcha.captcha##]" width="80" height="40" alt="کد امنیتی">
+                            <input type="hidden" value="[##db.captcha.captcha##]" name="Captchaid" />
+                        </span>
+                        <div class="fcap2 fcapRegMail" style="display:none;">کد امنیتی نادرست است</div>
+                    </div>
+                    <div class="loadingLog">
+                        <div id="ballsWaveG">
+                            <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                        </div>
+                    </div>
+                    <div class="Message-Result"></div>
+                    <div class="submitlogin">
+                        <div class="c-info cinforegister" style="position:relative;">
+                            <button class="submit" type="submit" value="">ثبت نام</button>
+                        </div>
+                        <div class="more_Link Link-ResendMail">ارسال مجدد ایمیل</div>
+                    </div>
+                </form>
+            </div>
+
+            <form method="post" action="/Client_Email_Resend_Get.bc" class="Form_User Wrapper-resendmail">
+                <p class="alert">ارسال مجدد ایمیل</p>
+                <div class="c-info">
+                    <input type="text" id="email" name="username" placeholder="ایمیل">
+                    <i class="fal fa-user"></i>
+                </div>
+                <div class="c-info" style="position:relative;">
+                    <input type="captcha" class="captcha" id="captcha" name="Captcha" placeholder="کد امنیتی">
+                    <span class="fa-retweet refreshingImg" style="cursor:pointer"></span> <span
+                        class="captchResendmail changecap">
+                        <img src="[##db.captcha.captcha##]" width="80" height="40" alt="کد امنیتی">
+                        <input type="hidden" value="[##db.captcha.captcha##]" name="Captchaid" />
+                    </span>
+                    <div class="fcap fcapResendmail" style="display:none;">کد امنیتی نادرست است</div>
+                </div>
+                <div class="loadingLog">
+                    <div id="ballsWaveG">
+                        <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                        <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                    </div>
+                </div>
+                <div class="Message-Result"></div>
+                <div class="submitlogin">
+                    <div class="c-info c-infoLogin">
+                        <button class="submit" type="submit" value="ارسال"> ارسال </button>
+                    </div>
+                    <div class="more_Link Link-Register">ثبت نام</div>
+                </div>
+            </form>
+            <div class="sms-register" id="Smsbox" style="display: none;">
+                <div class="loadinghere">
+                    <div id="RegisterBox">
+                        <form method="post" action="/Client_SMS_Register.bc" class="Form_User RegisterSubmit"
+                            id="RegisterSubmitR">
+                            <p class="alert">در صورت عدم عضویت در سایت ، برای تکمیل فرآیند رزرو پرواز ثبت نام کنید.</p>
+                            <div class="c-info">
+                                <input name="Username" placeholder="ایمیل خود را وارد نمایید" type="text"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                                    title="برای نام کاربری باید ایمیل خود را وارد نمایید!" required>
+                                <i class="fal fa-user"></i>
+                            </div>
+
+                            <div class="c-info">
+                                <input name="Mobile" placeholder="تلفن همراه" type="text" required>
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                            </div>
+
+                            <div class="c-info">
+                                <input name="Password" placeholder="رمز عبور " type="password" required>
+                                <i class="far fa-lock"></i>
+                            </div>
+                            <div class="c-info">
+                                <input name="RepeatPassword" placeholder="تکرار رمز عبور" type="password" required>
+                                <i class="far fa-lock"></i>
+                            </div>
+                            <div class="c-info" style="position:relative;">
+                                <input type="captcha" class="captcha" id="captcha" name="Captcha"
+                                    placeholder="کد امنیتی">
+                                <span class="fa-retweet refreshingImg" style="cursor:pointer"></span> <span
+                                    class="changecap captchaRegSMS">
+                                    <img src="[##db.captcha.captcha##]" width="80" height="40" alt="کد امنیتی">
+                                    <input type="hidden" value="[##db.captcha.captcha##]" name="Captchaid" />
+                                </span>
+                                <div class="fcap2 fcapRegSMS" style="display:none;">کد امنیتی نادرست است</div>
+                            </div>
+                            <div class="RegisterSection" style="text-align:right">
+                                <div class="Message-Result2"></div>
+                            </div>
+                            <div class="loadingLog submit-load">
+                                <div id="ballsWaveG">
+                                    <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                                    <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                                    <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                                    <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                                    <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                                    <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                                    <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                                    <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                                </div>
+                            </div>
+                            <div class="load-error"></div>
+                            <div class="submitlogin">
+                                <div class="c-info cinforegister" style="position:relative;">
+                                    <button class="submit" type="submit" value="">ثبت نام</button>
+                                </div>
+                                <div class="more_Link Link-ResendMail">ارسال مجدد ایمیل</div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clr"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    Register_way()
+        $(".popup,.notlogin").click(function (e) {
+            $(".signIn").fadeIn(400);
+            $("#Login_box").fadeIn(400);
+        });
+
+        $(".showLogReg").click(function () {
+            $(".signIn").fadeIn(400);
+            $("#Login_box").fadeIn(400);
+        })
+
+        $(".close-popup").click(function () {
+            $(".signIn").fadeOut(500);
+            $("#Login_box").fadeOut(500);
+
+        });
+
+
+        $(".refreshingImg").click(function () {
+            $(this).closest("form").find(".changecap").append(
+                '<div class="mini-loading" style="position: absolute; left: 20px;top: 35px;"><div id="floatingCirclesGMini"><div class="f_circleGMini" id="frotateG_01Mini"></div><div class="f_circleGMini" id="frotateG_02Mini"></div><div class="f_circleGMini" id="frotateG_03Mini"></div><div class="f_circleGMini" id="frotateG_04Mini"></div><div class="f_circleGMini" id="frotateG_05Mini"></div><div class="f_circleGMini" id="frotateG_06Mini"></div><div class="f_circleGMini" id="frotateG_07Mini"></div><div class="f_circleGMini" id="frotateG_08Mini"></div></div></div>'
+            ).load("/Client_Captcha.bc");
+
+            return false;
+        });
+
+
+
+
+
+        $(".Link-Register").click(function () {
+            $(this).closest(".register2").find(".popup-tlt").empty().append(
+                '<span class="email-submit selected">ثبت نام Email</span>  <span class="sms-submit inactive">ثبت نام SMS</span>رسال مجدد ایمیل'
+            )
+            $(".Link-Login").removeClass('active-tab')
+            $(".email-register").show();
+            $(".Wrapper-resendmail").hide()
+            Register_way()
+        })
+        $(".Link-Login").click(function () {
+            $(this).closest(".login").find(".popup-tlt span").empty().append('ورود')
+            $(".Wrapper-logininfo").show()
+            $(".Wrapper-forgetpass").hide()
+        })
+        $(".Link-Forgetpass").click(function () {
+            $(this).closest(".login").find(".popup-tlt span").empty().append('فراموشی رمز عبور')
+            $(".Wrapper-logininfo").hide()
+            $(".Wrapper-forgetpass").show()
+        })
+
+        $(".Link-ResendMail").click(function () {
+            $(this).closest(".register2").find(".popup-tlt").empty().append('ارسال مجدد ایمیل')
+            $(".email-register").hide();
+            $(".sms-register").hide();
+            $(".Wrapper-resendmail").show()
+        })
+        $(".Form_User").submit(function (e) {
+            var self = $(this)
+            self.closest("form").find(".loadingLog").show()
+            e.preventDefault()
+            $.ajax({
+                url: self.attr("action"),
+                type: self.attr("method"),
+                data: $(self).serialize(),
+                success: function (response) {
+                    self.closest("form").find(".loadingLog").hide()
+                    self.closest("form").find('.Message-Result').empty().show()
+                        .html(response);
+                }
+            });
+        });
+        function Register_way(){
+            $(".sms-submit").click(function () {
+            $(".email-register").hide();
+            $(".sms-register").show();
+        });
+
+        $(".email-submit").click(function () {
+            $(".sms-register").hide();
+            $(".email-register").show();
+        });
+
+        $('.selected:not(:first)').addClass('inactive');
+        $('.selected').click(function () {
+            var t = $(this).attr('id');
+            if ($(this).hasClass('inactive')) {
+                $('.selected').addClass('inactive');
+                $(this).removeClass('inactive');
+            }
+        })
+        }
+
+    </script>

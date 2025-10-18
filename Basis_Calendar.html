@@ -1,0 +1,67 @@
+<basis core="dbsource" source="basiscore" name="db" before="" after="1" cdate="[##cms.cms.date##]"
+    startdate="" enddate="1400-12-29">
+    <member name="calendar" type="tree" request="calendar" preview="" />
+</basis>
+
+<basis core="tree" datamembername="db.calendar" idcol="id" parentidcol="parentid" nullvalue="0">
+    <layout>
+        <div class="Basis_Calendar_Box">
+            <div class="Basis_Calendar">
+               
+                @child
+                <div class="date_info_selected"><span class="type_date">تاریخ رفت :</span><span class="day_of_date">---</span><span class="month_of_date"></span></div>
+            </div>
+        </div>
+    </layout>
+    <face filter="name = 'year'">
+        <div class="year" data-year="@syear">
+
+            @child</div>
+    </face>
+    <face filter="name = 'month'">
+        <div class="month" data-month="@smonth">
+            <div class="month_detail">
+                <div>
+                    <span class="month_name">@stext @syear
+                    </span>
+                    <input type="hidden" value='@stext' class="show_month_selected">
+                    <span class="month_change">
+                        <div class="section_prev_month"><i class="fas fa-caret-right prev_month"></i>
+                        </div>
+                        <div class="section_next_month"><i class="fas fa-caret-left next_month"></i>
+                        </div>
+                    </span>
+                </div>
+                <div class="month_name_gregorian"></div>
+            </div>
+            <div class="month_week_day">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>شنبه</td>
+                            <td>یکشنبه</td>
+                            <td>دوشنبه</td>
+                            <td>سه شنبه</td>
+                            <td>چهارشنبه</td>
+                            <td>پنج شنبه</td>
+                            <td>جمعه</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="month_day_list">
+                <table>@Child</table>
+            </div>
+        </div>
+    </face>
+    <face filter="name = 'week'">
+        <tr class="week">@Child</tr>
+    </face>
+    <face filter="name = 'day'">
+        <td class="day" data-information="@dateid_@today_@weekday_@mstring_@sstring" data-day="@sdate"
+            onclick="Basis_Select_day(this) ;openNextCal(this)">
+            <div class="basis_s_day">@sdate</div>
+            <div class="basis_m_day">@mdate</div>
+        </td>
+    </face>
+</basis>

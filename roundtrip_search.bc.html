@@ -1,0 +1,3153 @@
+<basis core="tracking" name="tracking" source="Monitoring" collectionname="activity" dbname="tracking"
+    addcookie="true" />
+<basis core="cookie" name="trackingid" value="[##tracking.inserted.id|(0)##]" />
+<basis core="dbsource" source="trust_login8" mid="24" name="db" lid="1" rkey="[##cms.cookie.rkey##]">
+    <member name="userid" type="scalar" request="userid" />
+</basis>
+<basis core="external.fly.ws" source="cmsDbService2" name="db" procedurename="dbsource" >
+    <member method="cms" name="agencycatid" query= '{
+        "name": "db",
+        "mid": "20",
+        "member": [
+            {
+                "type": "scalar",
+                "name": "q",
+                "request": "agencycatid"
+            }
+        ]
+    } ' />
+</basis>
+<basis core="group" name="Delay_1" >
+<basis core="dbsource" source="trust_login" lid="1" name="db" catid="[##db.agencycatid.result##]" userid= "[##db.userid.userid##]" ownerid="[##cms.cms.ownerid##]" >
+    <member name="checkuser" type="scalar"  request="checkagencyuser" />
+</basis>
+<basis core="group" name="Delay_2" >
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+     <member method="cms" name="chagencyuser" query='{
+        "name": "db",
+        "mid": "20",
+        "member": [
+            {
+                "type": "scalar",
+                "name": "q",
+                "request": "checkagencyuser",
+                "counter": "[##db.checkuser.Column1##]",
+                "userid": "[##db.userid.userid##]"
+            }
+        ]
+    }'/>
+</basis>
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>پرواز دو طرفه tripcenter</title>
+    <meta name="author" content="BasisCore">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <!---------------------------------CSS MAIN--------------------------------->
+    <link rel="stylesheet" type="text/css" href="/css/tripcenter_main_style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/tripcenter-reservation.css" />
+    <!---------------------------------CSS CALENDARE--------------------------------->
+    <link rel="stylesheet" type="text/css" href="/css/Basis_Calendar.css" />
+    <!---------------------------------JS LIBRARY--------------------------------->
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+</head>
+
+<body class="rightLogoOnFix" onload="onloadFunc();">
+    <div class="loginRegister"></div>
+
+    <div id="bg-popup-timeout" style="display:none"></div>
+    <div class="boxalert" style="display:none">
+        <div className="imgdiv"><img src="images/time-out.png" alt="time-out" /></div>
+        <div class="firstdiv"><span class="firstalert">مدت زمان اعتبار جستجوی شما به پایان رسید</span></div>
+        <div class="seconddiv"> <span class="secondalert">لطفا جستجوی خود را از ابتدا انجام دهید.</span></div>
+        <div class="optionsnodata">
+            <input class="researchnodata" value="جستجوی مجدد" onclick="location.reload()" type="button" />
+            <input class="homepage" value="صفحه اصلی" onClick="window.location='/'" type="button">
+        </div>
+    </div>
+    <div class="bgLoading">
+        <div class="bg-searching flight">
+            <div class="text-searching">
+                <div class="loading-progress"></div><span>در حال جستجوی بهترین پرواز , لطفا کمی صبر کنید...</span>
+            </div>
+        </div>
+    </div>
+     <div class="boxContainer pages">
+        <basis core="call" file="header.inc" />
+        <div id="container">
+            <input type="hidden" value="[##db.chagencyuser.result##]" id="chagencyuser" />
+            <div id="tabs-filter-resize" class="bgflight">
+                <div id="tabs-filter">
+                    <div class="wrapper_box">
+                        <ul class="return-oneway">
+                            <li id="direct" class="r-btn"
+                                onclick="document.getElementById('flightSearch').action='/oneway_search.bc';">
+                                <input type="radio" name="1">
+                                <label>یک طرفه</label>
+                                <div class="bullet"> </div>
+                            </li>
+                            <li id="return" class="r-btn inactive-r-btn"
+                                onclick="document.getElementById('flightSearch').action='/roundtrip_search.bc';">
+                                <input checked type="radio" name="1">
+                                <label>رفت و برگشت</label>
+                                <div class="bullet"> </div>
+                            </li>
+                            <li id="multiflight" class="r-btn">
+                                <input checked type="radio" name="1">
+                                <label>چند مسیره</label>
+                                <div class="bullet"> </div>
+                            </li>
+                            <div class="clr"></div>
+                        </ul>
+                        <div class="wraper_top_info">
+                            <div class="research">
+                                <div class="research_box">
+                                    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource"
+                                        name="db">
+                                        <member method="cms" name="depcity"
+                                            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch",  "functype": "0", "title": "[##cms.query.from##]", "status": "city"}]}'
+                                            preview="" />
+                                    </basis>
+                                    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource"
+                                        name="db">
+                                        <member method="cms" name="descity"
+                                            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch", "functype": "0", "title": "[##cms.query.to##]",   "status": "city"}]}'
+                                            preview="" />
+                                    </basis>
+                                    <basis core="group" name="search">
+                                        <basis core="inlinesource" name="db">
+                                            <member name="from" format="json" preview="">
+                                                {"root":[##db.depcity.result##]}</member>
+                                            <member name="to" format="json" preview="">
+                                                {"root":[##db.descity.result##]}</member>
+                                        </basis>
+                                        <div id="r-flight">
+                                            <div class="return frm-box content-Flight">
+                                                <form id="flightSearch" class="frm changedate" method="get"
+                                                    action="/roundtrip_search.bc">
+                                                    <input type="hidden" value="[##cms.query.persiancurrent##]"
+                                                        class="persiancurrent" name="persiancurrent" />
+                                                    <input type="hidden" value="[##cms.query.select-age##]"
+                                                        class="select-age-value" name="select-age" />
+                                                    <div class="Wrapper-DesDep">
+                                                        <div class="city">
+                                                            <basis core="tree" datamembername="db.from" idcol="id"
+                                                                parentidcol="parentid" nullvalue="null">
+                                                                <face filter="Field='title'">
+                                                                    <input type="text" value="@value" name=""
+                                                                        oninput="city_search(this)" data-type='1'
+                                                                        class="country FCD1" autocomplete="off"
+                                                                        onClick="empty(this)" required />
+                                                                </face>
+                                                                <face filter="type in ('array','object')">@child
+                                                                </face>
+                                                            </basis>
+
+                                                            <span class="mini-loading"><img src="/images/load.gif"
+                                                                    width="20" height="20" /></span>
+                                                            <input value="[##cms.query.from##]" class="co-id FCDid1"
+                                                                type="hidden" name="from" />
+                                                            <div class="countryFlight"></div>
+                                                            <div class="clr"></div>
+                                                            <div class="searchList">
+                                                                <div>
+                                                                    <ul>
+                                                                        <li class="category-title"><span>مسیرهای
+                                                                                پرتردد</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1203548"><span
+                                                                                class="icon-map"></span><span>تهران
+                                                                                - Tehran - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1177676"><span
+                                                                                class="icon-map"></span><span>استانبول
+                                                                                - Istanbul - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211083"><span
+                                                                                class="icon-map"></span><span>مشهد -
+                                                                                Mashhad - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211110"><span
+                                                                                class="icon-map"></span><span>کیش -
+                                                                                Kish - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1173505"><span
+                                                                                class="icon-map"></span><span>دبی -
+                                                                                Dubai - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1168092"><span
+                                                                                class="icon-map"></span><span>آنتالیا
+                                                                                - Antalya - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1189731"><span
+                                                                                class="icon-map"></span><span>تفلیس
+                                                                                - Tbilisi - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211086"><span
+                                                                                class="icon-map"></span><span>شیراز
+                                                                                - Shiraz - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211084"><span
+                                                                                class="icon-map"></span><span>اصفهان
+                                                                                - Isfahan - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1178542"><span
+                                                                                class="icon-map"></span><span>کوالالامپور
+                                                                                - Kuala Lumpur - همه فرودگاه
+                                                                                ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1196609"><span
+                                                                                class="icon-map"></span><span>اهواز
+                                                                                - Ahvaz - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211091"><span
+                                                                                class="icon-map"></span><span>کرمان
+                                                                                - Kerman - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1196620"><span
+                                                                                class="icon-map"></span><span>کرمانشاه
+                                                                                - Kermanshah - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1184034"><span
+                                                                                class="icon-map"></span><span>پاریس
+                                                                                - Paris - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1196639"><span
+                                                                                class="icon-map"></span><span>قشم -
+                                                                                Qeshm - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211085"><span
+                                                                                class="icon-map"></span><span>تبریز
+                                                                                - Tabriz - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1196659"><span
+                                                                                class="icon-map"></span><span>چابهار
+                                                                                - Chabahar - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211090"><span
+                                                                                class="icon-map"></span><span>یزد -
+                                                                                Yazd - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1196635"><span
+                                                                                class="icon-map"></span><span>بندرعباس
+                                                                                - Bandar Abbas - همه فرودگاه
+                                                                                ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211104"><span
+                                                                                class="icon-map"></span><span>رامسر
+                                                                                - Ramsar - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fa-exchange" data-index="0"><i
+                                                                class="fas fa-exchange-alt customized-icon-searchbox-exchange"
+                                                                data-index="0"></i></div>
+                                                        <div class="city second-city">
+                                                            <basis core="tree" datamembername="db.to" idcol="id"
+                                                                parentidcol="parentid" nullvalue="null">
+                                                                <face filter="Field='title'">
+                                                                    <input type="text" value="@value" name=""
+                                                                        oninput="city_search(this)" data-type='1'
+                                                                        class="country FCD2" autocomplete="off"
+                                                                        onClick="empty(this)" required />
+                                                                </face>
+                                                                <face filter="type in ('array','object')">@child
+                                                                </face>
+                                                            </basis>
+
+                                                            <span class="mini-loading"><img src="/images/load.gif"
+                                                                    width="20" height="20" /></span>
+                                                            <input value="[##cms.query.to##]" class="co-id FCDid2"
+                                                                type="hidden" name="to" />
+                                                            <div class="countryFlight"></div>
+                                                            <div class="clr"></div>
+                                                            <div class="searchList">
+                                                                <div>
+                                                                    <ul>
+                                                                        <li class="category-title"><span>مسیرهای
+                                                                                پرتردد</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1203548"><span
+                                                                                class="icon-map"></span><span>تهران
+                                                                                - Tehran - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1177676"><span
+                                                                                class="icon-map"></span><span>استانبول
+                                                                                - Istanbul - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211083"><span
+                                                                                class="icon-map"></span><span>مشهد -
+                                                                                Mashhad - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211110"><span
+                                                                                class="icon-map"></span><span>کیش -
+                                                                                Kish - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1173505"><span
+                                                                                class="icon-map"></span><span>دبی -
+                                                                                Dubai - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1168092"><span
+                                                                                class="icon-map"></span><span>آنتالیا
+                                                                                - Antalya - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1189731"><span
+                                                                                class="icon-map"></span><span>تفلیس
+                                                                                - Tbilisi - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211086"><span
+                                                                                class="icon-map"></span><span>شیراز
+                                                                                - Shiraz - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211084"><span
+                                                                                class="icon-map"></span><span>اصفهان
+                                                                                - Isfahan - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1178542"><span
+                                                                                class="icon-map"></span><span>کوالالامپور
+                                                                                - Kuala Lumpur - همه فرودگاه
+                                                                                ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1196609"><span
+                                                                                class="icon-map"></span><span>اهواز
+                                                                                - Ahvaz - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211091"><span
+                                                                                class="icon-map"></span><span>کرمان
+                                                                                - Kerman - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1196620"><span
+                                                                                class="icon-map"></span><span>کرمانشاه
+                                                                                - Kermanshah - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1184034"><span
+                                                                                class="icon-map"></span><span>پاریس
+                                                                                - Paris - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1196639"><span
+                                                                                class="icon-map"></span><span>قشم -
+                                                                                Qeshm - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211085"><span
+                                                                                class="icon-map"></span><span>تبریز
+                                                                                - Tabriz - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1196659"><span
+                                                                                class="icon-map"></span><span>چابهار
+                                                                                - Chabahar - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211090"><span
+                                                                                class="icon-map"></span><span>یزد -
+                                                                                Yazd - همه فرودگاه ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1196635"><span
+                                                                                class="icon-map"></span><span>بندرعباس
+                                                                                - Bandar Abbas - همه فرودگاه
+                                                                                ها</span></li>
+                                                                        <li onClick="SelectPlace(this)"
+                                                                            data-id="1211104"><span
+                                                                                class="icon-map"></span><span>رامسر
+                                                                                - Ramsar - همه فرودگاه ها</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="Basis_Date_Box">
+                                                        <div class="frm-other date" id="Fdate">
+                                                            <div class="custom-select">
+                                                                <input
+                                                                    class="first cal Basis_Date start_date departuredate"
+                                                                    onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)"
+                                                                    data-active="0" data-cache="0" id="inp1"
+                                                                    name="fdate" type="text" placeholder="رفت"
+                                                                    value="[##cms.query.fdate##]" readonly="true"
+                                                                    autocomplete="off">
+                                                                <input value="[##cms.query.mstring_fdate##]"
+                                                                    class="mstring_date departureMdate" type="hidden"
+                                                                    name="mstring_fdate" />
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="frm-other date z-margin" id="Tdate">
+                                                            <div class="custom-select">
+                                                                <input
+                                                                    class="second cal Basis_Date end_date nextCalOpening returndate"
+                                                                    onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)"
+                                                                    data-active="0" data-cache="0" id="inp2"
+                                                                    name="tdate" type="text" placeholder="برگشت"
+                                                                    value="[##cms.query.tdate##]" readonly="true"
+                                                                    autocomplete="off">
+                                                                <input value="[##cms.query.mstring_tdate##]"
+                                                                    class="mstring_date returnMdate" type="hidden"
+                                                                    name="mstring_tdate" />
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="frm-other passinfo-field">
+                                                        <div class="custom-select">
+                                                            <input type="text" placeholder="" readonly
+                                                                class="hotel-input">
+                                                            <div class="Wrapper-CountPassenger">
+                                                                <span class="count-adult">بزرگسال :
+                                                                    [##cms.query.adult##]</span>
+                                                                <span class="count-child">کودک :
+                                                                    [##cms.query.chcount##]</span>
+                                                                <span class="fclass">[##cms.query.FlightClass##]</span>
+                                                            </div>
+                                                            <div class="HotelPassengers">
+                                                                <div class="itemlable2 Classname-box">
+                                                                    <label> <span class="notshow">کلاس پروازی</span>
+                                                                    </label>
+                                                                    <div class="Class_box_inner">
+                                                                        <i class="fas fa-chevron-down"></i>
+                                                                        <select name="FlightClass">
+                                                                            <option value="[##cms.query.FlightClass##]"
+                                                                                class="selected">
+                                                                                [##cms.query.FlightClass##]</option>
+                                                                            <option value="Economy"
+                                                                                class="not-selected">Economy Class
+                                                                            </option>
+                                                                            <option value="BusinessClass"
+                                                                                class="not-selected">Bussines Class
+                                                                            </option>
+                                                                            <option value="FirstClass"
+                                                                                class="not-selected">First Class
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="ad-ch">
+                                                                    <div class="itemlable2">
+                                                                        <label> <span class="notshow">بزرگسال</span>
+                                                                        </label>
+                                                                        <ul class="button-click">
+                                                                            <li><a class="button secondary"><span
+                                                                                        class="hide">+</span></a>
+                                                                            </li>
+                                                                            <li><a class="button secondary"><span
+                                                                                        class="hide">-</span></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <input type="text"
+                                                                            class="cat_textbox adultcount" name="adult"
+                                                                            maxlength="4000"
+                                                                            value="[##cms.query.adult##]" />
+                                                                        <div class="clr"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="ad-ch">
+                                                                    <div class="itemlable2">
+                                                                        <label> <span class="notshow">کودک</span>
+                                                                        </label>
+                                                                        <input type="hidden"
+                                                                            value="[##cms.query.child##]"
+                                                                            class="childcountinput" name="child">
+                                                                        <ul class="button-click-child">
+                                                                            <li><a class="button secondary"><span
+                                                                                        class="hide">+</span></a>
+                                                                            </li>
+                                                                            <li><a class="button secondary"><span
+                                                                                        class="hide">-</span></a>
+                                                                            </li>
+                                                                            <div class="clr"></div>
+                                                                        </ul>
+                                                                        <input type="text" class="cat_textbox"
+                                                                            name="chcount" maxlength="4000"
+                                                                            value="[##cms.query.chcount##]" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="childDropdowns"></div>
+                                                                <div class="CloseHotelPassengers">تایید</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <section class="frm-submit-btn">
+                                                        <div class="searchagain"><button type="submit"
+                                                                class="search-flight hvr-shutter-in-horizontal">جستجو</button>
+                                                        </div>
+                                                    </section>
+                                                    <div class="shareInfo ShareInfoNotEdit"> <span>جستجو در
+                                                            سهمیه</span>
+                                                        <input type="checkbox" value="[##cms.query.share##]"
+                                                            onChange="sharing(this)" class="CheckboxShare ValShare"
+                                                            name="share" />
+
+                                                        <div class="clr"></div>
+                                                    </div>
+                                                    <p class="alert-text"></p>
+                                                    <div class="clr"></div>
+                                                </form>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                    </basis>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+
+                            <div class="clr"></div>
+                        </div>
+                        <div class="changeDate_box">
+                            <div class="prevdate"><span class="inner-next">روز قبل<i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></span></div>
+                            <div class="nextdate"><span class="inner-next">روز بعد<i class="fa fa-angle-left"
+                                        aria-hidden="true"></i></span></div>
+                        </div>
+                        <div class="inner-box-ticket" id="Result"></div>
+                        <div class="clr"></div>
+                    </div>
+                </div>
+                <div class="clr"></div>
+            </div>
+            <div class="clr"></div>
+        </div>
+        <basis core="call" file="footer.inc" />
+    </div>
+    <basis core="call" file="Client_Basis_Calendar.inc" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            fetch('/Client_Roundtrip_Json.bc?from=[##cms.query.from##]&to=[##cms.query.to##]&fdate=[##cms.query.fdate##]&tdate=[##cms.query.tdate##]&adult=[##cms.query.adult##]&child=[##cms.query.child##]&select-age=[##cms.query.select-age##]&share=[##cms.query.share|(0)##]&userid=[##db.userid.userid##]&FlightClass=[##cms.query.FlightClass##]', {
+            method: 'get',
+         })
+    .then(response => response.text())
+    .then(text => {
+        let Maindata = JSON.parse(text.replace(/\'/g, '"'))
+        let LenMaindata = Maindata.length
+        if (LenMaindata !== undefined) {
+             Maindata.sort((a, b) => a.total - b.total);
+        } else if (LenMaindata == undefined) {
+             $(".sort_box").hide()
+             $("#main-box-fliter").hide()
+             $(".main-box-ticket").css("width", "100%")
+        }
+        $('.bgLoading').hide()
+        $('.boxContainer').show()
+        load_data(Maindata)
+    }).catch(error => console.error(error))
+        })
+    </script>
+    <!---------------------------------JS PROGRESS--------------------------------->
+    <script type="text/javascript" src="/js/Progress-Bar.js"></script>
+    <!---------------------------------JS RESEARCH--------------------------------->
+    <script type="text/javascript" src="/js/ChangeDate-Scripts.js"></script>
+   <script type="text/javascript">
+    <basis core = "call" file = "Client_Basis_Calendar_js.inc"/>
+  </script>
+    <!---------------------------------JS MENU--------------------------------->
+    <script type='text/javascript' src="/js/jquery.navgoco.js"></script>
+    <script type='text/javascript' src="/js/off-canvas.js"></script>
+    <!---------------------------------LIBRARY REACT--------------------------------->
+    <script src="/js/react.production.min.js" crossorigin></script>
+    <script src="/js/react-dom.production.min.js" crossorigin></script>
+    <script src="/js/babel.min.js" crossorigin></script>
+    <script src="/js/react-library.js"></script>
+    <script type="text/babel">
+    function load_data(load_data){
+        class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: [],
+            data_provider: [],
+            library: null,
+            librarySecond: null,
+            perPage: 20,
+            currentPage: 1,
+            maxPage: null,
+            filterExitTimeDepF: "00",
+            filterExitTimeDepS: "24",
+            rangevalExitTimeDepF: "00:00",
+            rangevalExitTimeDepS: "24:00",
+            filterExitTimeDesF: "00",
+            filterExitTimeDesS: "24",
+            rangevalExitTimeDesF: "00:00",
+            rangevalExitTimeDesS: "24:00",
+            filterTotalF: "",
+            filterTotalS: "",
+            rangevalTotalF: "",
+            rangevalTotalS: "",
+            filterTimeDepF: "",
+            filterTimeDepS: "",
+            rangevalTimeDepF: "",
+            rangevalTimeDepS: "",
+            filterTimeDesF: "",
+            filterTimeDesS: "",
+            rangevalTimeDesF: "",
+            rangevalTimeDesS: "",
+            filterTypeFlight: "",
+            VisiblesAllDetails: {},
+            visibleDetails: {},
+            visiblePrice: {},
+            visibleBar: {},
+            visibleRule: {},
+            loadingBarDep: {},
+            loadingBarDes: {},
+            barDepTxt: {},
+            barDesTxt: {},
+            loadingRuleDep: {},
+            loadingRuleDes: {},
+            ruleDepTxt: {},
+            ruleDesTxt: {},
+            defaultS: {},
+            priceS: {},
+            defaultactive: {},
+            priceactive: {},
+            stopS: {},
+            stopactive: {},
+            timeS: {},
+            takeoffS: {},
+            timeactive: {},
+            checkkeyprice: 0,
+            checkkeystop: 0,
+            checkkeytime: 0,
+            checkkeytakeoff: 0,
+            activedefault: "activesort",
+            activeprice: "",
+            activestop: "",
+            activetime: "",
+            activetakeoff: "",
+            activeDarrow: "activearrow",
+            activeParrow: "deactivearrow",
+            activeSarrow: "deactivearrow",
+            activeTarrow: "deactivearrow",
+            activeOarrow: "deactivearrow",
+            activeTab_details: {},
+            activeTab_bar: {},
+            activeTab_rule: {},
+            activeTab_price: {},
+            state_airlines_dep:"",
+            state_airlines_des:"",
+        }
+        this.airlines_dep = [];
+        this.airlines_des = [];
+        this.stops_dep = [];
+        this.stops_des = [];
+        this.isSystemFlight = [];
+        this.handleClick = this.handleClick.bind(this);
+    }
+    componentDidMount() {
+
+        this.setState(state => ({
+                ...state,
+                data: load_data
+            }), () => {
+                this.reorganiseLibrary()
+            })
+
+            $(document).on('update_result', (event, airlines_dep, airlines_des, stops_dep  ,stops_des , isSystemFlight, checktype, checkkey) => {
+            this.reorganiseLibrary(airlines_dep, airlines_des, stops_dep  ,stops_des ,isSystemFlight, checktype, checkkey)
+        })
+        if (document.getElementById("chagencyuser").value == 1) {
+            fetch('/Client_Provider_Library.bc')
+                .then(response => response.json())
+                .then(provider => {
+                    this.setState({ data_provider: provider })
+                }).catch(error => console.error(error))
+        }
+    }
+    componentDidUpdate() {
+ $(".unit_content").each(function () {
+ if ($(this).text() == 'ریالريال' || $(this).text() == 'ريالریال') {
+ $(this).text('ریال')
+ }
+ })
+
+ $(".airline_filter_dep").sort(function (a, b) {
+            a = $(".min_total_dep", a).text().replace(/,/g, '');
+            b = $(".min_total_dep", b).text().replace(/,/g, '');
+            return a - b;
+        }).appendTo(".airline_results_dep");
+        $(".airline_filter_des").sort(function (a, b) {
+            a = $(".min_total_des", a).text().replace(/,/g, '');
+            b = $(".min_total_des", b).text().replace(/,/g, '');
+            return a - b;
+        }).appendTo(".airline_results_des");
+
+
+    }
+    reorganiseLibrary = (airlines_dep, airlines_des,stops_dep  ,stops_des,  isSystemFlight, checktype, checkkey) => {
+        const { filterExitTimeDepF, filterExitTimeDepS, filterExitTimeDesF, filterExitTimeDesS, filterTotalF, filterTotalS, filterTimeDepF, filterTimeDepS, filterTimeDesF, filterTimeDesS, perPage, data } = this.state;
+        let library = data;
+        let librarySecond = data;
+        librarySecond = _.chunk(librarySecond, perPage);
+        this.setState({
+            librarySecond,
+            currentPage: 1,
+            maxPage: librarySecond.length === 0 ? 1 : librarySecond.length
+        })
+
+        let defaultFilterTimeDepF = null;
+        defaultFilterTimeDepF = filterTimeDepF
+            ? (filterTimeDepF)
+            : (this.renderMinFilterTimeDep(librarySecond));
+        let defaultFilterTimeDepS = null;
+        defaultFilterTimeDepS = filterTimeDepS
+            ? (filterTimeDepS)
+            : (this.renderMaxFilterTimeDep(librarySecond));
+        if (filterTimeDepF !== "" || filterTimeDepS !== "") {
+            let lenLibraryDef = library.length
+            if (lenLibraryDef !== undefined) {
+                library = library.filter(item =>
+                    parseInt(this.renderStoppinfoF(item.info.departureinformation.ticketinfooo.stoppinfoo.showtiming)) >= parseInt(defaultFilterTimeDepF) && parseInt(this.renderStoppinfoS(item.info.departureinformation.ticketinfooo.stoppinfoo.showtiming)) <= parseInt(defaultFilterTimeDepS)
+                )
+                let lenLibrary = library.length
+                $('.dataLen').text(lenLibrary)
+            }
+        }
+        let defaultFilterTimeDesF = null;
+        defaultFilterTimeDesF = filterTimeDesF
+            ? (filterTimeDesF)
+            : (this.renderMinFilterTimeDes(librarySecond));
+        let defaultFilterTimeDesS = null;
+        defaultFilterTimeDesS = filterTimeDesS
+            ? (filterTimeDesS)
+            : (this.renderMaxFilterTimeDes(librarySecond));
+        if (filterTimeDesF !== "" || filterTimeDesS !== "") {
+            let lenLibraryDef = library.length
+            if (lenLibraryDef !== undefined) {
+                library = library.filter(item =>
+                    parseInt(this.renderStoppinfoF(item.info.returninformation.ticketinfooo.stoppinfoo.showtiming)) >= parseInt(defaultFilterTimeDesF) && parseInt(this.renderStoppinfoS(item.info.returninformation.ticketinfooo.stoppinfoo.showtiming)) <= parseInt(defaultFilterTimeDesS)
+                )
+                let lenLibrary = library.length
+                $('.dataLen').text(lenLibrary)
+            }
+
+        }
+
+        let defaultFilterTotalF = null;
+        defaultFilterTotalF = filterTotalF
+            ? (filterTotalF)
+            : (this.renderMinFilterTotal(librarySecond));
+        let defaultFilterTotalS = null;
+        defaultFilterTotalS = filterTotalS
+            ? (filterTotalS)
+            : (this.renderMaxFilterTotal(librarySecond));
+        if (filterTotalF !== "" || filterTotalS !== "") {
+            let lenLibraryDef = library.length
+            if (lenLibraryDef !== undefined) {
+                library = library.filter(item =>
+                    item.totalCom >= defaultFilterTotalF && item.totalCom <= defaultFilterTotalS
+                )
+                let lenLibrary = library.length
+                $('.dataLen').text(lenLibrary)
+            }
+
+        }
+        if (checktype == 'default') {
+            library.sort((a, b) => a.total - b.total);
+            this.setState({ activedefault: "activesort" })
+            this.setState({ activeprice: "" })
+            this.setState({ activestop: "" })
+            this.setState({ activetime: "" })
+            this.setState({ activeParrow: "deactivearrow" })
+            this.setState({ activeSarrow: "deactivearrow" })
+            this.setState({ activeTarrow: "deactivearrow" })
+            this.setState({ activeOarrow: "deactivearrow" })
+        }
+
+        if (checktype == 'price') {
+            if (checkkey == 0) {
+                library.sort((a, b) => b.total - a.total);
+                this.setState({ checkkeyprice: 1 });
+            } else {
+                library.sort((a, b) => a.total - b.total);
+                this.setState({ checkkeyprice: 0 });
+            }
+            this.setState(prevState => ({
+                priceS: { ...prevState.priceS, [0]: !prevState.priceS[0] }
+            }))
+            this.setState({ activeprice: "activesort" })
+            this.setState({ activedefault: "" })
+            this.setState({ activestop: "" })
+            this.setState({ activetime: "" })
+            this.setState({ activeParrow: "" })
+            this.setState({ activetakeoff: "" })
+            this.setState({ activeDarrow: "deactivearrow" })
+            this.setState({ activeSarrow: "deactivearrow" })
+            this.setState({ activeTarrow: "deactivearrow" })
+            this.setState({ activeOarrow: "deactivearrow" })
+        }
+
+        if (checktype == 'stop') {
+            if (checkkey == 0) {
+                library.sort((a, b) => b.ticketinfooo.stoppinfoo.showstopinfo - a.ticketinfooo.stoppinfoo.showstopinfo);
+                this.setState({ checkkeystop: 1 });
+            } else {
+                library.sort((a, b) => a.ticketinfooo.stoppinfoo.showstopinfo - b.ticketinfooo.stoppinfoo.showstopinfo);
+                this.setState({ checkkeystop: 0 });
+            }
+            this.setState(prevState => ({
+                stopS: { ...prevState.stopS, [0]: !prevState.stopS[0] }
+            }))
+            this.setState({ activeprice: "" })
+            this.setState({ activedefault: "" })
+            this.setState({ activestop: "activesort" })
+            this.setState({ activetime: "" })
+            this.setState({ activeParrow: "deactivearrow" })
+            this.setState({ activeSarrow: "" })
+            this.setState({ activetakeoff: "" })
+            this.setState({ activeDarrow: "deactivearrow" })
+            this.setState({ activeTarrow: "deactivearrow" })
+            this.setState({ activeOarrow: "deactivearrow" })
+        }
+
+        if (checktype == 'Time') {
+            if (checkkey == 0) {
+                library.sort((a, b) => this.rendertimesorting(b.ticketinfooo.stoppinfoo.showtiming) - this.rendertimesorting(a.ticketinfooo.stoppinfoo.showtiming));
+                this.setState({ checkkeytime: 1 });
+            } else {
+                library.sort((a, b) => this.rendertimesorting(a.ticketinfooo.stoppinfoo.showtiming) - this.rendertimesorting(b.ticketinfooo.stoppinfoo.showtiming));
+                this.setState({ checkkeytime: 0 });
+            }
+            this.setState(prevState => ({
+                timeS: { ...prevState.timeS, [0]: !prevState.timeS[0] }
+            }))
+            this.setState({ activeprice: "" })
+            this.setState({ activedefault: "" })
+            this.setState({ activestop: "" })
+            this.setState({ activetime: "activesort" })
+            this.setState({ activetakeoff: "" })
+            this.setState({ activeDarrow: "deactivearrow" })
+            this.setState({ activeParrow: "deactivearrow" })
+            this.setState({ activeSarrow: "deactivearrow" })
+            this.setState({ activeTarrow: "" })
+            this.setState({ activeOarrow: "deactivearrow" })
+        }
+        if (checktype == 'takeoff') {
+            if (checkkey == 0) {
+                library.sort((a, b) => this.rendertakeoffsorting(b.ticketinfooo.exitinfo.showexittime) - this.rendertakeoffsorting(a.ticketinfooo.exitinfo.showexittime));
+                this.setState({ checkkeytakeoff: 1 });
+            } else {
+                library.sort((a, b) => this.rendertakeoffsorting(a.ticketinfooo.exitinfo.showexittime) - this.rendertakeoffsorting(b.ticketinfooo.exitinfo.showexittime));
+                this.setState({ checkkeytakeoff: 0 });
+            }
+            this.setState(prevState => ({
+                takeoffS: { ...prevState.takeoffS, [0]: !prevState.takeoffS[0] }
+            }))
+            this.setState({ activeprice: "" })
+            this.setState({ activedefault: "" })
+            this.setState({ activestop: "" })
+            this.setState({ activetime: "" })
+            this.setState({ activetakeoff: "activesort" })
+            this.setState({ activeDarrow: "deactivearrow" })
+            this.setState({ activeParrow: "deactivearrow" })
+            this.setState({ activeSarrow: "deactivearrow" })
+            this.setState({ activeTarrow: "deactivearrow" })
+            this.setState({ activeOarrow: "" })
+        }
+
+        if (airlines_dep !== undefined) {
+            if (airlines_dep !== "") {
+                airlines_dep = airlines_dep.split(",");
+                library = library.filter(item => {
+                    if (
+                        this.renderAirlineFilter_dep(item.info).some(r => airlines_dep.includes(r))
+                    ) return item;
+                })
+            }
+            let lenLibrary = library.length
+            $('.dataLen').text(lenLibrary)
+        }
+
+        if (airlines_des !== undefined) {
+            if (airlines_des !== "") {
+                airlines_des = airlines_des.split(",");
+                library = library.filter(item => {
+                    if (
+                        this.renderAirlineFilter_des(item.info).some(r => airlines_des.includes(r))
+                    ) return item;
+                })
+            }
+            let lenLibrary = library.length
+            $('.dataLen').text(lenLibrary)
+        }
+
+        if (stops_dep !== undefined) {
+            if (stops_dep !== "") {
+                stops_dep = stops_dep.split(",");
+                library = library.filter(item => {
+                    if (stops_dep.includes(this.renderStopsFilter(item.info.departureinformation.ticketinfooo.stoppinfoo.showstopinfo))) return item;
+                })
+            }
+            let lenLibrary = library.length
+            $('.dataLen').text(lenLibrary)
+        }
+        if (stops_des !== undefined) {
+            if (stops_des !== "") {
+                stops_des = stops_des.split(",");
+                library = library.filter(item => {
+                    if (stops_des.includes(this.renderStopsFilter(item.info.returninformation.ticketinfooo.stoppinfoo.showstopinfo))) return item;
+                })
+            }
+            let lenLibrary = library.length
+            $('.dataLen').text(lenLibrary)
+        }
+
+        if (filterExitTimeDepF !== "00" || filterExitTimeDepS !== "24") {
+            let lenLibraryDef = library.length
+            if (lenLibraryDef !== undefined) {
+                library = library.filter(item =>
+                    this.rendershowexittimeDepF(item.info.departureinformation.ticketinfooo.exitinfo.showexittime) >= filterExitTimeDepF && this.rendershowexittimeDepS(item.info.departureinformation.ticketinfooo.exitinfo.showexittime) <= filterExitTimeDepS
+                )
+                let lenLibrary = library.length
+                $('.dataLen').text(lenLibrary)
+            }
+        }
+        if (filterExitTimeDesF !== "00" || filterExitTimeDesS !== "24") {
+            let lenLibraryDef = library.length
+            if (lenLibraryDef !== undefined) {
+                library = library.filter(item =>
+                    this.rendershowexittimeDesF(item.info.returninformation.ticketinfooo.exitinfo.showexittime) >= filterExitTimeDesF && this.rendershowexittimeDesS(item.info.returninformation.ticketinfooo.exitinfo.showexittime) <= filterExitTimeDesS
+                )
+                let lenLibrary = library.length
+                $('.dataLen').text(lenLibrary)
+            }
+
+        }
+
+        if (isSystemFlight !== undefined) {
+            if (isSystemFlight !== "") {
+                isSystemFlight = isSystemFlight.split(",");
+                library = library.filter(item => {
+                    let keyToLowerCase = {};
+                    for (var key in item) {
+                        keyToLowerCase[key.toLowerCase()] = item[key];
+                    }
+                    if (isSystemFlight.includes(keyToLowerCase.issystemflight)) return item;
+                })
+            }
+            let lenLibrary = library.length
+            $('.dataLen').text(lenLibrary)
+        }
+        let lenLibrary = library.length
+        if (lenLibrary == undefined) {
+            $('.dataLen').text(0)
+        } else {
+            $('.dataLen').text(lenLibrary)
+        }
+        library = _.chunk(library, perPage);
+        this.setState({
+            library,
+            currentPage: 1,
+            maxPage: library.length === 0 ? 1 : library.length
+        })
+    }
+
+    rendercheckProvider(element) {
+        let checkProvider = element._id.provider
+        if (checkProvider == undefined) {
+            return 0
+        } else {
+            return element._id.provider.provider_id
+        }
+    }
+    rendershowexittimeDepF(element) {
+        let SplitElement = element.split(':')
+        let SplitElementFirst = SplitElement[0]
+        return SplitElementFirst
+    }
+    rendershowexittimeDepS(element) {
+        let SplitElement = element.split(':')
+        let SplitElementFirst = SplitElement[0]
+        let SplitElementSecond = SplitElement[1]
+        if (SplitElementSecond > 0) {
+            return parseInt(SplitElementFirst) + 1
+        } else {
+            return SplitElementFirst
+        }
+    }
+    rendershowexittimeDesF(element) {
+        let SplitElement = element.split(':')
+        let SplitElementFirst = SplitElement[0]
+        return SplitElementFirst
+    }
+    rendershowexittimeDesS(element) {
+        let SplitElement = element.split(':')
+        let SplitElementFirst = SplitElement[0]
+        let SplitElementSecond = SplitElement[1]
+        if (SplitElementSecond > 0) {
+            return parseInt(SplitElementFirst) + 1
+        } else {
+            return SplitElementFirst
+        }
+    }
+    renderMinFilterTotal = (librarySecond) => {
+        return librarySecond.reduce((acc, lib) => {
+            const libMin = Math.min(...lib.map(item => item.totalCom))
+            return acc === undefined ? libMin : libMin < acc ? libMin : acc
+        }, undefined)
+    }
+    renderMaxFilterTotal = (librarySecond) => {
+        return librarySecond.reduce((acc, lib) => {
+            const libMax = Math.max(...lib.map(item => item.totalCom))
+            return libMax > acc ? libMax : acc
+        }, 0)
+    }
+    renderMinFilterTimeDep = (librarySecond) => {
+        return librarySecond.reduce((acc, lib) => {
+            const libMin = Math.min(...lib.map(item => this.renderStoppinfo(item.info.departureinformation.ticketinfooo.stoppinfoo.showtiming)))
+            return acc === undefined ? libMin : libMin < acc ? libMin : acc
+        }, undefined)
+    }
+    renderMaxFilterTimeDep = (librarySecond) => {
+        return librarySecond.reduce((acc, lib) => {
+            const libMax = Math.max(...lib.map(item => this.renderStoppinfoS(item.info.departureinformation.ticketinfooo.stoppinfoo.showtiming)))
+            return libMax > acc ? libMax : acc
+        }, 0)
+    }
+    renderMinFilterTimeDes = (librarySecond) => {
+        return librarySecond.reduce((acc, lib) => {
+            const libMin = Math.min(...lib.map(item => this.renderStoppinfo(item.info.returninformation.ticketinfooo.stoppinfoo.showtiming)))
+            return acc === undefined ? libMin : libMin < acc ? libMin : acc
+        }, undefined)
+    }
+    renderMaxFilterTimeDes = (librarySecond) => {
+        return librarySecond.reduce((acc, lib) => {
+            const libMax = Math.max(...lib.map(item => this.renderStoppinfoS(item.info.returninformation.ticketinfooo.stoppinfoo.showtiming)))
+            return libMax > acc ? libMax : acc
+        }, 0)
+    }
+    renderStopsFilter(element) {
+        let elementToSting = element.toString()
+        return elementToSting
+    }
+    renderAirlineFilter_dep(element) {
+        let elementAdd = []
+        for (let i = 0; i < element.departureinformation.routeshow.routesinfoo.length; i++) {
+            elementAdd.push(element.departureinformation.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsairline)
+
+        }
+        return elementAdd
+    }
+    renderAirlineFilter_des(element) {
+        let elementAdd = []
+
+        for (let i = 0; i < element.returninformation.routeshow.routesinfoo.length; i++) {
+            elementAdd.push(element.returninformation.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsairline)
+        }
+        return elementAdd
+    }
+    // Previous Page
+    previousPage = event => {
+        let maxPage = this.state.maxPage
+        let len = this.renderLibrary().length
+        let Multi = len * maxPage
+        for (let i = 0; i <= Multi; i++) {
+            this.setState(prevState => ({
+                visibleDetails: { ...prevState.visibleDetails, [i]: "" },
+                visibleRule: { ...prevState.visibleRule, [i]: "" },
+                visibleBar: { ...prevState.visibleBar, [i]: "" },
+                visiblePrice: { ...prevState.visiblePrice, [i]: "" },
+                visibleAll: { ...prevState.visibleAll, [i]: "" }
+            }))
+        }
+        this.handleClick(event)
+        this.setState({
+            currentPage: this.state.currentPage - 1,
+            currentPage2: this.state.currentPage2 - 1,
+            currentPage3: this.state.currentPage3 - 1
+        })
+    }
+
+    // Next Page 
+    nextPage = event => {
+        let maxPage = this.state.maxPage
+        let len = this.renderLibrary().length
+        let Multi = len * maxPage
+        for (let i = 0; i <= Multi; i++) {
+            this.setState(prevState => ({
+                visibleDetails: { ...prevState.visibleDetails, [i]: "" },
+                visibleRule: { ...prevState.visibleRule, [i]: "" },
+                visibleBar: { ...prevState.visibleBar, [i]: "" },
+                visiblePrice: { ...prevState.visiblePrice, [i]: "" },
+                visibleAll: { ...prevState.visibleAll, [i]: "" }
+            }))
+        }
+        this.handleClick(event)
+        this.setState({
+            currentPage: this.state.currentPage + 1,
+            currentPage2: this.state.currentPage2 + 1,
+            currentPage3: this.state.currentPage3 + 1
+        })
+    }
+
+    // Next Page3
+    nextPage3 = event => {
+        let maxPage = this.state.maxPage
+        let len = this.renderLibrary().length
+        let Multi = len * maxPage
+        for (let i = 0; i <= Multi; i++) {
+            this.setState(prevState => ({
+                visibleDetails: { ...prevState.visibleDetails, [i]: "" },
+                visibleRule: { ...prevState.visibleRule, [i]: "" },
+                visibleBar: { ...prevState.visibleBar, [i]: "" },
+                visiblePrice: { ...prevState.visiblePrice, [i]: "" },
+                visibleAll: { ...prevState.visibleAll, [i]: "" }
+            }))
+        }
+
+        this.handleClick(event)
+        this.setState({
+            currentPage: this.state.currentPage3,
+            currentPage2: this.state.currentPage3 + 1,
+            currentPage3: this.state.currentPage3 + 2
+        })
+    }
+    //start handler filter ExitTime
+    handlerFilterExitDep = evt => {
+        let value = evt.target.value
+        let key = evt.target.getAttribute("data-key")
+        if (key == '1') {
+            if (value < 10) {
+                this.setState(
+                    {
+                        filterExitTimeDepF: "0" + evt.target.value,
+                        rangevalExitTimeDepF: "0" + evt.target.value + ": 00",
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            }
+            else {
+                this.setState(
+                    {
+                        filterExitTimeDepF: evt.target.value,
+                        rangevalExitTimeDepF: evt.target.value + ": 00",
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            }
+        } else if (key == '2') {
+            if (value < 10) {
+
+                this.setState(
+                    {
+                        filterExitTimeDepS: "0" + evt.target.value,
+                        rangevalExitTimeDepS: "0" + evt.target.value + ": 00",
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            }
+            else {
+                this.setState(
+                    {
+                        filterExitTimeDepS: evt.target.value,
+                        rangevalExitTimeDepS: evt.target.value + ": 00",
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            }
+        }
+    }    //end handler filter ExitTime
+    // start handler filter ExitTime
+    handlerFilterExitDes = evt => {
+        let value = evt.target.value
+        let key = evt.target.getAttribute("data-key")
+        if (key == '1') {
+            if (value < 10) {
+                this.setState(
+                    {
+                        filterExitTimeDesF: "0" + evt.target.value,
+                        rangevalExitTimeDesF: "0" + evt.target.value + ": 00",
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            }
+            else {
+                this.setState(
+                    {
+                        filterExitTimeDesF: evt.target.value,
+                        rangevalExitTimeDesF: evt.target.value + ": 00",
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            }
+        } else if (key == '2') {
+            if (value < 10) {
+                this.setState(
+                    {
+                        filterExitTimeDesS: "0" + evt.target.value,
+                        rangevalExitTimeDesS: "0" + evt.target.value + ": 00",
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            }
+            else {
+                this.setState(
+                    {
+                        filterExitTimeDesS: evt.target.value,
+                        rangevalExitTimeDesS: evt.target.value + ": 00",
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            }
+        }
+    }// end handler filter ExitTime
+
+    // start handler filter price
+    handlerFilterTotal = evt => {
+        let renderMax = this.renderMaxTotal()
+        let key = evt.target.getAttribute("data-key")
+        if (key == '1') {
+            this.setState(
+                {
+                    filterTotalF: evt.target.value,
+                    rangevalTotalF: evt.target.value,
+                },
+                () => {
+                    this.reorganiseLibrary();
+                }
+            )
+        } else if (key == '2') {
+            evt.target.max = renderMax
+
+            this.setState(
+                {
+                    filterTotalS: evt.target.value,
+                    rangevalTotalS: evt.target.value,
+                },
+                () => {
+                    this.reorganiseLibrary();
+                }
+            )
+        }
+    }// end handler filter price
+    // start handler filter StopTime
+    handlerFilterTimeDep = evt => {
+        let value = evt.target.value
+        let key = evt.target.getAttribute("data-key")
+        if (key == '1') {
+            if (value < 10) {
+                this.setState(
+                    {
+                        filterTimeDepF: evt.target.value,
+                        rangevalTimeDepF: "0" + evt.target.value,
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            } else {
+                this.setState(
+                    {
+                        filterTimeDepF: evt.target.value,
+                        rangevalTimeDepF: evt.target.value,
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            }
+
+        } else if (key == '2') {
+            if (value < 10) {
+                this.setState(
+                    {
+                        filterTimeDepS: evt.target.value,
+                        rangevalTimeDepS: "0" + evt.target.value,
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            } else {
+                this.setState(
+                    {
+                        filterTimeDepS: evt.target.value,
+                        rangevalTimeDepS: evt.target.value,
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            }
+
+        }
+    }// end handler filter StopTime
+    // start handler filter StopTime
+    handlerFilterTimeDes = evt => {
+        let value = evt.target.value
+        let key = evt.target.getAttribute("data-key")
+        if (key == '1') {
+            if (value < 10) {
+                this.setState(
+                    {
+                        filterTimeDesF: evt.target.value,
+                        rangevalTimeDesF: "0" + evt.target.value,
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            } else {
+                this.setState(
+                    {
+                        filterTimeDesF: evt.target.value,
+                        rangevalTimeDesF: evt.target.value,
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            }
+
+        } else if (key == '2') {
+            if (value < 10) {
+                this.setState(
+                    {
+                        filterTimeDesS: evt.target.value,
+                        rangevalTimeDesS: "0" + evt.target.value,
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            } else {
+                this.setState(
+                    {
+                        filterTimeDesS: evt.target.value,
+                        rangevalTimeDesS: evt.target.value,
+                    },
+                    () => {
+                        this.reorganiseLibrary();
+                    }
+                )
+            }
+
+        }
+    } // end handler filter StopTime
+
+    // handle per page
+    handlePerPage = (evt) =>
+        this.setState({
+            perPage: evt.target.value
+        }, () => this.reorganiseLibrary());
+
+    renderLibrary = () => {
+        const { library, currentPage } = this.state;
+        if (!library || (library && library.length === 0)) {
+            return <div className="nodata">
+                <div className="imgnodata"><img src="/images/no-result.png" alt="no-result" width="" height="" /></div>
+                <div className="tltnodata">برای جستجوی شما نتیجه ای یافت نشد!</div>
+                <div className="textnodata">شما می توانید با انجام مجدد عملیات جستجو,نتیجه مورد نظر خود را بیابید</div>
+                <div className="optionsnodata"><button className="researchnodata" onClick={this.renderResearch} type="submit">جستجوی مجدد </button><input className="homepage" value="صفحه اصلی" onClick={this.renderhomepage} type="button" /></div>
+            </div>
+        }
+        return library[currentPage - 1].map((item, i) => (
+            <div className="ticket-box">
+                <form method="post" action="">
+                    <div className="rightmain">
+                        <input type="hidden" value={item._id.value} name="idvalue" />
+                        <input type="hidden" value={item.share} name="share" />
+                        <input type="hidden" value={item.supplier} name="supplier" />
+                        <input type="hidden" value={item.info.departureinformation.ticketinfooo.classes.classname} name="classname" />
+                        <input type="hidden" value="[##cms.query.select-age##]" name="select-age" />
+                        <input type="hidden" value="[##cms.query.from##]" name="from" />
+                        <input type="hidden" value="[##cms.query.to##]" name="to" />
+                        <input type="hidden" value="[##cms.query.fdate##]" name="fdate" />
+                        <input type="hidden" value="[##cms.query.tdate##]" name="tdate" />
+                        <input type="hidden" value="[##cms.query.adult##]" name="adult" />
+                        <input type="hidden" value="[##cms.query.child##]" name="child" />
+                        <input type="hidden" value="[##cms.query.FlightClass##]" name="FlightClass" />
+                        {this.renderid(item)}
+                        {this.renderProductid(item)}
+                        <input type="hidden" value={this.renderChildrenCount(item)} name="childcount" />
+                        <input type="hidden" value={this.renderInfantsCount(item)} name="infants" />
+                        <input type="hidden" value={this.renderAdultsCount(item)} name="adultcount" />
+                        {this.renderproviderId(item._id)}
+                        {this.renderprovider(item)}
+                        <div className="ticket-arrive">
+                            <div className="right-side2">
+                                {this.renderisSystemFlight(item)}
+                                <div className="inner-parts">
+                                    <div className="ticket-logo ticketbackto"><img src={item.info.departureinformation.ticketinfooo.showstartairline}
+                                        width="100" height="40" alt={item.info.departureinformation.routeshow.routesinfoo[0].routesinfoodetails.otherdetails.detailsairline} />
+                                        <div className="flightClass"><span>شماره پرواز :{item.info.departureinformation.routeshow.routesinfoo[0].routesinfoodetails.otherdetails.detailsroutecode}</span></div>
+                                        {this.renderProviderName(item)}
+                                        {this.renderairbaggage(item.info.departureinformation.routeshow.routesinfoo[0])}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="middle-side middelround">
+                                <div className="box1-ticket">
+                                    <div className="flight-class">
+                                        <div className="inner-info">
+                                            <span className="btn-large">
+                                                <div>کلاس پروازی <span  className="flight-classname">{item.info.departureinformation.ticketinfooo.classes.classname}</span></div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="info-beginDestination">
+                                        <div className="inner-info">
+                                            <div className="time-go">
+                                                <span className="timeTicket1">{item.info.departureinformation.ticketinfooo.exitinfo.showexittime}</span>
+                                            </div>
+                                            <div className="first-line2">
+                                                <span>( {item.info.departureinformation.ticketinfooo.exitinfo.shortstartairport} )</span>
+                                                <span>{item.info.departureinformation.infooo.showstartcity}</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div className="rout">
+                                        <div className="inner-rout">
+                                            <div className="shape-rout">
+
+                                                <span className="mstring float_right">{item.info.departureinformation.routeshow.dateinfo[0].startdeparture[0].mstring}</span>
+                                                <span className="mstring float_left">{this.renderEnddepartureMs_dep(item.info.departureinformation.routeshow)}</span>
+                                                <div className="line">
+                                                    <span className="total-time">{item.info.departureinformation.ticketinfooo.stoppinfoo.showtiming}</span>
+                                                    {this.renderStopinfo(item.info.departureinformation.ticketinfooo.stoppinfoo.showstopinfo)}
+                                                </div>
+                                                <span className="sstring float_right">({item.info.departureinformation.routeshow.dateinfo[0].startdeparture[0].sstring})</span>
+                                                <span className="sstring float_left">({this.renderEnddepartureSs_dep(item.info.departureinformation.routeshow)})</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div className="info-beginDestination2">
+                                        <div className="inner-info">
+                                            <div className="time-go">
+                                                <span className="timeTicket2">{item.info.departureinformation.ticketinfooo.arrivalinfo.showarrivaltime}</span>
+                                            </div>
+                                            <div className="first-line2">
+                                                <span> ( {item.info.departureinformation.ticketinfooo.arrivalinfo.shortendairport} )</span>
+                                                <span>{item.info.departureinformation.infooo.showendcity} </span>
+                                            </div>
+                                            <div className="second-line2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="clr"></div>
+                        <div className="ticket-depart">
+                            <div className="right-side2">
+                                <div className="inner-parts">
+                                    <div className="ticket-logo ticket-logo2 ticketbackto"><img src={item.info.returninformation.ticketinfooo.showstartairline}
+                                        width="100" height="40" alt={item.info.returninformation.routeshow.routesinfoo[0].routesinfoodetails.otherdetails.detailsairline} />
+                                        <div className="flightClass"><span>شماره پرواز{item.info.returninformation.routeshow.routesinfoo[0].routesinfoodetails.otherdetails.detailsroutecode}</span></div>
+                                        {this.renderProviderName(item)}
+                                        {this.renderairbaggage(item.info.returninformation.routeshow.routesinfoo[0])}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="middle-side middelround">
+                                <div className="box1-ticket">
+                                    <div className="flight-class">
+                                        <div className="inner-info">
+                                            <span className="btn-large">
+                                                <div>کلاس پروازی <span  className="flight-classname">{item.info.returninformation.ticketinfooo.classes.classname}</span></div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="info-beginDestination">
+                                        <div className="inner-info">
+                                            <div className="time-go">
+                                                <span className="timeTicket1">{item.info.returninformation.ticketinfooo.exitinfo.showexittime}</span>
+                                            </div>
+                                            <div className="first-line2">
+                                                <span>( {item.info.returninformation.ticketinfooo.exitinfo.shortstartairport} )</span>
+                                                <span>{item.info.returninformation.infooo.showstartcity}</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div className="rout">
+                                        <div className="inner-rout">
+
+                                            <div className="shape-rout">
+
+                                                <span className="mstring float_right">{item.info.returninformation.routeshow.dateinfo[0].startreturn[0].mstring}</span>
+                                                <span className="mstring float_left">{this.renderEnddepartureMs_des(item.info.returninformation.routeshow)}</span>
+                                                <div className="line">
+                                                    <span className="total-time">{item.info.returninformation.ticketinfooo.stoppinfoo.showtiming}</span>
+                                                    {this.renderStopinfo(item.info.returninformation.ticketinfooo.stoppinfoo.showstopinfo)}
+                                                </div>
+                                                <span className="sstring float_right">({item.info.returninformation.routeshow.dateinfo[0].startreturn[0].sstring})</span>
+                                                <span className="sstring float_left">({this.renderEnddepartureSs_des(item.info.returninformation.routeshow)})</span>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div className="info-beginDestination2">
+                                        <div className="inner-info">
+                                            <div className="time-go">
+                                                <span className="timeTicket2">{item.info.returninformation.ticketinfooo.arrivalinfo.showarrivaltime}</span>
+                                            </div>
+                                            <div className="first-line2">
+                                                <span> ( {item.info.returninformation.ticketinfooo.arrivalinfo.shortendairport} )</span>
+                                                <span>{item.info.returninformation.infooo.showendcity}</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {this.renderseatcount(item.info.departureinformation)}
+                            </div>
+                        </div>
+                        <div className="Details-box" onClick={((e) => this.showAllDetails(e, i))}>
+                            <span>جزئیات پرواز</span><i className={`icon icon-arrow-down-16 ${!this.state.VisiblesAllDetails[i] ? "downarrow" : "uparrow"}`} ></i>
+                        </div>
+                        <div className={`detalis-flight-main ${!this.state.VisiblesAllDetails[i] ? "unvisibleD" : "visibleD"}`}>
+                            <div className={`details ${!this.state.activeTab_details[i] ? "" : "active-tab"}`} onClick={((e) => this.showDetails(e, i))}><a>جزییات پرواز</a></div>
+                            <div className={`details ${!this.state.activeTab_price[i] ? "" : "active-tab"}`} onClick={((e) => this.showPrice(e, i))}> <a> جزئیات قیمت</a> </div>
+                            <div className={`details ${!this.state.activeTab_rule[i] ? "" : "active-tab"}`} onClick={((e) => this.showRule(e, i))}> <a>قوانین پرواز</a> </div>
+                            <div className={`details ${!this.state.activeTab_bar[i] ? "" : "active-tab"}`} onClick={((e) => this.showBar(e, i))}> <a>قوانین بار</a> </div>
+                            <div key={i} className={`rulls-box ${!this.state.visibleDetails[i] ? "unvisible" : "visible"}`}>
+                                <div className="close" onClick={() => this.closeDetails(i)}> <span className="fa-times"></span></div>
+                                <div id="details-flight">
+                                    <div className="table2 flightdetails">{this.renderFlightDetails(item.info.departureinformation, 'dep')}</div>
+                                </div>
+                                <div id="details-flight2">
+                                    <div className="table2 flightdetails2">{this.renderFlightDetails(item.info.returninformation, 'des')}</div>
+                                </div>
+                            </div>
+                            <div key={i} id="box-price" className={`${!this.state.visiblePrice[i] ? "unvisible" : "visible"}`}>
+                                <div className="close" onClick={() => this.closePrice(i)}> <span className="fa-times"></span></div>
+                                <table className="price-tbl" cellspacing="0" cellpadding="0">
+
+                                    <tr className="first-row">
+                                        <td className="travelers"><span>مسافران</span></td>
+                                        <td className="everyPart-cost"><span>قیمت</span></td>
+                                        <td className="numberTravelers"><span>تعداد</span></td>
+                                        <td className="total-cost"><span>قیمت کل</span></td>
+                                    </tr>
+                                    <tr className="other-rows">
+                                        <td className="travelers travelers2">
+                                            <div className="show-tooltip"><span className="tooltip-flight2">بزرگسال</span></div>
+                                        </td>
+                                        <td className="everyPart-cost"><span className="tbcost">{new
+                                            Intl.NumberFormat().format(item.adults.unit)}</span> <span>{item.moneytype}</span></td>
+                                        <td className="numberTravelers"><span>{item.adults.count}</span></td>
+                                        <td className="total-cost"><span className="tbcost">{new
+                                            Intl.NumberFormat().format(item.adults.total)}</span> <span>{item.moneytype}</span></td>
+                                    </tr>
+                                    {this.renderTolCh(item.childs)}
+                                    {this.renderTolInf(item.infants)}
+                                </table>
+                            </div>
+                            <div key={i} className={`rulls-box ${!this.state.visibleBar[i] ? "unvisible" : "visible"}`}>
+                                <div className="close" onClick={() => this.closeBar(i)}> <span className="fa-times"></span></div>
+                                <div className="table">{this.renderBar(item, i)}</div>
+                            </div>
+                            <div key={i} className={`rulls-box ${!this.state.visibleRule[i] ? "unvisible" : "visible"}`}>
+                                <div className="close" onClick={() => this.closeRule(i)}> <span className="fa-times"></span></div>
+                                <div className="table">{this.renderRule(item, i)}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="left-side2 round-left-side2">
+                        <div className="left-side2-inner">
+                            <div className="cost-ticket"><span>مبلغ کل : </span><span className="cost1">{new
+                                Intl.NumberFormat().format(item.total)}</span><span className="moneytype">{item.moneytype}</span></div>
+                            {this.renderCommission(item)}
+                            {this.renderTotalcom(item)}
+                            <div className="reserve">
+                                <div className="inner-search"><input type="button" className="dflbtn not-active-form" value="رزرو" /></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="clr"></div>
+                </form>
+                <div className="clr"></div>
+            </div>
+        ))
+    }
+    render() {
+        const { library, currentPage, perPage, maxPage, rangevalExitTimeDepF, rangevalExitTimeDepS, rangevalExitTimeDesF, rangevalExitTimeDesS, rangevalTotalF, rangevalTotalS, rangevalTimeDepF, rangevalTimeDepS, rangevalTimeDesF, rangevalTimeDesS, librarySecond } = this.state;
+        let defaultRangeTotalF = null;
+        defaultRangeTotalF = rangevalTotalF
+            ? (<span>{new Intl.NumberFormat().format(rangevalTotalF)}</span>)
+            : (<span>{new Intl.NumberFormat().format(this.renderMinTotal())}</span>);
+        let defaultRangeTotalS = null;
+        defaultRangeTotalS = rangevalTotalS
+            ? (<span>{new Intl.NumberFormat().format(rangevalTotalS)}</span>)
+            : (<span>{new Intl.NumberFormat().format(this.renderMaxTotal())}</span>);
+
+        let defaultRangeTimeDepF = null;
+        defaultRangeTimeDepF = rangevalTimeDepF
+            ? (<span>{rangevalTimeDepF}</span>)
+            : (<span>{this.renderMinTimeDep()}</span>);
+        let defaultRangeTimeDepS = null;
+        defaultRangeTimeDepS = rangevalTimeDepS
+            ? (<span>{rangevalTimeDepS}</span>)
+            : (<span>{this.renderMaxTimeDep()}</span>);
+
+        let defaultRangeTimeDesF = null;
+        defaultRangeTimeDesF = rangevalTimeDesF
+            ? (<span>{rangevalTimeDesF}</span>)
+            : (<span>{this.renderMinTimeDes()}</span>);
+        let defaultRangeTimeDesS = null;
+        defaultRangeTimeDesS = rangevalTimeDesS
+            ? (<span>{rangevalTimeDesS}</span>)
+            : (<span>{this.renderMaxTimeDes()}</span>);
+
+
+        return (
+            <div>
+                <div id="main-box-fliter">
+                    <div className="left-side">
+                    </div>
+
+                    <div className="inner-box-filter">
+                        <div className="rightPart">
+                            <div className="boxes responsive-boxes">
+                                <div className="">
+                                    <div className="countHotel">تعداد <span className="lenRender"><span
+                                        className="dataLen">{this.renderCount()}</span>
+                                    </span> پرواز یافت شد .</div>
+                                    <div className="counterbox">
+                                        <div className="ttcounter">مدت زمان باقی مانده فرآیند رزرو</div>
+                                        <span id="count"></span>
+                                    </div>
+                                    <div className="slide_ExteraFilter">
+                                        <div className="mainTlt-filter"><span>فیلتر نتایج پرواز براساس : </span></div>
+                                        {this.ShowFilterFlight()}
+                                        <div className="filter-box">
+                                            <div className="title-filter"><span><i className="fas fa-clock"></i> ساعت حرکت (رفت)</span> </div>
+                                            <div className="items-filter">
+                                                <div className="every-item">
+                                                    <div className="wrappertime">
+                                                        <img src="/images/moonstars.png" width="23" height="23" alt="moonstars" className="imgThird" />
+                                                        <input type="range" min="0" max="24" defaultValue="24" step="1"
+                                                            onChange={this.handlerFilterExitDep} data-key="2" className="multirange original" />
+                                                        <input type="range" min="0" max="24" defaultValue="0" step="1"
+                                                            onChange={this.handlerFilterExitDep} data-key="1" className="multirange ghost" />
+                                                        <div className="rangevalSecond">{this.state.rangevalExitTimeDepS}
+                                                        </div>
+                                                        <img src="/images/sunrise.png" width="30" height="30" alt="sunrise" className="imgFirst" />
+
+                                                        <div className="rangevalFirst">
+                                                            {this.state.rangevalExitTimeDepF}
+                                                        </div>
+                                                        <img src="/images/sunny.png" width="25" height="25" alt="sunny" className="imgSecond" />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="filter-box">
+                                            <div className="title-filter"><span><i className="fas fa-clock"></i> ساعت حرکت (برگشت)</span> </div>
+                                            <div className="items-filter">
+                                                <div className="every-item">
+                                                    <div className="wrappertime">
+                                                        <img src="/images/moonstars.png" width="23" height="23" alt="moonstars" className="imgThird" />
+                                                        <input type="range" min="0" max="24" defaultValue="24" step="1" onChange={this.handlerFilterExitDes} data-key="2" className="multirange original" />
+                                                        <input type="range" min="0" max="24" defaultValue="0" step="1" onChange={this.handlerFilterExitDes} data-key="1" className="multirange ghost" />
+                                                        <div className="rangevalSecond">{this.state.rangevalExitTimeDesS}
+                                                        </div>
+                                                        <img src="/images/sunrise.png" width="30" height="30" alt="sunrise" className="imgFirst" />
+                                                        <div className="rangevalFirst">{this.state.rangevalExitTimeDesF}</div>
+                                                        <img src="/images/sunny.png" width="25" height="25" alt="sunny" className="imgSecond" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="filter-box">
+                                            <div className="title-filter"><span><i className="fas fa-dollar"></i> قیمت</span> </div>
+                                            <div className="items-filter">
+                                                <div className="every-item">
+                                                    <div className="wrappertimeTotal">
+                                                        <input type="range" min={this.renderMinTotal() || 0} max='999999999' defaultValue='999999999' step="1000"
+                                                            onChange={this.handlerFilterTotal} data-key="2" className="multirange original" />
+                                                        <input type="range" min={this.renderMinTotal()} max={this.renderMaxTotal()} defaultValue={this.renderMinTotal()} step="1000"
+                                                            onChange={this.handlerFilterTotal} data-key="1" className="multirange ghost" />
+                                                        <div className="rangevalSecondTotal">{defaultRangeTotalS} <span>ریال</span>
+                                                        </div>
+                                                        <div className="rangevalFirstTotal">{defaultRangeTotalF} <span>ریال</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="filter-box">
+                                            <div className="title-filter"><span><i className="fas fa-clock"></i> مدت زمان سفر(رفت)</span> </div>
+                                            <div className="items-filter">
+                                                <div className="every-item">
+                                                    <div className="wrappertimeTotal">
+                                                        <input type="range" min={this.renderMinTimeDep()} max={this.renderMaxTimeDep()} defaultValue='100' step="1"
+                                                            onChange={this.handlerFilterTimeDep} data-key="2" className="multirange original" />
+                                                        <input type="range" min={this.renderMinTimeDep()} max={this.renderMaxTimeDep()} defaultValue='0' step="1"
+                                                            onChange={this.handlerFilterTimeDep} data-key="1" className="multirange ghost" />
+                                                        <div className="rangevalFirstTotal">{defaultRangeTimeDepF} <span>ساعت</span>
+                                                        </div>
+                                                        <div className="rangevalSecondTotal">{defaultRangeTimeDepS} <span>ساعت</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="filter-box">
+                                            <div className="title-filter"><span><i className="fas fa-clock"></i> مدت زمان سفر(برگشت)</span> </div>
+                                            <div className="items-filter">
+                                                <div className="every-item">
+                                                    <div className="wrappertimeTotal">
+                                                        <input type="range" min={this.renderMinTimeDes()} max={this.renderMaxTimeDes()} defaultValue='100' step="1" onChange={this.handlerFilterTimeDes} data-key="2" className="multirange original" />
+                                                        <input type="range" min={this.renderMinTimeDes()} max={this.renderMaxTimeDes()} defaultValue='0' step="1" onChange={this.handlerFilterTimeDes} data-key="1" className="multirange ghost" />
+                                                        <div className="rangevalFirstTotal">{defaultRangeTimeDesF} <span className="MoneyType">ساعت</span></div>
+                                                        <div className="rangevalSecondTotal">{defaultRangeTimeDesS} <span className="MoneyType">ساعت</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="main-box-ticket">
+                    <div className="info-loading">
+                        <div className="inner-box-ticket">
+                            <div className="sort_box">
+                                <div className="filter-sort-box">
+                                    <div className="items-filter">
+                                        <div>مرتب سازی بر اساس :
+                                    </div>
+                                    </div>
+                                </div>
+                                <div className={`filter-sort-box ${this.state.activedefault}`}>
+                                    <div className="items-filter">
+                                        <div data-type="default" data-key="0" onClick={((e) => this.handleChange(e))}>پیش فرض
+                                                        <span className={`sorticon ${this.state.activeDarrow} ${!this.state.defaultS[0] ? "uparrow" : "downarrow"}`} ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={`filter-sort-box ${this.state.activeprice}`} >
+                                    <div className="items-filter">
+                                        <div data-type="price" data-key={this.state.checkkeyprice} onClick={((e) => this.handleChange(e))}>قیمت
+                                          <span className={`sorticon ${this.state.activeParrow} ${!this.state.priceS[0] ? "uparrow" : "downarrow"}`} ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={`filter-sort-box ${this.state.activestop}`}>
+                                    <div className="items-filter">
+                                        <div data-type="stop" data-key={this.state.checkkeystop} onClick={((e) => this.handleChange(e))}>توقف
+                                            <span className={`sorticon ${this.state.activeSarrow} ${!this.state.stopS[0] ? "uparrow" : "downarrow"}`} ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={`filter-sort-box ${this.state.activetime}`}>
+                                    <div className="items-filter">
+                                        <div data-type="Time" data-key={this.state.checkkeytime} onClick={((e) => this.handleChange(e))}>مدت پرواز
+                                          <span className={`sorticon ${this.state.activeTarrow} ${!this.state.timeS[0] ? "uparrow" : "downarrow"}`} ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={`filter-sort-box ${this.state.activetakeoff}`}>
+                                    <div className="items-filter">
+                                        <div data-type="takeoff" data-key={this.state.checkkeytakeoff} onClick={((e) => this.handleChange(e))}>ساعت پرواز
+                                          <span className={`sorticon ${this.state.activeOarrow} ${!this.state.takeoffS[0] ? "uparrow" : "downarrow"}`} ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {this.renderLibrary()}
+                            <ul id="page-numbers">
+                                <li className="nexprev">
+                                    {currentPage !== 1 && (
+                                        <button onClick={this.previousPage}><span className="fa-backward"></span></button>
+                                    )}
+                                </li>
+                                <li className="controls activeCnt">{this.state.currentPage}</li>
+                                {(this.state.currentPage2 < maxPage) && (<li className="controls" onClick={this.nextPage}>{this.state.currentPage2}</li>
+                                )}
+                                {(this.state.currentPage3 < maxPage) && (<li className="controls" onClick={this.nextPage3}>{this.state.currentPage3}</li>
+                                )}
+                                <li className="restControls">...</li>
+                                <li className="controls">{this.state.maxPage}</li>
+                                <li className="nexprev">
+                                    {(this.state.currentPage < maxPage) && (<button onClick={this.nextPage}><span className="fa-forward"></span></button>
+                                    )}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+    renderhomepage = event => {
+        return window.location = '/'
+    }
+    renderResearch = event => {
+        return $(".formsearch").submit()
+    }
+    renderMinTotal = () => {
+        const { librarySecond } = this.state;
+        if (!librarySecond || (librarySecond && librarySecond.length === 0)) {
+            return ''
+        }
+        return librarySecond.reduce((acc, lib) => {
+            const libMin = Math.min(...lib.map(item => item.totalCom))
+            return acc === undefined ? libMin : libMin < acc ? libMin : acc
+        }, undefined)
+    }
+    renderMaxTotal = () => {
+        const { librarySecond } = this.state;
+
+        if (!librarySecond || (librarySecond && librarySecond.length === 0)) {
+            return ''
+        }
+        return librarySecond.reduce((acc, lib) => {
+            const libMax = Math.max(...lib.map(item => item.totalCom))
+            return libMax > acc ? libMax : acc
+        }, 0)
+    }
+    renderMinTimeDep = () => {
+        const { librarySecond } = this.state;
+        if (!librarySecond || (librarySecond && librarySecond.length === 0)) {
+            return ''
+        }
+        return librarySecond.reduce((acc, lib) => {
+            const libMin = Math.min(...lib.map(item => this.renderStoppinfo(item.info.departureinformation.ticketinfooo.stoppinfoo.showtiming)))
+            return acc === undefined ? libMin : libMin < acc ? libMin : acc
+        }, undefined)
+    }
+    renderMaxTimeDep = () => {
+        const { librarySecond } = this.state;
+
+        if (!librarySecond || (librarySecond && librarySecond.length === 0)) {
+            return ''
+        }
+        return librarySecond.reduce((acc, lib) => {
+            const libMax = Math.max(...lib.map(item => this.renderStoppinfoS(item.info.departureinformation.ticketinfooo.stoppinfoo.showtiming)))
+            return libMax > acc ? libMax : acc
+        }, 0)
+    }
+    renderMinTimeDes = () => {
+        const { librarySecond } = this.state;
+        if (!librarySecond || (librarySecond && librarySecond.length === 0)) {
+            return ''
+        }
+        return librarySecond.reduce((acc, lib) => {
+            const libMin = Math.min(...lib.map(item => this.renderStoppinfo(item.info.returninformation.ticketinfooo.stoppinfoo.showtiming)))
+            return acc === undefined ? libMin : libMin < acc ? libMin : acc
+        }, undefined)
+    }
+    renderMaxTimeDes = () => {
+        const { librarySecond } = this.state;
+
+        if (!librarySecond || (librarySecond && librarySecond.length === 0)) {
+            return ''
+        }
+        return librarySecond.reduce((acc, lib) => {
+            const libMax = Math.max(...lib.map(item => this.renderStoppinfoS(item.info.returninformation.ticketinfooo.stoppinfoo.showtiming)))
+            return libMax > acc ? libMax : acc
+        }, 0)
+    }
+    ShowFilterFlight() {
+        let element = this.state.data;
+        if (!element) return null;
+        return <div>
+            <div className="filter-box">
+                <div className="title-filter"><span><i className="fas "></i>خط هوایی رفت</span> </div>
+                <div className="items-filter airline_results_dep">
+
+                    {this.renderairlines_dep(element)}
+                    <div className="clr"></div>
+                </div>
+            </div>
+            <div className="filter-box">
+                <div className="title-filter"><span><i className="fas "></i>خط هوایی برگشت </span> </div>
+                <div className="items-filter airline_results_des">
+
+                    {this.renderairlines_des(element)}
+                    <div className="clr"></div>
+                </div>
+            </div>
+            <div className="filter-box">
+                <div className="title-filter"><span><i className="fas "></i>توقف (مسیر رفت)</span> </div>
+                <div className="items-filter">
+                    {this.renderstop_dep(element)}
+                </div>
+            </div>
+            <div className="filter-box">
+                <div className="title-filter"><span><i className="fas "></i>توقف (مسیر برگشت)</span> </div>
+                <div className="items-filter">
+                    {this.renderstop_des(element)}
+                </div>
+            </div>
+            <div className="filter-box">
+                <div className="title-filter"><span><i className="fas "></i>نوع بلیط</span> </div>
+                <div className="items-filter">
+                    <div className="item2"><div className="right rightCheck" data-index="1"><input type="checkbox" className="isSystemFlight" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} value="false" /><label for="filter"><span className="checkbox"><span>چارتر</span></span></label></div><div className="clr"></div></div>
+                    <div className="item2"><div className="right rightCheck" data-index="1"><input type="checkbox" className="isSystemFlight" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} value="true" /><label for="filter"><span className="checkbox"><span>سیستمی</span></span></label></div><div className="clr"></div></div>
+                </div>
+            </div>
+        </div>
+    }
+
+    renderairlines_dep(element) {
+        let indents = [];
+        if (element.length !== undefined) {
+            let sentences = [...(new Set(element.map(d => d['info']['departureinformation']['routeshow']['routesinfoo']).flat().map(info => info['routesinfoodetails']['otherdetails']['detailsairline'])))]
+        
+            let sentencesimg = [...(new Set(element.map(d => d['info']['departureinformation']['routeshow']['routesinfoo']).flat().map(info => info['routesinfoodetails']['otherdetails']['detailsairlineimage'])))]
+            for (let i = 0; i < sentences.length; i++) {
+                let singleSentence = <div className="item2 airline_filter airline_filter_dep"><div><div className="right rightCheck" data-index="1"><input type="checkbox" value={sentences[i]} className="startairline_dep" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} /><label className="lable_content"><span className="checkbox"><span className="name_airline">{sentences[i]}</span></span><span className="total_content">از <span className="min_total_dep">{new Intl.NumberFormat().format(this.min_totalByAirline_dep(element, sentences[i]))}</span><span className="unit_content">{[...(new Set(element.map(x => x.moneytype)))]}</span></span><div className="clr"></div></label></div><div className="clr"></div></div></div>
+                let output = singleSentence
+                indents.push(singleSentence)
+
+            }
+
+            return (
+                indents
+            )
+
+        }
+    }
+
+
+    renderairlines_des(element) {
+        let indents = [];
+        if (element.length !== undefined) {
+            let sentences = [...(new Set(element.map(d => d['info']['returninformation']['routeshow']['routesinfoo']).flat().map(info => info['routesinfoodetails']['otherdetails']['detailsairline'])))]
+            let sentencesimg = [...(new Set(element.map(d => d['info']['returninformation']['routeshow']['routesinfoo']).flat().map(info => info['routesinfoodetails']['otherdetails']['detailsairlineimage'])))]
+            for (let i = 0; i < sentences.length; i++) {
+                let singleSentence = <div className="item2 airline_filter airline_filter_des"><div><div className="right rightCheck" data-index="1"><input type="checkbox" value={sentences[i]} className="startairline_des" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} /><label className="lable_content"><span className="checkbox"><span className="name_airline">{sentences[i]}</span></span><span className="total_content">از <span className="min_total_des">{new Intl.NumberFormat().format(this.min_totalByAirline_des(element, sentences[i]))}</span><span className="unit_content">{[...(new Set(element.map(x => x.moneytype)))]}</span></span><div className="clr"></div></label></div><div className="clr"></div></div></div>
+                let output = singleSentence
+                indents.push(singleSentence)
+
+            }
+
+            return (
+                indents
+            )
+
+        }
+    }
+
+
+    renderairlineimg(element) {
+        let sentencesDepimg = [...(new Set(element.map(d => d['info']['departureinformation']['routeshow']['routesinfoo']).flat().map(info => info['routesinfoodetails']['otherdetails']['detailsairlineimage'])))]
+        let sentencesDesimg = [...(new Set(element.map(d => d['info']['returninformation']['routeshow']['routesinfoo']).flat().map(info => info['routesinfoodetails']['otherdetails']['detailsairlineimage'])))]
+        let sentencesimg = sentencesDepimg.concat(sentencesDesimg.filter((item) => sentencesDepimg.indexOf(item) < 0))
+        let singleSentenceimg = sentencesimg.map(s => <img src={s} alt="" width="100" height="40" />);
+        let output = singleSentenceimg
+        return (
+            output
+        )
+
+    }
+    min_totalByAirline_dep = (data, name) => {
+        const totals = data
+            .filter(x =>
+                x.info.departureinformation.routeshow.routesinfoo.find(y => y.routesinfoodetails.otherdetails.detailsairline === name)
+            ).map(x => x.total);
+        return Math.min(...totals);
+    }
+
+
+    min_totalByAirline_des = (data, name) => {
+        const totals = data
+            .filter(x =>
+                x.info.returninformation.routeshow.routesinfoo.find(y => y.routesinfoodetails.otherdetails.detailsairline === name)
+            ).map(x => x.total);
+        return Math.min(...totals);
+    }
+    renderstop_dep(element) {
+        if (element.length !== undefined) {
+            let sentences = [...(new Set(element.map(d => d['info']['departureinformation']['ticketinfooo']['stoppinfoo']['showstopinfo']).flat()))]
+            let singleSentence = sentences.map(s => <React.Fragment><div className="item2"><div className="right rightCheck" data-index="1"><input type="checkbox" value={s} className="stops_dep" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} /><label for="filter"><span className="checkbox"><span>{s}</span></span></label></div><div className="clr"></div></div></React.Fragment>);
+            let output = singleSentence
+            return (
+                output
+            )
+        }
+    }
+    renderstop_des(element) {
+        if (element.length !== undefined) {
+            let sentences = [...(new Set(element.map(d => d['info']['returninformation']['ticketinfooo']['stoppinfoo']['showstopinfo']).flat()))]
+            let singleSentence = sentences.map(s => <React.Fragment><div className="item2"><div className="right rightCheck" data-index="1"><input type="checkbox" value={s} className="stops_des" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} /><label for="filter"><span className="checkbox"><span>{s}</span></span></label></div><div className="clr"></div></div></React.Fragment>);
+            let output = singleSentence
+            return (
+                output
+            )
+        }
+    }
+    handleChange = (e) => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        let checktype = e.target.getAttribute("data-type")
+        let checkkey = e.target.getAttribute("data-key")
+        let isChecked = e.target.checked
+        let valu = e.target.value
+        let classname = e.target.getAttribute("class");
+        switch (classname) {
+                case 'startairline_dep':
+                if (isChecked) {
+                    this.airlines_dep.push(valu + ',')
+                } else {
+                    this.airlines_dep.splice(this.airlines_dep.indexOf(valu + ','), 1)
+                }
+                break;
+                case 'startairline_des':
+                if (isChecked) {
+                    this.airlines_des.push(valu + ',')
+                } else {
+                    this.airlines_des.splice(this.airlines_des.indexOf(valu + ','), 1)
+                }
+                break;
+            case 'stops_dep':
+                if (isChecked) {
+                    this.stops_dep.push(valu + ',')
+                } else {
+                    this.stops_dep.splice(this.stops_dep.indexOf(valu + ','), 1)
+                }
+                break;
+            case 'stops_des':
+                if (isChecked) {
+                    this.stops_des.push(valu + ',')
+                } else {
+                    this.stops_des.splice(this.stops_des.indexOf(valu + ','), 1)
+                }
+                break;
+            case 'isSystemFlight':
+                if (isChecked) {
+                    this.isSystemFlight.push(valu + ',')
+                } else {
+                    this.isSystemFlight.splice(this.isSystemFlight.indexOf(valu + ','), 1)
+                }
+                break;
+        }
+        $(document).trigger('update_result', [this.airlines_dep.join(), this.airlines_des.join(), this.stops_dep.join(), this.stops_des.join(), this.isSystemFlight.join(), checktype, checkkey])
+    }
+    rendertimesorting(element) {
+        let splitElement = element.split(" ")
+        let SplitElementmin = splitElement[1].slice(0, -1)
+        let SplitElementhour = parseInt(splitElement[0].slice(0, -1)) * 60
+        let sumsplits = SplitElementhour + parseInt(SplitElementmin)
+        return sumsplits
+    }
+    rendertakeoffsorting(element) {
+        let splitElement = element.split(":")
+        let SplitElementmin = splitElement[1]
+        let SplitElementhour = parseInt(splitElement[0]) * 60
+        let sumsplits = SplitElementhour + parseInt(SplitElementmin)
+        return sumsplits
+    }
+    renderStoppinfo(element) {
+        if (element == '') {
+            return 0
+        } else {
+            let splitElement = element.split(" ")
+            return splitElement[0].slice(0, -1)
+        }
+
+    }
+    renderStoppinfoF(element) {
+        if (element == '') {
+            return 0
+        } else {
+            let splitElement = element.split(" ")
+            return splitElement[0].slice(0, -1)
+        }
+    }
+    renderStoppinfoS(element) {
+        if (element == '') {
+            return 0
+        } else {
+            let splitElement = element.split(" ")
+            let SplitElementSecond = splitElement[1]
+            if (SplitElementSecond !== undefined) {
+                let SliceElementSecond = splitElement[1].slice(0, -1)
+                if (SliceElementSecond > 0) {
+                    return parseInt(splitElement[0].slice(0, -1)) + 1
+                } else {
+                    return splitElement[0].slice(0, -1)
+                }
+            }
+        }
+    }
+    renderCount() {
+        let maxPage = this.state.maxPage
+        let len = this.renderLibrary().length
+        let sum = len * maxPage
+        sum = sum || 0
+        if (sum == '0') {
+            $("#page-numbers").hide()
+        } else {
+            $("#page-numbers").show()
+        }
+
+    }
+    handleClick(event) {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        })
+        this.setState({
+            currentPage: Number(event.target.id)
+        })
+    }
+    renderid(element) {
+        let id = element._id
+        if (typeof id === 'string') {
+            return <input type="hidden" value={id} name="idnows" />
+        } else if (typeof id === 'object') {
+            return <input type="hidden" value={JSON.stringify(id)} name="idws" />
+        }
+    }
+    renderProductid(element){  
+         if (typeof element._id === 'string'){
+           return <input type="hidden" value={element._id}  name="productid" />
+         }else if(typeof element._id === 'object'){
+             return <input type="hidden" value={element._id.value}  name="productid" />
+         }
+     }
+     renderChildrenCount(element){
+        if (element.special_cost_table) {
+        let elementAdd = 0;
+        for (let i = 0; i < element.special_cost_table.childs.length; i++) {
+            elementAdd += parseInt(element.special_cost_table.childs[i].count)
+        }
+        return elementAdd
+        }else{
+            return element.childs.count
+        }
+       }
+       renderInfantsCount(element){
+        if (element.special_cost_table) {
+            let elementAdd = 0;
+        for (let i = 0; i < element.special_cost_table.infants.length; i++) {
+            elementAdd += parseInt(element.special_cost_table.infants[i].count)
+        }
+        return elementAdd
+        }else{
+            return element.infants.count
+        }
+       }
+       renderAdultsCount(element){
+        if (element.special_cost_table) {
+            let elementAdd = 0;
+        for (let i = 0; i < element.special_cost_table.adults.length; i++) {
+            elementAdd += parseInt(element.special_cost_table.adults[i].count)
+        }
+        return elementAdd
+        }else{
+            return element.adults.count
+        }
+       }
+    renderprovider(element) {
+        let provider = element._id.provider
+        if (provider == undefined) {
+            return '';
+        } else {
+            return <input type="hidden" value={JSON.stringify(provider)} name="mainprovider" />
+        }
+    }
+    renderproviderId(element) {
+        let provider = element.provider
+        if (provider == undefined) {
+            return <input type="hidden" value="0" name="provider" />;
+        } else {
+            let providerId = element.provider.provider_id
+            return <input type="hidden" value={providerId} name="provider" />;
+        }
+    }
+    renderCommission(element) {
+        let commissioncost = element.commissioncost
+        let moneytype = element.moneytype
+        if (commissioncost == 0) {
+
+            return '';
+        } else {
+            return <div className="cost-ticket"><span>کمیسیون:</span><span className="cost1">{new Intl.NumberFormat().format(commissioncost)}</span><span className="moneytype">{moneytype}</span></div>
+        }
+    }
+
+    renderTotalcom(element) {
+        let totalCom = element.totalCom
+        let total = element.total
+        let moneytype = element.moneytype
+        if (totalCom == total) {
+            return '';
+        } else {
+            return <div className="cost-ticket"><span>مبلغ نهایی: </span><span className="cost1">{new Intl.NumberFormat().format(totalCom)}</span><span className="moneytype">{moneytype}</span></div>
+        }
+    }
+    renderFlightDetails(element, deps) {
+        let len = element.routeshow.routesinfoo.length
+        let indents = [];
+        for (let i = 0; i < len; i++) {
+            indents.push(<div className="details-item">
+                <p className="details_title font_weight">{this.renderDepOrDes(deps)}  ({element.routeshow.routesinfoo[i].routesinfoodetails.detailscityinfo.detailsstartcity} - {element.routeshow.routesinfoo[i].routesinfoodetails.detailscityinfo.detailsendcity})</p>
+                <div className="content row">
+                    <div className="details-col row first-col">
+                        <span>{element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsexittimeinfo.exit_date.sstring}/<span className="EnNum">{element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsexittimeinfo.exit_date.mstring}</span></span>
+                        <span>{element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsarrivaltimeinfo.arrival_date.sstring}/<span className="EnNum">{element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsarrivaltimeinfo.arrival_date.mstring}</span></span>
+                    </div>
+                    <div className="details-col row second-col">
+
+                        <div className="city-dep">
+                            <span className="city_hour">{element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsexittimeinfo.detailsexittime}</span>
+                            <i className="city_sep-dot background-color_2"></i>
+                            <label className="city_name">
+                                <span>{element.routeshow.routesinfoo[i].routesinfoodetails.detailscityinfo.detailsstartcity}،</span>
+                                <span>({element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsexittimeinfo.detailsexitairport})</span>
+                            </label>
+                        </div>
+                        <div className="duration-time d-flex">
+                            <span className="duration-time_dot d-flex">
+                                <i className="background-color_2"></i><i
+                                    className="background-color_2"></i><i
+                                        className="background-color_2"></i><i
+                                            className="background-color_2"></i><i
+                                                className="background-color_2"></i>
+                            </span>
+                            <span className="duration-time_text">مدت پرواز: {element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailstiming}</span>
+                        </div>
+                        <div className="city-dest">
+                            <span className="city_hour">{element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsarrivaltimeinfo.detailsarrivaltime}</span>
+                            <i className="city_sep-dot background-color_2"></i>
+                            <label className="city_name">
+                                <span>{element.routeshow.routesinfoo[i].routesinfoodetails.detailscityinfo.detailsendcity}،</span>
+                                <span>({element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsarrivaltimeinfo.detailsarrivalairport})</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div className="details-col row third-col">
+                        <img src={element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsairlineimage} alt={element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsairline} width="80" height="32"
+                        />
+                        <div className="class-item font_11 p-relative">{element.ticketinfooo.classes.classname}</div>
+                        <span className="code-item font_10 p-relative"> شماره پرواز: {element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsroutecode}</span>
+                        {this.renderairbaggage(element.routeshow.routesinfoo[i])}
+                    </div>
+                </div>
+            </div>);
+        }
+        return (
+            indents
+        )
+    }
+    renderDepOrDes(element) {
+        if (element == 'dep') {
+            return 'پرواز رفت '
+
+        } else {
+            return 'پرواز برگشت '
+        }
+    }
+    renderTolCh(element) {
+        let count = element.count
+        let moneytype = element.moneytype
+        if (count == 0) {
+            return '';
+        } else {
+            return <tr className="other-rows"><td className="travelers travelers2"><div className="show-tooltip"><span className="tooltip-flight2">کودک</span></div></td><td className="everyPart-cost"><span className="tbcost">{new Intl.NumberFormat().format(element.unit)}</span><span className="monettypetbl">{moneytype}</span></td><td className="numberTravelers"><span>{element.count}</span></td><td className="total-cost"><span className="tbcost">{new Intl.NumberFormat().format(element.total)}</span><span className="monettypetbl">{moneytype}</span></td></tr>
+        }
+    }
+    renderTolInf(element) {
+        let count = element.count
+        let moneytype = element.moneytype
+        if (count == 0) {
+            return '';
+        } else {
+            return <tr className="other-rows"><td className="travelers travelers2"><div className="show-tooltip"><span className="tooltip-flight2">نوزاد</span></div></td><td className="everyPart-cost"><span className="tbcost">{new Intl.NumberFormat().format(element.unit)}</span><span className="monettypetbl">{moneytype}</span></td><td className="numberTravelers"><span>{element.count}</span></td><td className="total-cost"><span className="tbcost">{new Intl.NumberFormat().format(element.total)}</span><span className="monettypetbl">{moneytype}</span></td></tr>
+        }
+    }
+    renderBar(element, i) {
+        if (typeof element.info.departureinformation.routeshow.description === 'string') {
+            return <div className="barBox">
+                <div>
+                    <p className="details_title font_weight">قوانین بار رفت :</p>
+                    <div dir="auto" className="eachBarInfo"><span>بار کابین: </span><span className="bar" dangerouslySetInnerHTML={{ __html: element.info.departureinformation.bar.bar2 }}></span></div>
+                    <div dir="auto" className="eachBarInfo"><span>بار مجاز: </span><span className="bar" dangerouslySetInnerHTML={{ __html: element.info.departureinformation.bar.bar1 }}></span></div>
+                    <div className="clr"></div>
+                </div>
+                <div>
+                    <p className="details_title font_weight">قوانین بار برگشت :</p>
+                    <div dir="auto" className="eachBarInfo"><span>بار کابین: </span><span className="bar" dangerouslySetInnerHTML={{ __html: element.info.returninformation.bar.bar2 }}></span></div>
+                    <div dir="auto" className="eachBarInfo"><span>بار مجاز: </span><span className="bar" dangerouslySetInnerHTML={{ __html: element.info.returninformation.bar.bar1 }}></span></div>
+                    <div className="clr"></div>
+                </div>
+                <div className="clr"></div>
+            </div>
+        } else {
+            return <div className="descriptionObject">
+                <div>
+                    <div className="box-price-title font_weight"> برای مشاهده قوانین بار رفت<span className="click" onClick={e => this.barDep(e, element, i)}> کلیک </span>کنید</div>
+                    <div key={i} className={`${!this.state.loadingBarDep[i] ? "unvisible" : "visible"}`}>
+                        <div id="ballsWaveG">
+                            <div id="ballsWaveG_1" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_2" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_3" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_4" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_5" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_6" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_7" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_8" className="ballsWaveG"></div>
+                        </div>
+                    </div>
+                    <div dir="auto" className="text-justify  max-height" dangerouslySetInnerHTML={{ __html: this.state.barDepTxt[i] }}></div>
+                </div>
+                <div>
+                    <div className="box-price-title font_weight"> برای مشاهده قوانین بار برگشت<span className="click" onClick={e => this.barDes(e, element, i)}> کلیک </span>کنید</div>
+                    <div key={i} className={`${!this.state.loadingBarDes[i] ? "unvisible" : "visible"}`}>
+                        <div id="ballsWaveG">
+                            <div id="ballsWaveG_1" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_2" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_3" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_4" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_5" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_6" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_7" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_8" className="ballsWaveG"></div>
+                        </div>
+                    </div>
+                    <div dir="auto" className="text-justify  max-height" dangerouslySetInnerHTML={{ __html: this.state.barDesTxt[i] }}></div>
+                </div>
+
+            </div>
+
+        }
+    }
+
+
+
+
+    barDep = (e, element, i) => {
+        this.showloadingBarDep(e, i);
+        let id = element.info.departureinformation.routeshow.description
+        setTimeout(() => {
+            let return_rule = function () {
+                let tmp = null;
+                $.ajax({
+                    'async': false,
+                    'type': "POST",
+                    'global': false,
+                    'dataType': 'html',
+                    'url': "Client_Baggage_Rule.bc",
+                    'data': { 'id': JSON.stringify(id) },
+                    'success': (response) => {
+                        tmp = response;
+                    }
+                });
+
+                return tmp;
+            }();
+            return this.setState(prevState => ({
+                barDepTxt: { ...prevState.barDepTxt, [i]: return_rule },
+                loadingBarDep: { ...prevState.loadingBarDep, [i]: "" }
+            }))
+
+        }, 1000);
+    };
+    barDes = (e, element, i) => {
+        this.showloadingBarDes(e, i);
+        let id = element.info.returninformation.routeshow.description
+        setTimeout(() => {
+            let return_rule = function () {
+                let tmp = null;
+                $.ajax({
+                    'async': false,
+                    'type': "POST",
+                    'global': false,
+                    'dataType': 'html',
+                    'url': "Client_Baggage_Rule.bc",
+                    'data': { 'id': JSON.stringify(id) },
+                    'success': (response) => {
+                        tmp = response;
+                    }
+                });
+
+                return tmp;
+            }();
+            return this.setState(prevState => ({
+                barDesTxt: { ...prevState.barDesTxt, [i]: return_rule },
+                loadingBarDes: { ...prevState.loadingBarDes, [i]: "" }
+            }))
+
+        }, 1000);
+    };
+    renderRule(element, i) {
+        if (typeof element.info.departureinformation.routeshow.description === 'string') {
+            return <div className="description">
+                <div>
+                    <p>قوانین پرواز رفت :</p>
+                    <div dir="auto" className="text-justify max-height" dangerouslySetInnerHTML={{ __html: element.info.departureinformation.routeshow.description }}></div>
+                </div>
+
+                <div>
+                    <p>قوانین پرواز برگشت :</p>
+                    <div dir="auto" className="text-justify max-height" dangerouslySetInnerHTML={{ __html: element.info.returninformation.routeshow.description }}></div>
+                </div>
+            </div>
+
+
+        } else {
+            return <div className="descriptionObject">
+                <div>
+                    <div className="box-price-title"> برای مشاهده اطلاعات پرواز رفت<span className="click" onClick={e => this.ruleDep(e, element, i)}> کلیک </span>کنید</div>
+                    <div key={i} className={`${!this.state.loadingRuleDep[i] ? "unvisible" : "visible"}`}>
+                        <div id="ballsWaveG">
+                            <div id="ballsWaveG_1" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_2" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_3" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_4" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_5" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_6" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_7" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_8" className="ballsWaveG"></div>
+                        </div>
+                    </div>
+                    <div dir="auto" className="text-justify  max-height" dangerouslySetInnerHTML={{ __html: this.state.ruleDepTxt[i] }}></div>
+                </div>
+
+                <div>
+                    <div className="box-price-title"> برای مشاهده اطلاعات پرواز رفت<span className="click" onClick={e => this.ruleDes(e, element, i)}> کلیک </span>کنید</div>
+                    <div key={i} className={`${!this.state.loadingRuleDes[i] ? "unvisible" : "visible"}`}>
+                        <div id="ballsWaveG">
+                            <div id="ballsWaveG_1" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_2" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_3" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_4" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_5" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_6" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_7" className="ballsWaveG"></div>
+                            <div id="ballsWaveG_8" className="ballsWaveG"></div>
+                        </div>
+                    </div>
+                    <div dir="auto" className="text-justify  max-height" dangerouslySetInnerHTML={{ __html: this.state.ruleDesTxt[i] }}></div>
+                </div>
+
+            </div>
+        }
+    }
+
+
+
+    ruleDep = (e, element, i) => {
+        this.showloadingRuleDep(e, i);
+        const obj = new Object();
+        obj["id"] = element._id
+        obj["adults"] = element.adults.count
+        obj["childs"] = element.childs.count
+        obj["infant"] = element.infants.count
+        delete obj["bar_info"];
+        setTimeout(() => {
+            let return_rule = function () {
+                let tmp = null;
+                $.ajax({
+                    'async': false,
+                    'type': "POST",
+                    'global': false,
+                    'dataType': 'html',
+                    'url': "Client_Flight_Rule.bc",
+                    'data': { 'id': JSON.stringify(obj) },
+                    'success': (response) => {
+                        tmp = response;
+                    }
+                });
+                return tmp;
+            }();
+            return this.setState(prevState => ({
+                ruleDepTxt: { ...prevState.ruleDepTxt, [i]: return_rule },
+                loadingRuleDep: { ...prevState.loadingRuleDep, [i]: "" }
+            }))
+
+        }, 1000)
+    }
+    ruleDes = (e, element, i) => {
+        this.showloadingRuleDes(e, i);
+        const obj = new Object();
+        obj["id"] = element._id
+        obj["adults"] = element.adults.count
+        obj["childs"] = element.childs.count
+        obj["infant"] = element.infants.count
+        delete obj["bar_info"];
+        setTimeout(() => {
+            let return_rule = function () {
+                let tmp = null;
+                $.ajax({
+                    'async': false,
+                    'type': "POST",
+                    'global': false,
+                    'dataType': 'html',
+                    'url': "Client_Flight_Rule.bc",
+                    'data': { 'id': JSON.stringify(obj) },
+                    'success': (response) => {
+                        tmp = response;
+                    }
+                });
+                return tmp;
+            }();
+            return this.setState(prevState => ({
+                ruleDesTxt: { ...prevState.ruleDesTxt, [i]: return_rule },
+                loadingRuleDes: { ...prevState.loadingRuleDes, [i]: "" }
+            }))
+
+        }, 1000)
+    }
+    renderEnddepartureMs_dep(element) {
+        if (element.dateinfo[0].enddeparture[0] == undefined) {
+            return element.dateinfo[1].enddeparture[0].mstring
+        } else {
+            return element.dateinfo[0].enddeparture[0].mstring
+        }
+    }
+    renderEnddepartureSs_dep(element) {
+        if (element.dateinfo[0].enddeparture[0] == undefined) {
+            return element.dateinfo[1].enddeparture[0].sstring
+        } else {
+            return element.dateinfo[0].enddeparture[0].sstring
+        }
+    }
+    renderEnddepartureMs_des(element) {
+        if (element.dateinfo[0].endreturn[0] == undefined) {
+            return element.dateinfo[1].endreturn[0].mstring
+        } else {
+            return element.dateinfo[0].endreturn[0].mstring
+        }
+    }
+    renderEnddepartureSs_des(element) {
+        if (element.dateinfo[0].endreturn[0] == undefined) {
+            return element.dateinfo[1].endreturn[0].sstring
+        } else {
+            return element.dateinfo[0].endreturn[0].sstring
+        }
+    }
+    renderStopinfo(element) {
+        if (element == 0) {
+            return <span className="stopORnotStop">بدون توقف</span>
+        } else {
+            return <span className="stopORnotStop">{element} توقف</span>
+        }
+    }
+    renderProviderName(element) {
+        if (element._id.provider == undefined) {
+            const providerName = this.state.data_provider
+                .filter((x) => x.id === 0)
+                .map((x) => x.name);
+            return <div className="provider-info">{providerName}</div>;
+        } else {
+            const providerName = this.state.data_provider
+                .filter((x) => x.id === parseInt(element._id.provider.provider_id))
+                .map((x) => x.name);
+            return <div className="provider-info">{providerName}</div>;
+        }
+    }
+    renderseatcount(element){
+        if (element.ticketinfooo.classes.seatcount !== '-'){
+            if(element.ticketinfooo.classes.seatcount !== undefined){
+                return <div className="seatcount"><span>{element.ticketinfooo.classes.seatcount}</span><span>صندلی باقی مانده</span></div>
+            }
+        }
+    }
+    renderairbaggage(element){
+        if(element.airbaggage !== '-'){
+        if (element.airbaggage !== undefined){
+            let airbaggage = element.airbaggage
+            return <div className="airbaggage"><svg viewBox="0 0 20 23" width="1.1rem" height="1.1rem" fill="currentColor" class="text-grays-400" data-v-73e1bbdf=""><path d="M8.107 2.8a.8.8 0 0 1 .8-.8h5.5a.8.8 0 0 1 0 1.6h-5.5a.8.8 0 0 1-.8-.8Zm6.9 5.7h-7a1.5 1.5 0 0 0-1.5 1.5v8a1.5 1.5 0 0 0 1.5 1.5h7a1.5 1.5 0 0 0 1.5-1.5v-8a1.5 1.5 0 0 0-1.5-1.5Zm-7-1.5a3 3 0 0 0-3 3v8a3 3 0 0 0 2.218 2.897 1.181 1.181 0 0 0-.018.224v.22a1.65 1.65 0 0 0 3.3 0v-.22c0-.043-.002-.083-.005-.121h2.01a1.421 1.421 0 0 0-.005.12v.22a1.65 1.65 0 0 0 3.3 0v-.22c0-.085-.007-.159-.02-.223A3.001 3.001 0 0 0 18.008 18v-8a3 3 0 0 0-3-3h-1.1V3.6h-1.4V7h-1.6V3.6h-1.4V7h-1.5Zm6.686 14c.009.039.014.08.014.12v.22a.55.55 0 0 1-1.1 0v-.22c0-.04.004-.081.013-.12h1.073Zm-6.386.12c0-.04.004-.081.013-.12h1.073c.009.039.014.08.014.12v.22a.55.55 0 0 1-1.1 0v-.22Zm.2-10.82a.6.6 0 0 0-.6.6v6.452a.6.6 0 0 0 1.2 0V10.9a.6.6 0 0 0-.6-.6Zm2.956 0a.6.6 0 0 0-.6.6v6.452a.6.6 0 0 0 1.2 0V10.9a.6.6 0 0 0-.6-.6Zm2.357.6a.6.6 0 1 1 1.2 0v6.452a.6.6 0 0 1-1.2 0V10.9Z" fill-rule="evenodd"></path></svg><span>{airbaggage}</span></div>
+        }
+    }
+    }
+    renderisSystemFlight(element) {
+        let keyToLowerCase = {};
+        for (var key in element) {
+            keyToLowerCase[key.toLowerCase()] = element[key];
+        }
+        if (keyToLowerCase.issystemflight == 'true') {
+            return <span className="isSystemFlight roundtrip">سیستمی</span>
+        } else {
+            return <span className="isSystemFlight roundtrip">چارتر</span>
+        }
+    }
+    showAllDetails = (e, i) => {
+        this.setState(prevState => ({
+            VisiblesAllDetails: { ...prevState.VisiblesAllDetails, [i]: !prevState.VisiblesAllDetails[i] },
+            visibleDetails: { ...prevState.visibleDetails, [i]: !prevState.visibleDetails[i] },
+            activeTab_details: { ...prevState.activeTab_details, [i]: !prevState.activeTab_details[i] }
+        }))
+    }
+    showDetails = (e, i) => {
+        this.setState(prevState => ({
+            visibleDetails: { ...prevState.visibleDetails, [i]: !prevState.visibleDetails[i] },
+            activeTab_details: { ...prevState.activeTab_details, [i]: !prevState.activeTab_details[i] }
+        }))
+        if (this.state.visibleBar[i] == true) {
+            this.setState(prevState => ({
+                visibleBar: { ...prevState.visibleBar, [i]: !prevState.visibleBar[i] },
+                activeTab_bar: { ...prevState.activeTab_bar, [i]: !prevState.activeTab_bar[i] }
+            }))
+        }
+        if (this.state.visiblePrice[i] == true) {
+            this.setState(prevState => ({
+                visiblePrice: { ...prevState.visiblePrice, [i]: !prevState.visiblePrice[i] },
+                activeTab_price: { ...prevState.activeTab_price, [i]: !prevState.activeTab_price[i] }
+            }))
+        }
+        if (this.state.visibleRule[i] == true) {
+            this.setState(prevState => ({
+                visibleRule: { ...prevState.visibleRule, [i]: !prevState.visibleRule[i] },
+                activeTab_rule: { ...prevState.activeTab_rule, [i]: !prevState.activeTab_rule[i] }
+            }))
+        }
+    }
+
+    showBar = (e, i) => {
+        this.setState(prevState => ({
+            visibleBar: { ...prevState.visibleBar, [i]: !prevState.visibleBar[i] },
+            activeTab_bar: { ...prevState.activeTab_bar, [i]: !prevState.activeTab_bar[i] }
+        }))
+        if (this.state.visibleDetails[i] == true) {
+            this.setState(prevState => ({
+                visibleDetails: { ...prevState.visibleDetails, [i]: !prevState.visibleDetails[i] },
+                activeTab_details: { ...prevState.activeTab_details, [i]: !prevState.activeTab_details[i] }
+            }))
+        }
+        if (this.state.visiblePrice[i] == true) {
+            this.setState(prevState => ({
+                visiblePrice: { ...prevState.visiblePrice, [i]: !prevState.visiblePrice[i] },
+                activeTab_price: { ...prevState.activeTab_price, [i]: !prevState.activeTab_price[i] }
+            }))
+        }
+        if (this.state.visibleRule[i] == true) {
+            this.setState(prevState => ({
+                visibleRule: { ...prevState.visibleRule, [i]: !prevState.visibleRule[i] },
+                activeTab_rule: { ...prevState.activeTab_rule, [i]: !prevState.activeTab_rule[i] }
+            }))
+        }
+    }
+    showPrice = (e, i) => {
+        this.setState(prevState => ({
+            visiblePrice: { ...prevState.visiblePrice, [i]: !prevState.visiblePrice[i] },
+            activeTab_price: { ...prevState.activeTab_price, [i]: !prevState.activeTab_price[i] }
+        }))
+        if (this.state.visibleDetails[i] == true) {
+            this.setState(prevState => ({
+                visibleDetails: { ...prevState.visibleDetails, [i]: !prevState.visibleDetails[i] },
+                activeTab_details: { ...prevState.activeTab_details, [i]: !prevState.activeTab_details[i] }
+            }))
+        }
+        if (this.state.visibleBar[i] == true) {
+            this.setState(prevState => ({
+                visibleBar: { ...prevState.visibleBar, [i]: !prevState.visibleBar[i] },
+                activeTab_bar: { ...prevState.activeTab_bar, [i]: !prevState.activeTab_bar[i] }
+            }))
+        }
+        if (this.state.visibleRule[i] == true) {
+            this.setState(prevState => ({
+                visibleRule: { ...prevState.visibleRule, [i]: !prevState.visibleRule[i] },
+                activeTab_rule: { ...prevState.activeTab_rule, [i]: !prevState.activeTab_rule[i] }
+            }))
+        }
+    }
+    showRule = (e, i) => {
+        this.setState(prevState => ({
+            visibleRule: { ...prevState.visibleRule, [i]: !prevState.visibleRule[i] },
+            activeTab_rule: { ...prevState.activeTab_rule, [i]: !prevState.activeTab_rule[i] }
+        }))
+        if (this.state.visibleDetails[i] == true) {
+            this.setState(prevState => ({
+                visibleDetails: { ...prevState.visibleDetails, [i]: !prevState.visibleDetails[i] },
+                activeTab_details: { ...prevState.activeTab_details, [i]: !prevState.activeTab_details[i] }
+            }))
+        }
+        if (this.state.visibleBar[i] == true) {
+            this.setState(prevState => ({
+                visibleBar: { ...prevState.visibleBar, [i]: !prevState.visibleBar[i] },
+                activeTab_bar: { ...prevState.activeTab_bar, [i]: !prevState.activeTab_bar[i] }
+            }))
+        }
+        if (this.state.visiblePrice[i] == true) {
+            this.setState(prevState => ({
+                visiblePrice: { ...prevState.visiblePrice, [i]: !prevState.visiblePrice[i] },
+                activeTab_price: { ...prevState.activeTab_price, [i]: !prevState.activeTab_price[i] }
+            }))
+        }
+    }
+    showloadingBarDep = (e, i) => {
+        this.setState(prevState => ({
+            loadingBarDep: { ...prevState.loadingBarDep, [i]: !prevState.loadingBarDep[i] }
+
+        }))
+    };
+    showloadingBarDes = (e, i) => {
+        this.setState(prevState => ({
+            loadingBarDes: { ...prevState.loadingBarDes, [i]: !prevState.loadingBarDes[i] }
+
+        }))
+    };
+    showloadingRuleDep = (e, i) => {
+        this.setState(prevState => ({
+            loadingRuleDep: { ...prevState.loadingRuleDep, [i]: !prevState.loadingRuleDep[i] }
+        }))
+    }
+    showloadingRuleDes = (e, i) => {
+        this.setState(prevState => ({
+            loadingRuleDes: { ...prevState.loadingRuleDes, [i]: !prevState.loadingRuleDes[i] }
+        }))
+    }
+
+
+    closeDetails = (i) => {
+        this.setState(prevState => ({
+            visibleDetails: { ...prevState.visibleDetails, [i]: !prevState.visibleDetails[i] }
+        }))
+    }
+    closePrice = (i) => {
+        this.setState(prevState => ({
+            visiblePrice: { ...prevState.visiblePrice, [i]: !prevState.visiblePrice[i] }
+        }))
+    }
+    closeRule = (i) => {
+        this.setState(prevState => ({
+            visibleRule: { ...prevState.visibleRule, [i]: !prevState.visibleRule[i] }
+        }))
+    }
+    closeBar = (i) => {
+        this.setState(prevState => ({
+            visibleBar: { ...prevState.visibleBar, [i]: !prevState.visibleBar[i] }
+        }))
+    }
+
+}
+ReactDOM.render(<App />, document.getElementById('Result'))
+    }
+        </script>
+
+    <script type="text/javascript">
+        var progress = $(".loading-progress").progressTimer({
+            timeLimit: 40,
+            onFinish: function () {
+
+            }
+        });
+        $.ajax({
+            url: "/"
+        });
+
+        function onloadFunc() {
+            var counter = 900;
+            setInterval(function () {
+                counter--;
+                var m = parseInt(counter / 60);
+                var s = counter % 60;
+                if (counter >= 0) {
+                    span = document.getElementById("count");
+                    if(span !== null){
+                        if (s < 10) {
+                            s = "0" + s;
+                        }
+                        if (m < 10) {
+                            m = "0" + m;
+                        }
+                        if (m < 2) {
+                           document.getElementById("count").classList.add("blink_me")
+                        }
+                        span.innerHTML = "00:" + m + ":" + s;
+                    }
+                }
+                if (counter === 0) {
+                    $(".boxalert,#bg-popup-timeout").fadeIn();
+                    $(".boxalert").css("top", "200px")
+                    clearInterval(counter);
+                }
+            }, 1000);
+
+        };
+
+        //<!---------------------------------JS RESEARCH---------------------------------> 
+        //<!-----------JS SUBMIT----------->
+        $(".frm").submit(function (event) {
+            $(this).find("input[name=fdate],input[name=tdate]").each(function () {
+                if ($(this).val() == '' && !$(this).is(':disabled')) {
+                    event.preventDefault();
+                    $(this).css('border', '1px solid red')
+                }
+            })
+        })
+
+        $("#flightSearch").each(function () {
+            $(this).submit(function (event) {
+                var select_age = "";
+                $(this).find(".createChildDropdown").each(function () {
+                    select_age = select_age + $(this).find("select").val() + ',';
+                });
+                if (select_age !== '') {
+                    $(this).find(".select-age-value").val(select_age)
+                    var val_1 = $(this).find(".select-age-value").val()
+                    var val_2 = val_1.replace(/,(?=[^,]*$)/, '')
+                    $(this).find(".select-age-value").val(val_2)
+                } else {
+                    $(this).find(".select-age-value").val(0)
+                }
+                var ad = $(this).find(".adultcount").val();
+                var chf = $(this).find(".chcount").val();
+                var chad = parseInt(ad) + parseInt(chf);
+                var inf = 0
+                var valueAdded = 1;
+                $(this).find(".createChildDropdown").each(function () {
+                    var age = parseInt($(this).find("select").val())
+                    if (age <= 2) {
+                        inf += valueAdded;
+                    }
+                });
+                if (inf > ad) {
+                    event.preventDefault();
+                    $(".alert-text").empty().text(
+                        "به ازای هر بزرگسال تنها یک نوزاد انتخاب کنید!")
+                }
+                if (chad > 10) {
+                    event.preventDefault();
+                    $(".alert-text").empty().text(
+                        "باید مجموع تعداد بزرگسال و کودک کمتر از 10 باشد !")
+                }
+                if (ad < 1) {
+                    event.preventDefault();
+                    $(".alert-text").empty().text("حداقل یک بزرگسال انتخاب کنید !")
+                }
+            })
+        });
+        $('.fclass, .count-adult, .count-child').click(function (e) {
+            $(this).parents('.passinfo-field').find('.HotelPassengers').slideToggle();
+            e.preventDefault();
+            return false;
+        });
+        $('.CloseHotelPassengers').click(function (e) {
+            $(this).parents('.passinfo-field').find('.HotelPassengers').slideUp();
+            e.preventDefault();
+            return false;
+        });
+
+        function sharing(a) {
+            var m = $(a).prop("checked")
+            if (m == true) {
+                $(a).val(1)
+                $(".ValShare").val(1)
+            } else if (m == false) {
+                $(a).val(0)
+                $(".ValShare").val(0)
+            }
+        }
+
+        var ch = $(".chagencyuser").val()
+        if (ch == '2') {
+            $(".ShareInfoNotEdit").show()
+        }
+        var ValShare = $(".ValShare").val()
+        if (ValShare == '0') {
+            $(".CheckboxShare").prop("checked", false)
+            $(".shareInfo").hide()
+        } else if (ValShare == '1') {
+            $(".CheckboxShare").prop("checked", true)
+            $(".shareInfo").show()
+        }
+        //<!-----------JS CALENDARE----------->
+        function openNextCal(e) {
+                let returnDate = $('#flightSearch').find('.nextCalOpening').val();
+                if (returnDate == '') {
+                    $('#flightSearch').find('.nextCalOpening').trigger("onclick");
+                }
+
+          
+        };
+
+        $(document).ready(function () {
+            if ($(window).width() <= 750) {
+                $(".frm").attr('action', '/M_Roundtrip_Search.bc')
+            }
+            if ($(".departuredate").val() == $(".persiancurrent").val()) {
+                $(".prevdate").hide()
+                $('.nextdate').click(NextDate);
+            } else {
+                $('.prevdate').click(PrevDate);
+                $('.nextdate').click(NextDate);
+            }
+        });
+
+
+        //<!-----------JS DESTINATIO/DEPARTURE----------->
+        $('.country').each(function () {
+            $(this).on('keyup', function (e) {
+                $(this).closest(".city").find(".outer-searchList").slideUp()
+                $(this).closest(".city").find(".searchList").slideUp()
+            });
+            $(this).on('blur', function () {
+                if ($(this).closest(".city").find(".countryFlight").text().length > 0) {
+                    if (hoverelse == 0) {
+                        var defresult = $(this).closest(".city").find(".countryFlight")
+                            .children(".selectCountry:first").find(".txtcountry")
+                            .text();
+                        var spl = defresult.split(" ");
+                        var defresultid = $(this).closest(".city").find(
+                            ".countryFlight").children(".selectCountry:first").find(
+                            ".countryid").val();
+                        $(this).closest(".city").find(".country").val(defresult);
+                        $(this).closest(".city").find(".co-id").val(defresultid);
+                        $(this).closest(".city").find(".countryFlight").empty();
+                    }
+
+
+
+                } else {
+
+                    $(this).closest(".city").find(".mini-loading").css("display",
+                        "none")
+                    $(this).closest(".city").find(".country").val('');
+                    $(this).closest(".city").find(".co-id").val('');
+                }
+            });
+
+        });
+        $(".customized-icon-searchbox-exchange").click(function () {
+            let i = $(this).attr("data-index");
+            if (i == 0) {
+                $(this).attr("data-index", "1")
+                var dep = $(this).closest(".frm").find(".FCD1").val()
+                var des = $(this).closest(".frm").find(".FCD2").val()
+                var depid = $(this).closest(".frm").find(".FCDid1").val()
+                var desid = $(this).closest(".frm").find(".FCDid2").val()
+                $(this).closest(".frm").find(".FCD1").val(des)
+                $(this).closest(".frm").find(".FCD2").val(dep)
+                $(this).closest(".frm").find(".FCDid1").val(desid)
+                $(this).closest(".frm").find(".FCDid2").val(depid)
+            } else {
+                $(this).attr("data-index", "0")
+                var dep = $(this).closest(".frm").find(".FCD1").val()
+                var des = $(this).closest(".frm").find(".FCD2").val()
+                var depid = $(this).closest(".frm").find(".FCDid1").val()
+                var desid = $(this).closest(".frm").find(".FCDid2").val()
+                $(this).closest(".frm").find(".FCD1").val(des)
+                $(this).closest(".frm").find(".FCD2").val(dep)
+                $(this).closest(".frm").find(".FCDid1").val(desid)
+                $(this).closest(".frm").find(".FCDid2").val(depid)
+            }
+        });
+
+        function city_search(a) {
+            if (a.which !== 0 && !a.ctrlKey && !a.metaKey && !a.altKey) {
+                upper_case = $(a).val().substr(0, 1).toUpperCase() + $(a).val().substr(1).toLowerCase();
+                $(a).val(upper_case)
+
+                if ($(a).val().length > 2) {
+                    $(a).closest(".city").find(".mini-loading").show();
+
+                    $.ajax({
+                        url: '/Client_City_Search.bc',
+                        type: 'get',
+                        data: {
+                            term: $(a).val(),
+                            type: $(a).attr('data-type')
+                        },
+                        success: function (result) {
+                            $(a).closest(".city").find(".mini-loading").hide();
+                            $(a).closest(".city").find(".countryFlight").empty().html(result)
+                        }
+                    });
+                } else
+                    $(a).closest(".city").find(".countryFlight").empty()
+            }
+        }
+
+        function SelectPlace(element) {
+            var idSelected = $(element).attr("data-id")
+            var textSelected = $(element).find("span").text()
+            $(element).closest(".city").find(".country").val(textSelected)
+            $(element).closest(".city").find(".co-id").val(idSelected)
+            $(element).closest(".city").find(".outer-searchList").slideUp()
+            $(element).closest(".city").find(".searchList").slideUp()
+        }
+
+
+        function empty(a) {
+            $(a).val('')
+            $(a).closest(".city").find(".co-id").val('')
+            $(a).closest(".city").find(".outer-searchList").slideDown()
+            $(a).closest(".city").find(".searchList").slideDown()
+            $(a).closest(".city").siblings(".city").find(".outer-searchList").slideUp()
+            $(a).closest(".city").siblings(".city").find(".searchList").slideUp()
+        }
+        $(".Classname-box").each(function () {
+            var m = $(this).find("select .selected").val()
+            $(this).find("select .not-selected").each(function () {
+                var n = $(this).val();
+                if (n == m) {
+                    $(this).remove()
+                }
+            });
+        });
+
+        $(".Classname-box select").on("change", function () {
+            var flightclass = $(this).val()
+            var text
+            switch (flightclass) {
+                case 'Economy':
+                    text = "اکونومی";
+                    break;
+                case 'BusinessClass':
+                    text = "بیزینس";
+                    break;
+                case 'FirstClass':
+                    text = "فرست";
+                    break;
+            }
+            $(".fclass").text(text)
+        })
+
+
+        //<!-----------JS PASSENGERS----------->
+        $(".content-Flight").each(function () {
+            var ag = $(this).find(".select-age-value").val()
+            if (ag != 0) {
+                var splage = ag.split(",")
+                for (var i = 0; i < splage.length; i++) {
+                    var j = i + 1
+                    $(this).find(".childDropdowns").append(
+                        '<div class="createChildDropdown"><div class="label">سن کودک ' + j +
+                        '</div><select class="childDropdown"><option value="' +
+                        splage[i] + '">' + splage[i] +
+                        '</option><option value="1">تا 1 سال</option><option value="2">1 تا 2</option><option value="3">2 تا 3</option><option value="4">3 تا 4</option><option value="5">4 تا 5</option><option value="6">5 تا 6</option><option value="7">6 تا7</option><option value="8">7 تا 8</option><option value="9">8 تا 9</option><option value="10">9 تا 10</option><option value="11">10 تا 11</option><option value="12">11 تا 12</option></select></div>'
+                    );
+
+                }
+            }
+
+        });
+        $(document).on('click', function (event) {
+            if (!$(event.target).closest('.searchList,.country,.outer-searchList').length) {
+                $(".outer-searchList").slideUp();
+                $(".searchList").slideUp();
+            }
+        })
+        $(".button-click a").on("click", function () {
+            var button = $(this);
+            var oldVal = parseInt(button.closest("ul").next().val());
+            var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+            if (newVal >= 10) return;
+            if (newVal < 1) return;
+            button.closest("ul").next().val(newVal);
+            $(".cat_textbox").each(function () {
+                var cat = $(this).next('span').text();
+            });
+            $(".count-adult").text('بزرگسال : ' + newVal)
+        });
+        $(".defaultAdNum a").on("click", function () {
+            var button = $(this);
+            var oldValDef = parseInt(button.closest("ul").next().val());
+            button.closest(".city").children(".count-adultRoom").text('بزرگسال : ' + oldValDef);
+        });
+        var createChildDropdown = function (i) {
+            var $childDropdown = $('<div />', {
+                'class': 'createChildDropdown'
+            });
+            $childDropdown.append($('<label class="label"/>', {
+                'for': 'childDropdown-' + i
+            }).text('سن کودک ' + i));
+            $childDropdown.append($('<select />'));
+            var options = ['تا 1 سال', '1 تا 2 سال ', '2 تا 3 سال', '3 تا 4 سال ', '4 تا 5 سال',
+                '5 تا 6 سال', '6 تا 7 سال', '7 تا 8 سال', '8 تا 9 سال', '9 تا 10 سال', '10 تا 11 سال',
+                '11 تا 12 سال'
+            ];
+            options.forEach(function (option, index) {
+                $childDropdown.find('select').append($('<option />').text(option).attr('value',
+                    index + 1));
+            });
+            return $childDropdown;
+        };
+        var destroyChildDropdown = function ($el, i) {
+            $el.find('div.createChildDropdown').get(i).remove();
+        };
+        $(".button-click-child a").on("click", function () {
+            var button = $(this);
+            var oldVal = parseInt(button.closest("ul").next().val());
+            var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+            var total_value = "";
+            if (newVal >= 5) return;
+            button.closest("ul").next().val(newVal);
+            button.closest("ul").prev().val(newVal + ',');
+            button.closest("form").find(".cat_textbox").each(function () {
+                var cat = $(this).next('span').text();
+                total_value += cat + ": " + $(this).val() + "، ";
+            });
+            if (oldVal < newVal) {
+                button.closest("form").find('.childDropdowns').append(createChildDropdown(newVal));
+            } else if (oldVal > newVal) {
+                destroyChildDropdown(button.closest("form").find('.childDropdowns'), newVal);
+            }
+            total_value = total_value.substring(0, total_value.length - 2);
+            $(".count-child").text('کودک: ' + newVal)
+        });
+
+
+        $("#return").click(function () {
+            $(this).addClass("inactive-r-btn");
+            $("#direct").removeClass("inactive-r-btn");
+            $("#flightSearch #inp2").prop("disabled", false);
+            $("#flightSearch #inp2").removeClass("disabledInput")
+            $("#flightSearch #inp2").addClass("nextCalOpening")
+            if ($(window).width() <= 750) {
+                $(".frm").attr('action', '/M_Roundtrip_Search.bc')
+            }
+        });
+        $("#direct").click(function () {
+            $(this).addClass("inactive-r-btn");
+            $("#return").removeClass("inactive-r-btn");
+            $("#flightSearch #inp2").prop("disabled", true);
+            $("#flightSearch #inp2").addClass("disabledInput")
+            $("#flightSearch #inp2").removeClass("cal");
+            $("#flightSearch #inp2").removeClass("nextCalOpening")
+            if ($(window).width() <= 750) {
+                $(".frm").attr('action', '/M_Oneway_Search.bc')
+            }
+        });
+    </script>
+</body>
+
+</html>
