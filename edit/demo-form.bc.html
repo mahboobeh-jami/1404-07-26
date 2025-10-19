@@ -1,0 +1,141 @@
+<basis core='dbsource' name='captcha' source='trust_login'>
+    <member name='code' type='scalar' request='captcha'></member>
+</basis>
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>تریپ سنتر | Trip Center | تامین کننده گردشگری | پرواز، هتل، تور</title>
+    <meta name="description"
+        content="Trip Center تریپ سنتر یک پلتفرم منحصر به فرد برای رزرو و توزیع است که از طریق رابط کاربری خود ، وب سرویس ، وایت لیبل و ساین ، موجودی چندین تامین کننده از محصولات سفر را ارائه می دهد.">
+    <meta name="author" content="BasisCore">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="apple-touch-icon" href="[##cms.cms.cdn##]/images/custom_icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="تریپ سنتر | Trip Center | تامین کننده گردشگری | پرواز، هتل، تور">
+    <meta property="og:image" content="[##cms.cms.cdn##]/images/logo.png">
+    <meta property="og:image:width" content="240" />
+    <meta property="og:image:height" content="60" />
+    <meta property="og:image:secure_url" content="[##cms.cms.cdn##]/images/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Trip Center" />
+    <meta property="og:description"
+        content="Trip Center تریپ سنتر یک پلتفرم منحصر به فرد برای رزرو و توزیع است که از طریق رابط کاربری خود ، وب سرویس ، وایت لیبل و ساین ، موجودی چندین تامین کننده از محصولات سفر را ارائه می دهد." />
+    <link rel="shortcut icon" sizes="196x196" href="[##cms.cms.cdn##]/images/custom_icon.png">
+    <link href="[##cms.cms.cdn##]/css/tripcenter-demo-style.css" type="text/css" rel="stylesheet" />
+    <link href="[##cms.cms.cdn##]/css/style-pages.css" type="text/css" rel="stylesheet" />
+    <script src="https://www.basisfly.com/js/reservation_js_library.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <main class="background-color_body pages">
+        <div class="loginRegister"></div>
+        <basis core="call" file="header.inc" />
+        <section class="content">
+            <section class="form-demo-container">
+                <div class="form-demo-content">
+                    <form method="post" action="/demo-fome-get.bc" class="demo-form">
+                        <div class="title">
+                            <h1>درخواست دمو</h1>
+                        </div>
+                        <div class="form-item">
+                            <label class="label-text">نام و نام خانوادگی <span class="required">*</span></label>
+                            <input type="text" placeholder="نام و نام خانوادگی" name="fullname" required />
+                        </div>
+                        <div class="form-item">
+                            <label class="label-text">ایمیل <span class="required">*</span></label>
+                            <input type="text" placeholder="ایمیل" name="email" required />
+                        </div>
+                        <div class="form-item">
+                            <label class="label-text">شماره تماس <span class="required">*</span></label>
+                            <input type="text" placeholder="شماره تماس" name="phone" required />
+                        </div>
+                        <div class="form-item">
+                            <label class="label-text">نام شرکت /آژانس <span class="required">*</span></label>
+                            <input type="text" placeholder="نام شرکت /آژانس" name="company" required />
+                        </div>
+                        <div class="form-item">
+                            <label class="label-text">نام مدیر عامل </label>
+                            <input type="text" placeholder="نام مدیر عامل" name="manager" />
+                        </div>
+                        <div class="form-item radio">
+                            <span> <input type="radio" name="demo-type" value="وب سرویس" />
+                                <label>وب سرویس</label></span>
+                            <span><input type="radio" name="demo-type" value="وایت لیبل" />
+                                <label>وایت لیبل</label></span>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="form-item-_textarea">
+                            <label class="label-text">توضیحات</label>
+                            <_textarea placeholder="توضیحات" name="message"></_textarea>
+                        </div>
+
+                        <div class="">
+                            <div class="form-captcha">
+                                <input type="text" name="Captcha" placeholder="کد امنیتی *" required="">
+                                <span class="field-captcha">
+                                    <span class="load-captcha">
+                                        <img class="captcha" alt="کد امنیتی" src="[##captcha.code.captcha##]" width="80"
+                                            height="35" />
+                                        <input type="hidden" value="[##captcha.code.captcha##]" name="Captchaid" />
+                                    </span>
+                                    <i class="fa fa-sync" onclick="refresh_captcha(this,event)"></i>
+                                </span>
+                            </div>
+                            <div class="form-btn">
+                                <button type="submit" class="">ارسال درخواست</button>
+                            </div>
+                            <div class="clr"></div>
+
+                        </div>
+
+                        <div class="Loading_Form unvisible text-center">
+                            <div id="ballsWaveG">
+                                <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                            </div>
+                        </div>
+                        <p class="Message-Form text-center font_18"></p>
+                        <div class="clr"></div>
+                    </form>
+
+                    <div class="clr"></div>
+                </div>
+            </section>
+        </section>
+        <basis core="call" file="footer.inc" />
+    </main>
+    <script type="text/javascript">
+        function refresh_captcha(element, event) {
+            $(element).closest("form").find(".load-captcha").load("/captcha.bc");
+        }
+        $(".demo-form").submit(function (e) {
+            e.preventDefault(),
+                $(".Loading_Form").show();
+            $.ajax({
+                url: $(".demo-form").attr("action"),
+                type: $(".demo-form").attr("method"),
+                data: $($(".demo-form")).serialize(),
+                success: function (result) {
+                    $(".Loading_Form").hide();
+                    $(".Message-Form").empty().html(result);
+                    setTimeout(function () {
+                        $(".Message-Form").empty();
+                    }, 3000);
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>

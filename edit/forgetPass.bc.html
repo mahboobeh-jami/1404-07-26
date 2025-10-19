@@ -1,0 +1,102 @@
+<basis core="dbsource" source="trust_login" name="db">
+    <member name="captcha" request="captcha" type="scalar"/>
+  </basis>
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="UTF-8"/>
+  <title>فراموشی رمز عبور</title>
+  <link rel="stylesheet" href="[##cms.cms.cdn##]/css/main-domain2-new.css" type="text/css"/>
+  <script type="text/javascript" src="/js/js_jquery-1.8.2.min.js"></script>
+  <script type='text/javascript' src="js/jquery.navgoco.js"></script> <!--js  menu--> 
+  <script type='text/javascript' src="js/off-canvas.js" ></script><!--js  menu-->
+  </head>
+  <body class="st-effect-3">
+  <div id="countainer">
+    <div class="loginRegister"></div>
+    <basis core="call" file="header.inc"/>
+    <div id="navigation-resize">
+      <div id="navigation2">
+        <div class="here"><span class="fa-map-marker"></span></div>
+        <div class="home"><a href="/">صفحه اصلی</a>
+          <div class="clr"></div>
+        </div>
+        <div class="last-location"><span class="fa-angle-double-left"></span>افراموشی رمز عبور
+          <div class="clr"></div>
+        </div>
+        <div class="clr"></div>
+      </div>
+    </div>
+    <div id="Wrapper-resize" class="trust-services">
+      <div id="Wrapper">
+        <div id="sendEmail">
+          <form class="ForgetPass" method="post" action="/Client_Recovery_Pass.bc">
+            <div class="sendEmail-section-Box">
+              <div class="sendEmail-section">
+                <input type="text" name="username" id="Fname" placeholder="نام کاربری" required>
+              </div>
+            </div>
+            <div class="sendEmail-section-Box">
+              <div class="sendEmail-section">
+                <input type="text" name="Captcha" id="FCaptcha" placeholder="کد امنیتی" required>
+              </div>
+            </div>
+            <div class="sendEmail-section-Box">
+              <div class="sendEmail-section">
+                <div class="section3 captchForgetpass" style="position:relative"> <img src="/[##db.captcha.captcha##]" alt="کد امنیتی" width="80" height="40">
+                  <input id="Captchaid" name="Captchaid" value="[##db.captcha.captcha##]" type="hidden">
+                </div>
+                <div class="section3" style="text-align: left;"><i class="fa fa-retweet refreshingImg" aria-hidden="true" style="cursor:pointer;"></i> </div>
+                <div class="section3">
+                  <input type="submit" name="Submit" id="Submit" value="ارسال" >
+                </div>
+                <div class="clr"></div>
+              </div>
+              <div class="loadingLog" style="display:none">
+                <div id="ballsWaveG">
+                  <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                  <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                  <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                  <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                  <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                  <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                  <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                  <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                </div>
+              </div>
+              <div class="fcap fcapForgetpass" style="display:none;text-align: center;font-size: 14px;">کد امنیتی نادرست است</div>
+              <div class="passResult"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <basis core="call" file="footer.inc"/>
+  </div>
+
+  <script type="text/javascript">
+  
+  $(".refreshingImg").click(function(){
+          $(".captchForgetpass").append('<div class="mini-loading" style="position: absolute; left: 40px;top: 2px;"><div id="floatingCirclesGMini"><div class="f_circleGMini" id="frotateG_01Mini"></div><div class="f_circleGMini" id="frotateG_02Mini"></div><div class="f_circleGMini" id="frotateG_03Mini"></div><div class="f_circleGMini" id="frotateG_04Mini"></div><div class="f_circleGMini" id="frotateG_05Mini"></div><div class="f_circleGMini" id="frotateG_06Mini"></div><div class="f_circleGMini" id="frotateG_07Mini"></div><div class="f_circleGMini" id="frotateG_08Mini"></div></div></div>').load("/Client_Captcha.bc");
+          return false;
+          });
+          
+                $(".ForgetPass").submit(function(e) {
+         e.preventDefault()
+         $(".loadingLog").css("display","block") 
+               $.ajax({
+                   url: $(".ForgetPass").attr("action"),
+                  type: $(".ForgetPass").attr("method"),
+                  data: $($(".ForgetPass")).serialize(),
+                   success: function(response) {
+                       $(".loadingLog").css("display","none")
+                       $('.passResult').empty().show().html(response);
+                   }
+            });
+         });
+  
+      
+  </script>
+  </div>
+  </body>
+  </html>

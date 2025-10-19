@@ -1,0 +1,31 @@
+<basis core="dbsource" source="trust_login" mid="24" name="db" lid="1" rkey="[##cms.cookie.rkey##]">
+    <member name="userid" type="scalar" request="userid" preview=""/>
+   </basis>
+   <basis core="dbsource" source="trust_login" name="db">
+    <member name="captcha" request="captcha" type="scalar" preview=""/>
+   </basis>
+   <basis core="group" if="[##db.userid.userid##]='0'">
+       <div class="login-info-txt">
+        <div class="text showLogReg">
+            <span id="logitem">ورود</span><span class="seprate"> | </span><span>ثبت نام</span>
+        </div>
+       </div>
+   <script type="text/javascript">
+   $(".loginRegister").load("/log-reg.inc?url=[##cms.query.url##]")
+   </script>
+   </basis>
+   <basis core="group" if="[##db.userid.userid##]<>'0'">
+   <basis core="cookie"  name="rkey"  value="[##cms.cookie.rkey##]" path="/" />
+   <basis core="dbsource" source="trust_login" mid="24" name="db" lid="1" request="information" rkey="[##cms.cookie.rkey##]">
+    <member name="info" type="view" />
+   </basis>
+   <basis core="view" datamembername="db.info">
+    <layout>
+     <div class="infoUser">@child <span>خوش آمدید</span> 
+    </layout>
+    <face filter="prpID=1"><span style="margin-left:5px;">@Answer</span></face>
+    <face filter="prpID=2"><span>@Answer</span></face>
+   </basis>
+    <span><a href="http://www.tripcenter.ir/panel-dashboard.bc" target="_blank" style="text-decoration: none;margin-right: 7px;color: #00a651;">پنل کاربری</a></span></div>
+   <div class="third-box"><span class="exit"><a href="/logout.bc">خروج</a></span></div>
+   </basis>

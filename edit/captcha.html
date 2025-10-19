@@ -1,0 +1,5 @@
+<basis core="dbsource" source="trust_login" name="captcha" >
+<member name="code" type="scalar" request="captcha" />
+</basis>
+ <img class="captcha" alt="کد امنیتی" src="[##captcha.code.captcha##]" width="80" height="35">
+<input type="hidden" value="[##captcha.code.captcha##]" name="Captchaid"/>

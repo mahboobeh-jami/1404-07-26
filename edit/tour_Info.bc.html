@@ -1,0 +1,121 @@
+<basis core="dbsource" source="basiscore" name="product" lid="1" mid="20" usedforid="[##cms.query.id##]">
+    <member name="info" type="view" />
+    <member name="tourName" type="view" postsql="select Answer from [product.tourName] where prpID = '8070'" />
+</basis>
+<basis core="print" datamembername="product.info">
+    <face filter="prpid = 8185">
+       <div class="image-section-tour float_right p-relative back_img"> <a href="/tour.bc?id=[##cms.query.id##]"><img src="/@largetext" class="image-hotel" alt="" width="200" height="200"></a></div>
+    </face>
+</basis>
+<basis core="view" datamembername="product.info">
+    <layout>
+        <div class="info-section-tour float_left">
+           <input type="hidden" value ="[##cms.query.id##]" name="id_tour" />
+            @child
+            <span class="font_10 font-color_1 cursor show_more"><i class="fa fa-info-circle font-color_1"></i>مشاهده سایر اطلاعات</span>
+
+            <div class="clr"></div>
+        </div>
+    </layout>
+    <face filter="prpid  in (8077,8076,8080)" level="1">
+        <div class="tour-info">
+            <span class="Qu-info-hotel font_12">@question : </span>
+            <span>@child</span>
+            <div class="clr"></div>
+        </div>
+    </face>
+    <face filter="prpid  in (8077,8076,8080)" level="2">
+      <span itemprop="@vocabulary" class="An-info-hotel font_11"> @answer</span></face>
+</basis>
+<div class="clr"></div>
+<basis core="group" name="exite" if="'[##product.tourName.Answer##]' <> ''">
+    <div class="program-section-tour unvisible">
+        <div class="close-details-box float_left font_11 show_less">بستن</div>
+        <div class="clr"></div>
+        <div class="program-section-title margin_tbl">
+            <div class="program-item one active_tab_tour cursor float_right font-color_1"> <span>برنامه سفر</span> </div>
+            <div class="program-item two cursor float_right font-color_1"> <span>توضیحات</span> </div>
+            <div class="program-item three cursor float_right font-color_1"> <span>سایر اطلاعات</span> </div>
+            <div class="clr"></div>
+        </div>
+        <div class="clr"></div>
+        <div class="schema">
+            <basis core="view" datamembername="product.info">
+                <face filter="prpid=8084" level="1">
+                    <div class="section-first text-justify font_12">@child</div>
+                </face>
+                <face filter="prpid=8084" level="2">
+                    <div class="programTour">
+                        <div class="font-weight">@text</div>
+                        <div class="largetext">@largetext</div>
+                    </div>
+                   <br/>
+                </face>
+            </basis>
+            <basis core="view" datamembername="product.info">
+                <face filter="prpid=8097" level="1">
+                    <div class="section-second text-justify unvisible font_12">@child</div>
+                </face>
+                <face filter="prpid=8097" level="2">
+                    <div class="programTour">
+                        <div class="font-weight">@text</div>
+                        <div class="largetext">@largetext</div>
+                    </div>
+                  <br/>
+                </face>
+
+            </basis>
+            <basis core="view" datamembername="product.info">
+                <layout>
+                    <div class="section-third text-justify unvisible font_12">@child</div>
+                </layout>
+                <face filter="prpid not in (8070,8077,8076,8080,8084,8181,8185,8186,8187,54281,8097)" level="1">
+                    <div class="tour-info">
+                        <span class="Qu-info-hotel font_12">@question : </span>
+                        <span>@child</span>
+                        <div class="clr"></div>
+                    </div>
+                </face>
+                <face filter="prpid not in (8070,8077,8076,8080,8084,8181,8185,8186,8187,54281,8097)" level="2">
+                    <span itemprop="@vocabulary"  class="An-info-hotel font_11"> @answer</span></face>
+
+            </basis>
+            <div class="clr"></div>
+        </div>
+    </div>
+</basis>
+<script type="text/javascript">
+    $(".program-item.one").click(function () {
+        $(this).addClass('active_tab_tour')
+        $(this).closest(".search-item").find(".program-item.two").removeClass('active_tab_tour')
+        $(this).closest(".search-item").find(".program-item.three").removeClass('active_tab_tour')
+        $(this).closest(".search-item").find(".section-first").slideDown()
+        $(this).closest(".search-item").find(".section-second").slideUp()
+        $(this).closest(".search-item").find(".section-third").slideUp()
+    })
+    $(".program-item.two").click(function () {
+        $(this).addClass('active_tab_tour')
+        $(this).closest(".search-item").find(".program-item.three").removeClass('active_tab_tour')
+        $(this).closest(".search-item").find(".program-item.one").removeClass('active_tab_tour')
+        $(this).closest(".search-item").find(".section-second").slideDown()
+        $(this).closest(".search-item").find(".section-first").slideUp()
+        $(this).closest(".search-item").find(".section-third").slideUp()
+    })
+    $(".program-item.three").click(function () {
+        $(this).addClass('active_tab_tour')
+        $(this).closest(".search-item").find(".program-item.two").removeClass('active_tab_tour')
+        $(this).closest(".search-item").find(".program-item.one").removeClass('active_tab_tour')
+        $(this).closest(".search-item").find(".section-third").slideDown()
+        $(this).closest(".search-item").find(".section-second").slideUp()
+        $(this).closest(".search-item").find(".section-first").slideUp()
+    })
+    $(".show_more").click(function () {
+        $(this).closest(".search-item").find(".program-section-tour").show()
+        $(this).closest(".search-item").find(".section_item_hotel").show()
+    })
+    $(".show_less").click(function () {
+        $(this).closest(".search-item").find(".program-section-tour").hide()
+        $(this).closest(".search-item").find(".section_item_hotel").hide()
+    })
+
+</script>

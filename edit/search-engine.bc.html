@@ -1,0 +1,1563 @@
+<section class="flex justify-between mb-5 max-sm:mb-0 w-full h-[43px] max-sm:h-fit search-nav">
+    <h2 id="title-module" class="inline-block max-md:hidden font-MazzardH-ExtraBold text-[31px] text-black text-left uppercase">Flight</h2>
+    <ul class="inline-block max-sm:flex max-sm:flex-wrap max-sm:justify-center max-sm:items-center bg-dark_1 ml-5 max-md:ml-0 w-full h-[42px] search-nav-bar max-sm:h-fit text-gray_2">
+        <li data-id="item-Flight" id="Flight" class="max-sm:block inline-block mx-4 text-base hover:text-white leading-[43px] cursor-pointer active-module">
+            <span class="capitalize">Flight</span>
+        </li>
+        <li data-id="item-Hotel" id="Hotel" class="max-sm:block inline-block mx-4 text-base hover:text-white leading-[43px] cursor-pointer">
+            <span class="capitalize">hotel</span>
+        </li>
+        <li data-id="item-Tour" id="tour" class="max-sm:block inline-block mx-4 text-base hover:text-white leading-[43px] cursor-pointer">
+            <span class="capitalize">tour</span>
+        </li>
+        <li data-id="item-FlightHotel" id="FlightHotel" class="max-sm:block inline-block mx-4 text-base hover:text-white leading-[43px] cursor-pointer">
+            <span class="capitalize">flight + hotel</span>
+        </li>
+        <li data-id="item-Insurance" id="Insurance" class="max-sm:block inline-block mx-4 text-base hover:text-white leading-[43px] cursor-pointer">
+            <span class="capitalize">insurance</span>
+        </li>
+    </ul>
+</section>
+<div class="clear-both"></div>
+<div class="float-left max-xl:float-none max-md:clear-both">
+    <section class="py-2 bg-gradient-to-br from-startColor_box to-endColor_box max-xl:p-3 rounded-3xl max-sm:rounded-none w-[800px] max-xl:w-full min-h-[329px]">
+
+        <div class="mb-5 item_Flight" id="item-Flight">
+            <ul class="mt-3 ml-3 flight-type">
+                <li id="oneway" class="inline-block mx-4 font-MazzardH-Medium text-dark_2 text-xs hover:text-primary leading-[27px] cursor-pointer active group" onclick="document.getElementById('flight-form').action='/Tem_Oneway_Search.bc';">
+                    One Way
+                    <span class="group-hover:visible block bg-gradient-to-r from-primary to-transparent w-full h-[2px] invisible"></span>
+                </li>
+                <li id="backtoback" class="inline-block border-x px-4 font-MazzardH-Medium text-dark_2 text-xs hover:text-primary leading-[27px] cursor-pointer group" onclick="document.getElementById('flight-form').action='/Tem_Roundtrip_Search.bc';">
+                    Round Trip
+                    <span class="group-hover:visible block bg-gradient-to-r from-primary to-transparent w-full h-[2px] invisible"></span>
+                </li>
+                <li id="multicity" class="inline-block mx-4 font-MazzardH-Medium text-dark_2 text-xs hover:text-primary leading-[27px] cursor-pointer group" onclick="document.getElementById('multi-flight-form').action='/Tem_Multicity_Search.bc';">
+                    Multi City
+                    <span class="group-hover:visible block bg-gradient-to-r from-primary to-transparent w-full h-[2px] invisible"></span>
+                </li>
+            </ul>
+            <form id="flight-form" class="form-search mx-auto mt-5 w-[95%] flight-form" method="get" action="/Tem_Oneway_Search.bc" autocomplete="off">
+                <input type="hidden" name="currentdate" class="currentdate" value="" />
+                <input type="hidden" name="child" class="child childcountinput" value="0" />
+                <input type="hidden" name="select-age" class="select-age-value" value="0" />
+                <div class="clear-both"></div>
+                <div class="route-content">
+                    <div class="flex max-md:flex-wrap justify-between">
+                        <div class="max-md:block inline-block relative w-1/2 max-md:w-full city">
+                            <div class="dep-plane transition">
+                                <div class="country-container inner-container" onclick="empty_value(this)">
+                                    <div class="w-full input-container">
+                                        <input type="text" placeholder="origin" oninput="city_search(this)" onblur="set_city_search(this)" data-type="1" class="text-value px-2 rounded-lg w-full h-10 text-xs country FCD1" required="" value="" />
+                                    </div>
+                                </div>
+                                <input value="" class="co-id FCDid1" type="hidden" name="from" />
+
+                                <span class="absolute hidden mini-loading"><i class="fa-spin fa-spinner fas"></i></span>
+
+                                
+                                <div class=" searchList unvisible-city hidden float-right text-sm absolute z-20">
+                                    <div class="countryFlight"></div>
+                                    <div class="ul-list search-list">
+                                        <div class="center-txt">Crowded cities</div>
+                                        <div class="flex list-city">
+                                        <ul class="ul-list-cat" >
+                                        <li class="category-title "><span>Internal</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1203548"><span>Tehran - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211083"><span>Mashhad - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211110"><span>Kish - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211086"><span>Shiraz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211084"><span>Isfahan - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196609"><span>Ahvaz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211091"><span>Kerman - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196620"><span>Kermanshah - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196639"><span>Qeshm - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211085"><span>Tabriz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196659"><span>Chabahar - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211090"><span>Yazd - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196635"><span>Bandar Abbas - (all airports)</span></li>
+                                        </ul>
+                                        <ul class="ul-list-cat" >
+                                        <li class="category-title "><span>External</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1177676"><span>Istanbul - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1173505"><span>Dubai - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1168092"><span>Antalya - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1189731"><span>Tbilisi - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1178542"><span>KualaLumpur - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1184034"><span>Paris - (all airports)</span></li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                    <div class="clear-both"></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <span class="mx-3 text-base leading-10 cursor-pointer exchange-container fi-exchange-container max-md:rotate-90" onclick="exchangeDepDes(this)">
+                            <svg class="inline-block" xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                                <path d="M17.4879 12.4209L13.3784 16.5385" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M3.54297 12.4209H17.4872" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M3.54297 7.51608L7.6524 3.39844" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M17.4872 7.5166H3.54297" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <div class="max-md:block inline-block relative w-1/2 max-md:w-full city">
+                            <div class="transition des-plane">
+                                <div class="country-container inner-container" onclick="empty_value(this)">
+                                    <div class="w-full input-container">
+                                        <input type="text" placeholder="destination" oninput="city_search(this)" onblur="set_city_search(this)" data-type="1" class="text-value px-2 rounded-lg w-full h-10 text-xs country FCD2" required="" autocomplete="off" value="" />
+                                    </div>
+                                </div>
+                                <input value="" class="co-id FCDid2" type="hidden" name="to" />
+                                <span class="absolute hidden mini-loading"><i class="fa-spin fa-spinner fas"></i></span>
+                                <div class=" searchList unvisible-city hidden float-right text-sm absolute z-20">
+                                    <div class="countryFlight"></div>
+                                    <div class="ul-list search-list">
+                                        <div class="center-txt">Crowded cities</div>
+                                        <div class="flex list-city">
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>Internal</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1203548"><span>Tehran - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211083"><span>Mashhad - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211110"><span>Kish - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211086"><span>Shiraz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211084"><span>Isfahan - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196609"><span>Ahvaz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211091"><span>Kerman - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196620"><span>Kermanshah - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196639"><span>Qeshm - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211085"><span>Tabriz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196659"><span>Chabahar - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211090"><span>Yazd - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196635"><span>Bandar Abbas - (all airports)</span></li>
+                                        </ul>
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>External</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1177676"><span>Istanbul - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1173505"><span>Dubai - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1168092"><span>Antalya - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1189731"><span>Tbilisi - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1178542"><span>KualaLumpur - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1184034"><span>Paris - (all airports)</span></li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                    <div class="clear-both"></div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between mt-2 w-full Basis_Date_Box">
+                        <div class="w-1/2 result-for rounded-lg">
+                            <div class="transition cursor-pointer input-container">
+                                <input aria-label="calender" type="text" value="" placeholder="Departing" class="bold-center-content-input px-2 sp-start rounded-lg w-full h-10 text-sm Basis_Date start_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-module="" data-active="0" data-cache="0" readonly="" name="fdate" required="" />
+                                <div class="clear-both"></div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="ml-3 w-1/2 Noactive-date result-for rounded-lg">
+                            <div class="transition cursor-pointer input-container">
+                                <input type="text" value="" placeholder="Arrival" class="bold-center-content-input px-2 sp-end rounded-lg w-full h-10 text-sm Basis_Date end_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-module="" data-active="0" data-cache="0" readonly="" name="tdate" disabled />
+                                <div class="clear-both"></div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="mt-2 passenger_section">
+                        <div class="rounded-lg w-full text-xs CountPassenger">
+                            <div class="relative flex item-CountPassenger-content">
+                                <div class="item-CountPassenger">
+                                    <div class="mt-4 mb-2 font-MazzardH-Light text-black text-xs first-part-CountPassenger">adult (+12)</div>
+                                    <div class="second-part-CountPassenger">
+                                        <div class="passenger-button">
+                                            <select name="adult" id="adultcount-flight" class="bg-white mr-3 px-2 rounded-lg w-16 h-10">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="clear-both"></div>
+                                </div>
+                                <div class="item-CountPassenger">
+                                    <div class="mt-4 mb-2 font-MazzardH-Light text-black text-xs first-part-CountPassenger">child (2-12 )</div>
+                                    <div class="second-part-CountPassenger">
+                                        <div class="passenger-button">
+                                            <select onchange="Change_ChildrenCount_Flight(this,'child','infant')" id="childcount-flight" class="bg-white mr-3 px-2 rounded-lg w-16 h-10">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                            <input type="hidden" class="childcount" value="0" />
+                                        </div>
+                                    </div>
+                                    <div class="section-select-age"></div>
+                                    <div class="clear-both"></div>
+                                </div>
+                                <div class="item-CountPassenger">
+                                    <div class="mt-4 mb-2 font-MazzardH-Light text-black text-xs first-part-CountPassenger">infant (0-2)</div>
+                                    <div class="second-part-CountPassenger">
+                                        <div class="passenger-button">
+                                            <select onchange="Change_ChildrenCount_Flight(this,'infant','child')" id="infantcount-flight" class="bg-white mr-3 px-2 rounded-lg w-16 h-10">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                            <input type="hidden" class="infantcount" value="0" />
+                                        </div>
+                                    </div>
+                                    <div class="section-select-age"></div>
+                                    <div class="clear-both"></div>
+                                </div>
+                                <div class="item-CountPassenger">
+                                    <div class="mt-4 mb-2 font-MazzardH-Light text-black text-xs first-part-CountPassenger">Cabin class:</div>
+                                    <div class="second-part-CountPassenger">
+                                        <select class="bg-white mr-3 px-2 rounded-lg w-40 h-10 flight-Class" name="FlightClass">
+                                            <option value="Economy"> Economy</option>
+                                            <option value="BusinessClass"> Bussines</option>
+                                            <option value="FirstClass"> First</option>
+                                        </select>
+                                    </div>
+                                    <div class="clear-both"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+                <div class="block float-right max-md:float-none -mt-11 max-md:mt-2 w-1/3 max-md:w-full text-center submit-btn-center relative z-10">
+                    <button type="submit" class="bg-primary w-full h-10 text-white hover:bg-secondary rounded-lg form_search-btn">
+                        <svg class="inline-block -mt-[2px] mr-1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.64797 13.7784C10.8757 13.7784 13.4922 11.1618 13.4922 7.9341C13.4922 4.70641 10.8757 2.08984 7.64797 2.08984C4.42027 2.08984 1.80371 4.70641 1.80371 7.9341C1.80371 11.1618 4.42027 13.7784 7.64797 13.7784Z" stroke="white" stroke-width="1.23037" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M14.1057 14.3904L12.8774 13.1621" stroke="white" stroke-width="1.23037" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Search
+                    </button>
+                </div>
+            </form>
+            <form id="multi-flight-form" class="hidden form-search mx-auto mt-5 w-[95%]" method="post" action="/Tem_Multicity_Search.bc" autocomplete="off">
+                <input type="hidden" name="currentdate" class="currentdate" value="" />
+                <input type="hidden" name="select-age" class="select-age-value" value="0" />
+                <input type="hidden" name="child" class="child childcountinput" value="0" />
+                <div class="clear-both"></div>
+                <div class="route-container">
+                    <div class="mb-2 max-md:pb-2 max-md:border-b route-content" data-index="1">
+                        <div class="relative float-left w-1/4 max-md:w-full city fromcity_container">
+                            <div class="dep-plane transition">
+                                <div class="country-container inner-container" onclick="empty_value(this)">
+                                    <div class="input-container">
+                                        <input type="text" placeholder="origin" oninput="city_search(this)" data-type="1" class="text-value px-2 rounded-lg w-full max-md:w-full h-10 text-xs country FCD1 fromcity-text" required="" autocomplete="off" value="" />
+                                    </div>
+                                </div>
+                                <input value="" class="co-id FCDid1 fromcity" type="hidden" name="" />
+                                <span class="absolute hidden mini-loading"><i class="fa-spin fa-spinner fas"></i></span>
+                                <div class=" searchList unvisible-city hidden float-right text-sm absolute z-20">
+                                    <div class="countryFlight"></div>
+                                    <div class="ul-list search-list">
+                                        <div class="center-txt">Crowded cities</div>
+                                        <div class="flex list-city">
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>Internal</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1203548"><span>Tehran - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211083"><span>Mashhad - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211110"><span>Kish - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211086"><span>Shiraz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211084"><span>Isfahan - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196609"><span>Ahvaz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211091"><span>Kerman - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196620"><span>Kermanshah - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196639"><span>Qeshm - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211085"><span>Tabriz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196659"><span>Chabahar - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211090"><span>Yazd - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196635"><span>Bandar Abbas - (all airports)</span></li>
+                                        </ul>
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>External</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1177676"><span>Istanbul - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1173505"><span>Dubai - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1168092"><span>Antalya - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1189731"><span>Tbilisi - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1178542"><span>KualaLumpur - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1184034"><span>Paris - (all airports)</span></li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                    <div class="clear-both"></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <span class="float-left mx-3 text-base leading-10 cursor-pointer exchange-container fi-exchange-container max-md:rotate-90" onclick="exchangeDepDes(this)">
+                            <svg class="inline-block" xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                                <path d="M17.4879 12.4209L13.3784 16.5385" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M3.54297 12.4209H17.4872" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M3.54297 7.51608L7.6524 3.39844" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M17.4872 7.5166H3.54297" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <div class="relative float-left w-1/4 max-md:w-full city tocity_container">
+                            <div class="transition des-plane">
+                                <div class="country-container inner-container">
+                                    <div class="input-container" onclick="empty_value(this)">
+                                        <input type="text" placeholder="destination" oninput="city_search(this)" onblur="set_city_search(this)" data-type="1" class="text-value px-2 rounded-lg w-full h-10 text-xs country FCD2 tocity-text" required="" autocomplete="off" value="" />
+                                    </div>
+                                </div>
+                                <input value="" class="co-id FCDid2 tocity" type="hidden" name="" />
+                                <span class="absolute hidden mini-loading"><i class="fa-spin fa-spinner fas"></i></span>
+                                <div class=" searchList unvisible-city hidden float-right text-sm absolute z-20">
+                                    <div class="countryFlight"></div>
+                                    <div class="ul-list search-list">
+                                        <div class="center-txt">Crowded cities</div>
+                                        <div class="flex list-city">
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>Internal</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1203548"><span>Tehran - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211083"><span>Mashhad - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211110"><span>Kish - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211086"><span>Shiraz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211084"><span>Isfahan - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196609"><span>Ahvaz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211091"><span>Kerman - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196620"><span>Kermanshah - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196639"><span>Qeshm - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211085"><span>Tabriz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196659"><span>Chabahar - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211090"><span>Yazd - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196635"><span>Bandar Abbas - (all airports)</span></li>
+                                        </ul>
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>External</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1177676"><span>Istanbul - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1173505"><span>Dubai - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1168092"><span>Antalya - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1189731"><span>Tbilisi - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1178542"><span>KualaLumpur - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1184034"><span>Paris - (all airports)</span></li>
+                                        </ul>
+                                        </div>
+                                    </div>
+                                    <div class="clear-both"></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="float-left max-md:mt-2 ml-2 max-md:ml-0 w-1/3 max-md:w-full Basis_Date_Box">
+                            <div class="relative float-left w-full result-for rounded-lg">
+                                <div class="transition cursor-pointer input-container">
+                                    <input type="text" value="" placeholder="Departing" class="bold-center-content-input px-2 sp-start rounded-lg w-full h-10 text-sm Basis_Date start_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-active="0" data-cache="0" readonly="" name="fdate" required="" />
+                                    </p>
+
+                                    <div class="clear-both"></div>
+                                </div>
+
+                                <div class="clear-both"></div>
+                            </div>
+                            <div class="relative float-left hidden w-1/2 Noactive-date result-for rounded-lg">
+                                <div class="transition cursor-pointer input-container">
+                                    <p class="title-inputs-inner">Return date</p>
+
+                                    <input type="text" value="" placeholder="Returning" class="rounded-lg bold-center-content-input sp-end w-full text-sm Basis_Date end_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-active="0" data-cache="0" readonly="" name="" disabled />
+                                    </p>
+
+                                    <div class="clear-both"></div>
+                                </div>
+                                <div class="clear-both"></div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both clr-content"></div>
+                    </div>
+                    <div class="mb-2 max-md:pb-2 max-md:border-b route-content" data-index="2">
+                        <div class="relative float-left w-1/4 max-md:w-full city fromcity_container">
+                            <div class="dep-plane transition">
+                                <div class="country-container inner-container" onclick="empty_value(this)">
+                                    <div class="input-container">
+                                        <input type="text" placeholder="City, Airport" oninput="city_search(this)" data-type="1" class="text-value px-2 rounded-lg w-full max-md:w-full h-10 text-xs country FCD1 fromcity-text" required="" autocomplete="off" value="" class="text-xs" />
+
+                                    </div>
+                                </div>
+                                <input value="" class="co-id FCDid1 fromcity" type="hidden" name="" />
+                                <span class="absolute hidden mini-loading"><i class="fa-spin fa-spinner fas"></i></span>
+                                <div class="searchList unvisible-city hidden float-right text-sm absolute z-20">
+                                    <div class="countryFlight"></div>
+                                    <div class="ul-list search-list ">
+                                        <div class="center-txt">Crowded cities</div>
+                                        <div class="flex list-city">
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>Internal</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1203548"><span>Tehran - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211083"><span>Mashhad - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211110"><span>Kish - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211086"><span>Shiraz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211084"><span>Isfahan - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196609"><span>Ahvaz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211091"><span>Kerman - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196620"><span>Kermanshah - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196639"><span>Qeshm - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211085"><span>Tabriz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196659"><span>Chabahar - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211090"><span>Yazd - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196635"><span>Bandar Abbas - (all airports)</span></li>
+                                        </ul>
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>External</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1177676"><span>Istanbul - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1173505"><span>Dubai - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1168092"><span>Antalya - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1189731"><span>Tbilisi - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1178542"><span>KualaLumpur - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1184034"><span>Paris - (all airports)</span></li>
+                                        </ul>
+                                        </div>
+                                    </div>
+                                    <div class="clear-both"></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <span class="float-left mx-3 text-base leading-10 cursor-pointer exchange-container fi-exchange-container max-md:rotate-90" onclick="exchangeDepDes(this)">
+                            <svg class="inline-block" xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                                <path d="M17.4879 12.4209L13.3784 16.5385" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M3.54297 12.4209H17.4872" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M3.54297 7.51608L7.6524 3.39844" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M17.4872 7.5166H3.54297" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <div class="relative float-left w-1/4 max-md:w-full city tocity_container">
+                            <div class="transition des-plane">
+                                <div class="country-container inner-container">
+                                    <div class="input-container" onclick="empty_value(this)">
+                                        <input type="text" placeholder="City, Airport" oninput="city_search(this)" onblur="set_city_search(this)" data-type="1" class="text-value px-2 rounded-lg w-full h-10 text-xs country FCD2 tocity-text" required="" autocomplete="off" value="" />
+                                    </div>
+                                </div>
+                                <input value="" class="co-id FCDid2 tocity" type="hidden" name="" />
+                                <span class="absolute hidden mini-loading"><i class="fa-spin fa-spinner fas"></i></span>
+                                <div class="searchList unvisible-city hidden float-right text-sm absolute z-20">
+                                    <div class="countryFlight"></div>
+                                    <div class="ul-list search-list ">
+                                        <div class="center-txt">Crowded cities</div>
+                                        <div class="flex list-city">
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>Internal</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1203548"><span>Tehran - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211083"><span>Mashhad - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211110"><span>Kish - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211086"><span>Shiraz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211084"><span>Isfahan - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196609"><span>Ahvaz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211091"><span>Kerman - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196620"><span>Kermanshah - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196639"><span>Qeshm - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211085"><span>Tabriz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196659"><span>Chabahar - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211090"><span>Yazd - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196635"><span>Bandar Abbas - (all airports)</span></li>
+                                        </ul>
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>External</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1177676"><span>Istanbul - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1173505"><span>Dubai - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1168092"><span>Antalya - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1189731"><span>Tbilisi - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1178542"><span>KualaLumpur - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1184034"><span>Paris - (all airports)</span></li>
+                                        </ul>
+                                        </div>
+                                    </div>
+                                    <div class="clear-both"></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="float-left max-md:mt-2 ml-2 max-md:ml-0 w-1/3 max-md:w-full Basis_Date_Box">
+                            <div class="relative float-left w-full result-for rounded-lg">
+                                <div class="transition cursor-pointer input-container">
+                                    <input type="text" value="" placeholder="Departing" class="bold-center-content-input px-2 sp-start rounded-lg w-full h-10 text-sm Basis_Date start_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-active="0" data-cache="0" readonly="" name="fdate" required="" />
+                                    </p>
+
+                                    <div class="clear-both"></div>
+                                </div>
+
+                                <div class="clear-both"></div>
+                            </div>
+                            <div class="relative float-left hidden w-1/2 Noactive-date result-for rounded-lg">
+                                <div class="transition cursor-pointer input-container">
+                                    <p class="title-inputs-inner">Return date</p>
+
+                                    <input type="text" value="" placeholder="Returning" class="rounded-lg bold-center-content-input sp-end w-full text-sm Basis_Date end_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-active="0" data-cache="0" readonly="" name="" disabled />
+                                    </p>
+
+                                    <div class="clear-both"></div>
+                                </div>
+                                <div class="clear-both"></div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both clr-content"></div>
+                    </div>
+
+                </div>
+                <button class="max-md:block inline-block float-right -mt-10 max-md:mt-0 max-md:mb-5 route-plus-btn" type="button" onclick="addMulticityRoute(this)">
+                    <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.6199 2.57617H8.02784C4.29572 2.57617 2.0708 4.80109 2.0708 8.53321V17.115C2.0708 20.8574 4.29572 23.0823 8.02784 23.0823H16.6097C20.3418 23.0823 22.5667 20.8574 22.5667 17.1253V8.53321C22.577 4.80109 20.352 2.57617 16.6199 2.57617ZM16.4251 13.5982H13.0929V16.9305C13.0929 17.3509 12.7443 17.6995 12.3239 17.6995C11.9035 17.6995 11.5549 17.3509 11.5549 16.9305V13.5982H8.22265C7.80227 13.5982 7.45367 13.2496 7.45367 12.8293C7.45367 12.4089 7.80227 12.0603 8.22265 12.0603H11.5549V8.72802C11.5549 8.30764 11.9035 7.95904 12.3239 7.95904C12.7443 7.95904 13.0929 8.30764 13.0929 8.72802V12.0603H16.4251C16.8455 12.0603 17.1941 12.4089 17.1941 12.8293C17.1941 13.2496 16.8455 13.5982 16.4251 13.5982Z" fill="black" />
+                    </svg>
+                </button>
+
+
+
+
+                <div class="mt-2 passenger_section">
+                    <div class="rounded-lg w-full text-xs CountPassenger">
+                        <div class="relative flex item-CountPassenger-content rooms-passengers">
+                            <div class="item-CountPassenger">
+                                <div class="mt-4 mb-2 font-MazzardH-Light text-black text-xs first-part-CountPassenger">adult (+12)</div>
+                                <div class="second-part-CountPassenger">
+                                    <div class="passenger-button">
+                                        <select name="adult" id="adultcount-flight" class="bg-white mr-3 px-2 rounded-lg w-16 h-10">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="clear-both"></div>
+                            </div>
+                                <div class="item-CountPassenger">
+                                    <div class="mt-4 mb-2 font-MazzardH-Light text-black text-xs first-part-CountPassenger">child (2-12 )</div>
+                                    <div class="second-part-CountPassenger">
+                                        <div class="passenger-button">
+                                            <select onchange="Change_ChildrenCount_Flight(this,'child','infant')" id="childcount-flight" class="bg-white mr-3 px-2 rounded-lg w-16 h-10">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                            <input type="hidden" class="childcount" value="0" />
+                                        </div>
+                                    </div>
+                                    <div class="section-select-age"></div>
+                                    <div class="clear-both"></div>
+                                </div>
+                                <div class="item-CountPassenger">
+                                    <div class="mt-4 mb-2 font-MazzardH-Light text-black text-xs first-part-CountPassenger">infant (0-2)</div>
+                                    <div class="second-part-CountPassenger">
+                                        <div class="passenger-button">
+                                            <select onchange="Change_ChildrenCount_Flight(this,'infant','child')" id="infantcount-flight" class="bg-white mr-3 px-2 rounded-lg w-16 h-10">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                            <input type="hidden" class="infantcount" value="0" />
+                                        </div>
+                                    </div>
+                                    <div class="section-select-age"></div>
+                                    <div class="clear-both"></div>
+                                </div>
+                            <div class="item-CountPassenger">
+                                <div class="mt-4 mb-2 font-MazzardH-Light text-black text-xs first-part-CountPassenger">Cabin class:</div>
+                                <div class="second-part-CountPassenger">
+                                    <select class="bg-white mr-3 px-2 rounded-lg w-20 h-10 flight-Class" name="FlightClass">
+                                        <option value="Economy"> Economy</option>
+                                        <option value="BusinessClass"> Bussines</option>
+                                        <option value="FirstClass"> First</option>
+                                    </select>
+                                </div>
+                                <div class="clear-both"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+                <div class="btns-content">
+                    <div class="block float-right max-md:float-none -mt-11 max-md:mt-2 w-1/3 max-md:w-full text-center submit-btn-center relative z-10">
+                        <button type="submit" class="bg-primary w-full h-10 text-white hover:bg-secondary rounded-lg form_search-btn">
+                            <svg class="inline-block -mt-[2px] mr-1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.64797 13.7784C10.8757 13.7784 13.4922 11.1618 13.4922 7.9341C13.4922 4.70641 10.8757 2.08984 7.64797 2.08984C4.42027 2.08984 1.80371 4.70641 1.80371 7.9341C1.80371 11.1618 4.42027 13.7784 7.64797 13.7784Z" stroke="white" stroke-width="1.23037" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M14.1057 14.3904L12.8774 13.1621" stroke="white" stroke-width="1.23037" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            Search
+                        </button>
+                    </div>
+
+                    <div class="clear-both"></div>
+                </div>
+
+            </form>
+        </div>
+
+        <div id="item-Hotel" class="relative hidden mt-4">
+            <form id="hotel-form" class="form-search mx-auto w-[95%]" method="post" action="/Tem3_Hotel_Search_EN.bc">
+                <input type="hidden" name="currentdate" class="currentdate" value="" />
+
+
+                <div class="relative flex justify-between w-full city">
+                    <div class="float-left max-md:hidden w-1/12 text-center">
+                        <svg class="mx-auto mt-2 leading-10" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.9854 25.8277C12.5815 25.8277 12.2077 25.6143 12.0025 25.2667L10.751 23.1499C8.18138 18.806 5.75471 14.7032 4.92565 13.0391C4.3229 11.8031 4.01953 10.4834 4.01953 9.10841C4.01953 4.16459 8.04154 0.142578 12.9854 0.142578C17.9292 0.142578 21.9512 4.16459 21.9512 9.10841C21.9512 10.4826 21.6478 11.8019 21.0502 13.03C21.0431 13.0448 21.0351 13.0596 21.0274 13.0742C20.1823 14.7606 17.7711 18.8371 15.2188 23.1511L13.9682 25.2667C13.7631 25.6143 13.3892 25.8277 12.9854 25.8277Z" fill="#0488DB" />
+                            <path d="M12.9853 13.1783C10.5669 13.1783 8.59912 11.2108 8.59912 8.79242C8.59912 6.37402 10.5669 4.40625 12.9853 4.40625C15.4037 4.40625 17.3712 6.37402 17.3712 8.79242C17.3712 11.2108 15.4037 13.1783 12.9853 13.1783Z" fill="white" />
+                        </svg>
+                    </div>
+
+                    <div class=" relative float-right max-md:float-none bg-white px-2 rounded-lg w-11/12 max-md:w-full h-10 leading-10 transition dep inner-container">
+                        <div class="flex justify-between country-container input-container" onclick="empty_value(this)">
+                            <p class="inline-block font-MazzardH-Medium text-primary capitalize title-inputs-inner">Location</p>
+                            <input type="text" placeholder="city" oninput="city_search(this)" onblur="set_city_search(this)" data-type="3" class="text-value px-2 w-full text-xs country" required="" autocomplete="off" name="coHotel" value="" />
+
+                        </div>
+                        <input value="" class="co-id" type="hidden" name="cityid" />
+                        <span class="absolute hidden mini-loading"><i class="fa-spin fa-spinner fas"></i></span>
+                        <div class=" searchList unvisible-city hidden float-right text-sm absolute z-20">
+                            <div class="countryFlight"></div>
+                            <div class="ul-list search-list">
+                                <div class="center-txt">Crowded cities</div>
+                                <div class="flex list-city">
+                                 <ul class="ul-list-cat">
+                                <li class="category-title "><span>Internal</span></li>
+                                
+                                <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer" onclick="SelectPlace(this)" data-id="1203548"><span>
+                                    Tehran</span></li>
+                            <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer" onclick="SelectPlace(this)" data-id="1211110"><span>Kish
+                                </span></li>
+                            <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer" onclick="SelectPlace(this)" data-id="1211083"><span>
+                                    Mashhad</span></li>
+                            <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer" onclick="SelectPlace(this)" data-id="1211086"><span>
+                                    Shiraz</span></li>
+                            <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer" onclick="SelectPlace(this)" data-id="1211084"><span>
+                                    Isfahan</span></li>
+                            <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer" onclick="SelectPlace(this)" data-id="1211085"><span>
+                                    Tabriz</span></li>
+                                </ul>
+                                 <ul class="ul-list-cat">
+                                <li class="category-title "><span>External</span></li>
+                                
+                                <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1177676"><span>
+                                    Istanbul</span></li>
+                            <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1173505"><span>
+                                    Dubai</span></li>
+                            <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1168092"><span>
+                                    Antalya</span></li>
+                            <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1189731"><span>
+                                    Tbilisi </span></li>
+                            <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1182348"><span>
+                                    Moscow</span></li>
+                            <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1168993"><span>
+                                    Baku</span></li>
+                                                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                            </div>
+                    </div>
+                </div>
+                <div class="flex justify-start my-3 w-full Basis_Date_Box">
+
+
+                    <div class="max-md:hidden w-1/12 text-center">
+                        
+                        
+                        <svg class="mx-auto" width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.12793 2.4541V4.9336" stroke="black" stroke-width="0.9918" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M13.7393 2.4541V4.9336" stroke="black" stroke-width="0.9918" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M3.4082 8.3125H17.4587" stroke="black" stroke-width="0.9918" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M17.8726 7.82781V14.8531C17.8726 17.3326 16.6329 18.9856 13.7401 18.9856H7.12811C4.23536 18.9856 2.99561 17.3326 2.99561 14.8531V7.82781C2.99561 5.34831 4.23536 3.69531 7.12811 3.69531H13.7401C16.6329 3.69531 17.8726 5.34831 17.8726 7.82781Z" stroke="black" stroke-width="0.9918" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M13.4866 12.1215H13.494" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M13.4866 14.603H13.494" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10.4295 12.1215H10.4369" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10.4295 14.603H10.4369" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M7.36943 12.1215H7.37684" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M7.36943 14.603H7.37684" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="float-right flex justify-between w-8/12 max-md:w-full Basis_Date_Box">
+
+                        
+                        <div class="mr-auto rounded-lg w-[48%] result-for ">
+                            <div class="transition cursor-pointer input-container relative">
+                                <p class="mt-1 font-MazzardH-Light text-[9.44px] text-gray_3 title-inputs-inner">Check-in</p>
+
+                                <input type="text" value=""  class="rounded-lg bold-center-content-input sp-start w-full text-sm Basis_Date start_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-active="0" data-cache="0" readonly="" name="fdate" required="" />
+                                
+
+                                <div class="clear-both"></div>
+                            </div>
+
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="ml-auto rounded-lg w-[48%] result-for ">
+                            <div class="transition cursor-pointer input-container relative">
+                                <p class="mt-1 font-MazzardH-Light text-[9.44px] text-gray_3 title-inputs-inner">Check-out</p>
+
+                                <input type="text" value=""  class="rounded-lg bold-center-content-input sp-end w-full text-sm Basis_Date end_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-active="0" data-cache="0" readonly="" name="tdate" />
+                                
+
+                                <div class="clear-both"></div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+
+                <div class="relative w-full passenger_section">
+                    <div class="rounded-lg w-full text-xs CountPassenger room">
+                        <div class="relative room-CountPassenger-content rounded-lg">
+
+                            <div class="max-md:block flex justify-start room-CountPassenger mb-3">
+                                <div class="max-md:block max-md:float-none w-1/12 max-md:w-full font-MazzardH-Medium text-[13px] text-primary leading-[3rem] first-part-CountPassenger rooms-tlt">Room 1</div>
+                                <div class="w-8/12 max-md:w-full second-part-CountPassenger">
+
+                                    <input type="hidden" value="0" class="childcountandage" name="_root.rooms__1.childcountandage" />
+
+                                    <div class="flex max-md:flex-wrap justify-between max-xl:justify-start">
+                                        <div class="bg-white mr-3 rounded-lg w-20 h-12 adult-age-selection">
+                                            <label class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">Adult</label>
+                                            <select class="bg-transparent mt-1 px-1 w-full" name="_root.rooms__1.adultcount" class="adult adult-count">
+                                                <option value="1">1</option>
+                                                <option value="2" selected>2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                            </select>
+                                        </div>
+                                        <div class="bg-white mr-3 rounded-lg w-20 h-12 child-selection">
+                                            <label class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child</label>
+                                            <select onchange="childAgeActivation(this)" class="bg-transparent mt-1 px-1 w-full">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                        <div class="flex max-sm:justify-between max-md:gap-x-5 max-sm:mt-2 max-sm:w-full section-select-age">
+                                            <div class="bg-disable_field mr-3 max-md:mr-0 rounded-lg w-20 max-md:w-fit h-12 child-age-selection">
+                                                <label for="childDropdown-1" class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child 1</label>
+                                                <select class="bg-transparent mt-1 px-1 w-full child-count" disabled>
+                                                    <option value=""> Select Age</option>
+                                                    <option value="1"> up to 1</option>
+                                                    <option value="2"> 1 to 2</option>
+                                                    <option value="3"> 2 to 3</option>
+                                                    <option value="4"> 3 to 4</option>
+                                                    <option value="5"> 4 to 5</option>
+                                                    <option value="6"> 5 to 6</option>
+                                                    <option value="7"> 6 to 7</option>
+                                                    <option value="8"> 7 to 8</option>
+                                                    <option value="9"> 8 to 9</option>
+                                                    <option value="10"> 9 to 10</option>
+                                                    <option value="11"> 10 to 11</option>
+                                                    <option value="12"> 11 to 12</option>
+                                                </select>
+                                            </div>
+                                            <div class="bg-disable_field mr-3 max-md:mr-0 rounded-lg w-20 max-md:w-fit h-12 child-age-selection">
+                                                <label for="childDropdown-2" class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child 2</label>
+                                                <select class="bg-transparent mt-1 px-1 w-full child-count" disabled>
+                                                    <option value=""> Select Age</option>
+                                                    <option value="1"> up to 1</option>
+                                                    <option value="2"> 1 to 2</option>
+                                                    <option value="3"> 2 to 3</option>
+                                                    <option value="4"> 3 to 4</option>
+                                                    <option value="5"> 4 to 5</option>
+                                                    <option value="6"> 5 to 6</option>
+                                                    <option value="7"> 6 to 7</option>
+                                                    <option value="8"> 7 to 8</option>
+                                                    <option value="9"> 8 to 9</option>
+                                                    <option value="10"> 9 to 10</option>
+                                                    <option value="11"> 10 to 11</option>
+                                                    <option value="12"> 11 to 12</option>
+                                                </select>
+                                            </div>
+                                            <div class="bg-disable_field mr-3 max-md:mr-0 rounded-lg w-20 max-md:w-fit h-12 child-age-selection">
+                                                <label for="childDropdown-3" class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child 3</label>
+                                                <select class="bg-transparent mt-1 px-1 w-full child-count" disabled>
+                                                    <option value=""> Select Age</option>
+                                                    <option value="1"> up to 1</option>
+                                                    <option value="2"> 1 to 2</option>
+                                                    <option value="3"> 2 to 3</option>
+                                                    <option value="4"> 3 to 4</option>
+                                                    <option value="5"> 4 to 5</option>
+                                                    <option value="6"> 5 to 6</option>
+                                                    <option value="7"> 6 to 7</option>
+                                                    <option value="8"> 7 to 8</option>
+                                                    <option value="9"> 8 to 9</option>
+                                                    <option value="10"> 9 to 10</option>
+                                                    <option value="11"> 10 to 11</option>
+                                                    <option value="12"> 11 to 12</option>
+                                                </select>
+                                            </div>
+                                            <div class="bg-disable_field mr-3 max-md:mr-0 rounded-lg w-20 max-md:w-fit h-12 child-age-selection">
+                                                <label for="childDropdown-4" class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child 4</label>
+                                                <select class="bg-transparent mt-1 px-1 w-full child-count" disabled>
+                                                    <option value=""> Select Age</option>
+                                                    <option value="1"> up to 1</option>
+                                                    <option value="2"> 1 to 2</option>
+                                                    <option value="3"> 2 to 3</option>
+                                                    <option value="4"> 3 to 4</option>
+                                                    <option value="5"> 4 to 5</option>
+                                                    <option value="6"> 5 to 6</option>
+                                                    <option value="7"> 6 to 7</option>
+                                                    <option value="8"> 7 to 8</option>
+                                                    <option value="9"> 8 to 9</option>
+                                                    <option value="10"> 9 to 10</option>
+                                                    <option value="11"> 10 to 11</option>
+                                                    <option value="12"> 11 to 12</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+                <div class="block relative float-right z-10 max-md:float-none -mt-14 max-md:-mt-0 w-1/5 max-md:w-full text-center submit-btn-center">
+                    <div class="float-left mt-[0.7em] w-1/5 text-left">
+                        <div class="add-passenger-section" onclick="addRoomAndPassengers(this)">
+                            <svg class="leading-10 cursor-pointer add-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.2235 3H6.7765C4.4105 3 3 4.4105 3 6.7765V12.217C3 14.5895 4.4105 16 6.7765 16H12.217C14.583 16 15.9935 14.5895 15.9935 12.2235V6.7765C16 4.4105 14.5895 3 12.2235 3ZM12.1 9.9875H9.9875V12.1C9.9875 12.3665 9.7665 12.5875 9.5 12.5875C9.2335 12.5875 9.0125 12.3665 9.0125 12.1V9.9875H6.9C6.6335 9.9875 6.4125 9.7665 6.4125 9.5C6.4125 9.2335 6.6335 9.0125 6.9 9.0125H9.0125V6.9C9.0125 6.6335 9.2335 6.4125 9.5 6.4125C9.7665 6.4125 9.9875 6.6335 9.9875 6.9V9.0125H12.1C12.3665 9.0125 12.5875 9.2335 12.5875 9.5C12.5875 9.7665 12.3665 9.9875 12.1 9.9875Z" fill="black" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="float-right  submitForm bg-primary w-4/5 h-10 text-white hover:bg-secondary rounded-lg form_search-btn">
+                        <svg class="inline-block -mt-[2px] mr-1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.64797 13.7784C10.8757 13.7784 13.4922 11.1618 13.4922 7.9341C13.4922 4.70641 10.8757 2.08984 7.64797 2.08984C4.42027 2.08984 1.80371 4.70641 1.80371 7.9341C1.80371 11.1618 4.42027 13.7784 7.64797 13.7784Z" stroke="white" stroke-width="1.23037" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M14.1057 14.3904L12.8774 13.1621" stroke="white" stroke-width="1.23037" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Search
+                    </button>
+                </div>
+            </form>
+            <div class="clear-both"></div>
+        </div>
+
+        <div id="item-Tour" class="relative hidden mt-4">
+            <form id="tour-form" class="form-search mx-auto w-[95%]" method="post" action="/Tem3_Tour_Search_EN.bc">
+                <input type="hidden" name="currentdate" class="currentdate" value="" />
+
+                <div class="relative flex justify-between w-full city">
+                    <div class="float-left max-md:hidden w-1/12 text-center">
+                        <svg class="mx-auto mt-2 leading-10" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.9854 25.8277C12.5815 25.8277 12.2077 25.6143 12.0025 25.2667L10.751 23.1499C8.18138 18.806 5.75471 14.7032 4.92565 13.0391C4.3229 11.8031 4.01953 10.4834 4.01953 9.10841C4.01953 4.16459 8.04154 0.142578 12.9854 0.142578C17.9292 0.142578 21.9512 4.16459 21.9512 9.10841C21.9512 10.4826 21.6478 11.8019 21.0502 13.03C21.0431 13.0448 21.0351 13.0596 21.0274 13.0742C20.1823 14.7606 17.7711 18.8371 15.2188 23.1511L13.9682 25.2667C13.7631 25.6143 13.3892 25.8277 12.9854 25.8277Z" fill="#0488DB" />
+                            <path d="M12.9853 13.1783C10.5669 13.1783 8.59912 11.2108 8.59912 8.79242C8.59912 6.37402 10.5669 4.40625 12.9853 4.40625C15.4037 4.40625 17.3712 6.37402 17.3712 8.79242C17.3712 11.2108 15.4037 13.1783 12.9853 13.1783Z" fill="white" />
+                        </svg>
+                    </div>
+
+                    <div class="float-right max-md:float-none bg-white px-2 rounded-lg w-11/12 max-md:w-full h-10 leading-10 transition dep inner-container">
+                        <div class="flex justify-between country-container input-container">
+                            <p class="inline-block font-MazzardH-Medium text-primary capitalize title-inputs-inner">Location</p>
+                            <input type="text" placeholder="city" onclick="city_search(this)" data-type="4" data-active="0" class="px-2 w-full text-xs country tour-search-text text-value" required="" autocomplete="off" name="tour-search-text" value="" />
+                        </div>
+                        <input value="" class="co-id" type="hidden" name="tourname" />
+                        <span class="absolute hidden mini-loading"><i class="fa-spin fa-spinner fas"></i></span>
+                        <div class="absolute text-xs countryFlight"></div>
+                    </div>
+                </div>
+                <div class="flex justify-start my-3 w-full ">
+                    <div class="max-md:hidden w-1/12 text-center">
+                        <svg class="mx-auto" width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.12793 2.4541V4.9336" stroke="black" stroke-width="0.9918" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M13.7393 2.4541V4.9336" stroke="black" stroke-width="0.9918" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M3.4082 8.3125H17.4587" stroke="black" stroke-width="0.9918" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M17.8726 7.82781V14.8531C17.8726 17.3326 16.6329 18.9856 13.7401 18.9856H7.12811C4.23536 18.9856 2.99561 17.3326 2.99561 14.8531V7.82781C2.99561 5.34831 4.23536 3.69531 7.12811 3.69531H13.7401C16.6329 3.69531 17.8726 5.34831 17.8726 7.82781Z" stroke="black" stroke-width="0.9918" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M13.4866 12.1215H13.494" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M13.4866 14.603H13.494" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10.4295 12.1215H10.4369" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10.4295 14.603H10.4369" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M7.36943 12.1215H7.37684" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M7.36943 14.603H7.37684" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="float-right flex justify-between w-8/12 max-md:w-full Basis_Date_Box">
+                        <div class="mr-auto rounded-lg w-[48%] result-for rounded-lg ">
+                            <div class="transition cursor-pointer input-container relative">
+                                <p class="mt-1 font-MazzardH-Light text-[9.44px] text-gray_3 title-inputs-inner">Travel Date From</p>
+
+                                <input type="text" value=""  class="rounded-lg bold-center-content-input sp-start w-full text-sm Basis_Date start_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-active="0" data-cache="0" readonly="" name="fdate" required="" />
+                               
+
+                                <div class="clear-both"></div>
+                            </div>
+
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="ml-auto rounded-lg w-[48%] result-for rounded-lg ">
+                            <div class="transition cursor-pointer input-container relative">
+                                <p class="mt-1 font-MazzardH-Light text-[9.44px] text-gray_3 title-inputs-inner">To</p>
+
+                                <input type="text" value=""  class="rounded-lg bold-center-content-input sp-end w-full text-sm Basis_Date end_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-active="0" data-cache="0" readonly="" name="tdate" />
+                               
+
+                                <div class="clear-both"></div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+
+                <div class="relative w-full passenger_section">
+                    <div class="rounded-lg w-full text-xs CountPassenger room">
+                        <div class="relative room-CountPassenger-content rounded-lg">
+
+                            <div class="max-md:block flex justify-start room-CountPassenger mb-3">
+                                <div class="max-md:block max-md:float-none w-1/12 max-md:w-full font-MazzardH-Medium text-[13px] text-primary leading-[3rem] first-part-CountPassenger rooms-tlt">Room 1</div>
+                                <div class="w-8/12 max-md:w-full second-part-CountPassenger">
+
+                                    <input type="hidden" value="0" class="childcountandage" name="_root.rooms__1.childcountandage" />
+
+                                    <div class="flex max-md:flex-wrap justify-between max-xl:justify-start">
+                                        <div class="bg-white mr-3 rounded-lg w-20 h-12 adult-age-selection">
+                                            <label class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">Adult</label>
+                                            <select class="bg-transparent mt-1 px-1 w-full" name="_root.rooms__1.adultcount" class="adult adult-count">
+                                                <option value="1">1</option>
+                                                <option value="2" selected>2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                            </select>
+                                        </div>
+                                        <div class="bg-white mr-3 rounded-lg w-20 h-12 child-selection">
+                                            <label class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child</label>
+                                            <select onchange="childAgeActivation(this)" class="bg-transparent mt-1 px-1 w-full">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                        <div class="flex max-sm:justify-between max-md:gap-x-5 max-sm:mt-2 max-sm:w-full section-select-age">
+                                            <div class="bg-disable_field mr-3 max-md:mr-0 rounded-lg w-20 max-md:w-fit h-12 child-age-selection">
+                                                <label for="childDropdown-1" class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child 1</label>
+                                                <select class="bg-transparent mt-1 px-1 w-full child-count" disabled>
+                                                    <option value=""> Select Age</option>
+                                                    <option value="1"> up to 1</option>
+                                                    <option value="2"> 1 to 2</option>
+                                                    <option value="3"> 2 to 3</option>
+                                                    <option value="4"> 3 to 4</option>
+                                                    <option value="5"> 4 to 5</option>
+                                                    <option value="6"> 5 to 6</option>
+                                                    <option value="7"> 6 to 7</option>
+                                                    <option value="8"> 7 to 8</option>
+                                                    <option value="9"> 8 to 9</option>
+                                                    <option value="10"> 9 to 10</option>
+                                                    <option value="11"> 10 to 11</option>
+                                                    <option value="12"> 11 to 12</option>
+                                                </select>
+                                            </div>
+                                            <div class="bg-disable_field mr-3 max-md:mr-0 rounded-lg w-20 max-md:w-fit h-12 child-age-selection">
+                                                <label for="childDropdown-2" class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child 2</label>
+                                                <select class="bg-transparent mt-1 px-1 w-full child-count" disabled>
+                                                    <option value=""> Select Age</option>
+                                                    <option value="1"> up to 1</option>
+                                                    <option value="2"> 1 to 2</option>
+                                                    <option value="3"> 2 to 3</option>
+                                                    <option value="4"> 3 to 4</option>
+                                                    <option value="5"> 4 to 5</option>
+                                                    <option value="6"> 5 to 6</option>
+                                                    <option value="7"> 6 to 7</option>
+                                                    <option value="8"> 7 to 8</option>
+                                                    <option value="9"> 8 to 9</option>
+                                                    <option value="10"> 9 to 10</option>
+                                                    <option value="11"> 10 to 11</option>
+                                                    <option value="12"> 11 to 12</option>
+                                                </select>
+                                            </div>
+                                            <div class="bg-disable_field mr-3 max-md:mr-0 rounded-lg w-20 max-md:w-fit h-12 child-age-selection">
+                                                <label for="childDropdown-3" class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child 3</label>
+                                                <select class="bg-transparent mt-1 px-1 w-full child-count" disabled>
+                                                    <option value=""> Select Age</option>
+                                                    <option value="1"> up to 1</option>
+                                                    <option value="2"> 1 to 2</option>
+                                                    <option value="3"> 2 to 3</option>
+                                                    <option value="4"> 3 to 4</option>
+                                                    <option value="5"> 4 to 5</option>
+                                                    <option value="6"> 5 to 6</option>
+                                                    <option value="7"> 6 to 7</option>
+                                                    <option value="8"> 7 to 8</option>
+                                                    <option value="9"> 8 to 9</option>
+                                                    <option value="10"> 9 to 10</option>
+                                                    <option value="11"> 10 to 11</option>
+                                                    <option value="12"> 11 to 12</option>
+                                                </select>
+                                            </div>
+                                            <div class="bg-disable_field mr-3 max-md:mr-0 rounded-lg w-20 max-md:w-fit h-12 child-age-selection">
+                                                <label for="childDropdown-4" class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child 4</label>
+                                                <select class="bg-transparent mt-1 px-1 w-full child-count" disabled>
+                                                    <option value=""> Select Age</option>
+                                                    <option value="1"> up to 1</option>
+                                                    <option value="2"> 1 to 2</option>
+                                                    <option value="3"> 2 to 3</option>
+                                                    <option value="4"> 3 to 4</option>
+                                                    <option value="5"> 4 to 5</option>
+                                                    <option value="6"> 5 to 6</option>
+                                                    <option value="7"> 6 to 7</option>
+                                                    <option value="8"> 7 to 8</option>
+                                                    <option value="9"> 8 to 9</option>
+                                                    <option value="10"> 9 to 10</option>
+                                                    <option value="11"> 10 to 11</option>
+                                                    <option value="12"> 11 to 12</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+                <div class="block relative float-right z-10 max-md:float-none -mt-14 max-md:-mt-0 w-1/5 max-md:w-full text-center submit-btn-center">
+                    <div class="float-left mt-[0.7em] w-1/5 text-left">
+                        <div class="add-passenger-section" onclick="addRoomAndPassengers(this)">
+                            <svg class="leading-10 cursor-pointer add-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.2235 3H6.7765C4.4105 3 3 4.4105 3 6.7765V12.217C3 14.5895 4.4105 16 6.7765 16H12.217C14.583 16 15.9935 14.5895 15.9935 12.2235V6.7765C16 4.4105 14.5895 3 12.2235 3ZM12.1 9.9875H9.9875V12.1C9.9875 12.3665 9.7665 12.5875 9.5 12.5875C9.2335 12.5875 9.0125 12.3665 9.0125 12.1V9.9875H6.9C6.6335 9.9875 6.4125 9.7665 6.4125 9.5C6.4125 9.2335 6.6335 9.0125 6.9 9.0125H9.0125V6.9C9.0125 6.6335 9.2335 6.4125 9.5 6.4125C9.7665 6.4125 9.9875 6.6335 9.9875 6.9V9.0125H12.1C12.3665 9.0125 12.5875 9.2335 12.5875 9.5C12.5875 9.7665 12.3665 9.9875 12.1 9.9875Z" fill="black" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="float-right  submitForm bg-primary w-4/5 h-10 text-white hover:bg-secondary rounded-lg form_search-btn">
+                        <svg class="inline-block -mt-[2px] mr-1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.64797 13.7784C10.8757 13.7784 13.4922 11.1618 13.4922 7.9341C13.4922 4.70641 10.8757 2.08984 7.64797 2.08984C4.42027 2.08984 1.80371 4.70641 1.80371 7.9341C1.80371 11.1618 4.42027 13.7784 7.64797 13.7784Z" stroke="white" stroke-width="1.23037" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M14.1057 14.3904L12.8774 13.1621" stroke="white" stroke-width="1.23037" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Search
+                    </button>
+                </div>
+            </form>
+            <div class="clear-both"></div>
+        </div>
+
+        <div id="item-FlightHotel" class="hidden item-FlightHotel mb-5">
+            <form id="flightHotel-form" class="form-search mx-auto mt-5 w-[95%] flightHotel-form" method="post" action="/Tem3_FlightHotel_Search_EN.bc" autocomplete="off">
+                <input type="hidden" name="currentdate" class="currentdate" value="" />
+                <input type="hidden" name="child" class="child" value="0" />
+                <input type="hidden" name="select-age" class="select-age-value" value="0" />
+                <div class="clear-both"></div>
+                <div class="route-content">
+                    <div class="flex max-md:flex-wrap justify-between">
+                        <div class="max-md:block inline-block relative w-1/2 max-md:w-full city">
+                            <div class="dep-plane transition">
+                                <div class="country-container inner-container" onclick="empty_value(this)">
+                                    <div class="w-full input-container">
+                                        <input type="text" placeholder="origin" oninput="city_search(this)" onblur="set_city_search(this)" data-type="1" class="text-value px-2 rounded-lg w-full h-10 text-xs country FCD1" required="" value="" />
+                                    </div>
+                                </div>
+                                <input value="" class="co-id FCDid1" type="hidden" name="from" />
+
+                                <span class="absolute hidden mini-loading"><i class="fa-spin fa-spinner fas"></i></span>
+
+                                <div class="searchList unvisible-city hidden float-right text-sm absolute z-20">
+                                    <div class="countryFlight"></div>
+                                    <div class="ul-list search-list ">
+                                        <div class="center-txt">Crowded cities</div>
+                                        <div class="flex list-city">
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>Internal</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1203548"><span>Tehran - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211083"><span>Mashhad - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211110"><span>Kish - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211086"><span>Shiraz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211084"><span>Isfahan - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196609"><span>Ahvaz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211091"><span>Kerman - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196620"><span>Kermanshah - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196639"><span>Qeshm - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211085"><span>Tabriz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196659"><span>Chabahar - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211090"><span>Yazd - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196635"><span>Bandar Abbas - (all airports)</span></li>
+                                        </ul>
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>External</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1177676"><span>Istanbul - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1173505"><span>Dubai - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1168092"><span>Antalya - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1189731"><span>Tbilisi - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1178542"><span>KualaLumpur - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1184034"><span>Paris - (all airports)</span></li>
+                                        </ul>
+                                        </div>
+                                    </div>
+                                    <div class="clear-both"></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <span class="mx-3 text-base leading-10 cursor-pointer exchange-container fi-exchange-container max-md:rotate-90" onclick="exchangeDepDes(this)">
+                            <svg class="inline-block" xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                                <path d="M17.4879 12.4209L13.3784 16.5385" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M3.54297 12.4209H17.4872" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M3.54297 7.51608L7.6524 3.39844" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M17.4872 7.5166H3.54297" stroke="black" stroke-width="1.23037" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <div class="max-md:block inline-block relative w-1/2 max-md:w-full city">
+                            <div class="transition des-plane">
+                                <div class="country-container inner-container" onclick="empty_value(this)">
+                                    <div class="w-full input-container">
+                                        <input type="text" placeholder="destination" oninput="city_search(this)" onblur="set_city_search(this)" data-type="1" class="text-value px-2 rounded-lg w-full h-10 text-xs country FCD2" required="" autocomplete="off" value="" />
+                                    </div>
+                                </div>
+                                <input value="" class="co-id FCDid2" type="hidden" name="to" />
+                                <span class="absolute hidden mini-loading"><i class="fa-spin fa-spinner fas"></i></span>
+                                <div class=" searchList unvisible-city hidden float-right text-sm absolute z-20">
+                                    <div class="countryFlight"></div>
+                                    <div class="ul-list search-list">
+                                        <div class="center-txt">Crowded cities</div>
+                                        <div class="flex list-city">
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>Internal</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1203548"><span>Tehran - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211083"><span>Mashhad - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211110"><span>Kish - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211086"><span>Shiraz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211084"><span>Isfahan - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196609"><span>Ahvaz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211091"><span>Kerman - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196620"><span>Kermanshah - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196639"><span>Qeshm - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211085"><span>Tabriz - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196659"><span>Chabahar - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1211090"><span>Yazd - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1196635"><span>Bandar Abbas - (all airports)</span></li>
+                                        </ul>
+                                         <ul class="ul-list-cat">
+                                        <li class="category-title "><span>External</span></li>
+                                        
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1177676"><span>Istanbul - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1173505"><span>Dubai - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1168092"><span>Antalya - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1189731"><span>Tbilisi - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1178542"><span>KualaLumpur - (all airports)</span></li>
+                                        <li class="leading-10 px-2 line-clamp-1 text-sm cursor-pointer " onclick="SelectPlace(this)" data-id="1184034"><span>Paris - (all airports)</span></li>
+                                        </ul>
+                                        </div>
+                                    </div>
+                                    <div class="clear-both"></div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between mt-2 w-full Basis_Date_Box">
+                        <div class="w-1/2 result-for rounded-lg">
+                            <div class="transition cursor-pointer input-container">
+                                <input type="text" value=""  class="bold-center-content-input px-2 sp-start rounded-lg w-full h-10 text-sm Basis_Date start_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-module="" data-active="0" data-cache="0" readonly="" name="fdate" required="" />
+                                <div class="clear-both"></div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="ml-3 w-1/2 result-for rounded-lg">
+                            <div class="transition cursor-pointer input-container">
+                                <input type="text" value=""  class="bold-center-content-input px-2 sp-end rounded-lg w-full h-10 text-sm Basis_Date end_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-module="" data-active="0" data-cache="0" readonly="" name="tdate"  required=""/>
+                                <div class="clear-both"></div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="mt-2 passenger_section">
+
+                        <div class="relative w-full passenger_section">
+                            <div class="rounded-lg w-full text-xs CountPassenger room">
+                                <div class="relative room-CountPassenger-content rounded-lg">
+                                    <div class="item-CountPassenger">
+                                        <div class="mt-4 mb-2 font-MazzardH-Light text-black text-xs first-part-CountPassenger">Cabin class:</div>
+                                        <div class="second-part-CountPassenger">
+                                            <select class="bg-white mr-3 px-2 rounded-lg w-24 h-10 flight-Class" name="FlightClass">
+                                                <option value="Economy"> Economy</option>
+                                                <option value="BusinessClass"> Bussines</option>
+                                                <option value="FirstClass"> First</option>
+                                            </select>
+                                        </div>
+                                        <div class="clear-both"></div>
+                                    </div>
+                                    <div class="max-md:block flex justify-start room-CountPassenger mt-2 mb-3">
+                                        <div class="max-md:block max-md:float-none w-1/12 max-md:w-full font-MazzardH-Medium text-[13px] text-primary leading-[3rem] first-part-CountPassenger rooms-tlt">Room 1</div>
+                                        <div class="w-8/12 max-md:w-full second-part-CountPassenger">
+
+                                            <input type="hidden" value="0" class="childcountandage" name="_root.rooms__1.childcountandage" />
+
+                                            <div class="flex max-md:flex-wrap justify-between max-xl:justify-start">
+                                                <div class="bg-white mr-3 rounded-lg w-20 h-12 adult-age-selection">
+                                                    <label class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">Adult</label>
+                                                    <select class="bg-transparent mt-1 px-1 w-full" name="_root.rooms__1.adultcount" class="adult adult-count">
+                                                        <option value="1">1</option>
+                                                        <option value="2" selected>2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                    </select>
+                                                </div>
+                                                <div class="bg-white mr-3 rounded-lg w-20 h-12 child-selection">
+                                                    <label class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child</label>
+                                                    <select onchange="childAgeActivation(this)" class="bg-transparent mt-1 px-1 w-full">
+                                                        <option value="0">0</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                    </select>
+                                                </div>
+                                                <div class="flex max-sm:justify-between max-md:gap-x-5 max-sm:mt-2 max-sm:w-full section-select-age">
+                                                    <div class="bg-disable_field mr-3 max-md:mr-0 rounded-lg w-20 max-md:w-fit h-12 child-age-selection">
+                                                        <label for="childDropdown-1" class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child 1</label>
+                                                        <select class="bg-transparent mt-1 px-1 w-full child-count" disabled>
+                                                            <option value=""> Select Age</option>
+                                                            <option value="1"> up to 1</option>
+                                                            <option value="2"> 1 to 2</option>
+                                                            <option value="3"> 2 to 3</option>
+                                                            <option value="4"> 3 to 4</option>
+                                                            <option value="5"> 4 to 5</option>
+                                                            <option value="6"> 5 to 6</option>
+                                                            <option value="7"> 6 to 7</option>
+                                                            <option value="8"> 7 to 8</option>
+                                                            <option value="9"> 8 to 9</option>
+                                                            <option value="10"> 9 to 10</option>
+                                                            <option value="11"> 10 to 11</option>
+                                                            <option value="12"> 11 to 12</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="bg-disable_field mr-3 max-md:mr-0 rounded-lg w-20 max-md:w-fit h-12 child-age-selection">
+                                                        <label for="childDropdown-2" class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child 2</label>
+                                                        <select class="bg-transparent mt-1 px-1 w-full child-count" disabled>
+                                                            <option value=""> Select Age</option>
+                                                            <option value="1"> up to 1</option>
+                                                            <option value="2"> 1 to 2</option>
+                                                            <option value="3"> 2 to 3</option>
+                                                            <option value="4"> 3 to 4</option>
+                                                            <option value="5"> 4 to 5</option>
+                                                            <option value="6"> 5 to 6</option>
+                                                            <option value="7"> 6 to 7</option>
+                                                            <option value="8"> 7 to 8</option>
+                                                            <option value="9"> 8 to 9</option>
+                                                            <option value="10"> 9 to 10</option>
+                                                            <option value="11"> 10 to 11</option>
+                                                            <option value="12"> 11 to 12</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="bg-disable_field mr-3 max-md:mr-0 rounded-lg w-20 max-md:w-fit h-12 child-age-selection">
+                                                        <label for="childDropdown-3" class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child 3</label>
+                                                        <select class="bg-transparent mt-1 px-1 w-full child-count" disabled>
+                                                            <option value=""> Select Age</option>
+                                                            <option value="1"> up to 1</option>
+                                                            <option value="2"> 1 to 2</option>
+                                                            <option value="3"> 2 to 3</option>
+                                                            <option value="4"> 3 to 4</option>
+                                                            <option value="5"> 4 to 5</option>
+                                                            <option value="6"> 5 to 6</option>
+                                                            <option value="7"> 6 to 7</option>
+                                                            <option value="8"> 7 to 8</option>
+                                                            <option value="9"> 8 to 9</option>
+                                                            <option value="10"> 9 to 10</option>
+                                                            <option value="11"> 10 to 11</option>
+                                                            <option value="12"> 11 to 12</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="bg-disable_field mr-3 max-md:mr-0 rounded-lg w-20 max-md:w-fit h-12 child-age-selection">
+                                                        <label for="childDropdown-4" class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">child 4</label>
+                                                        <select class="bg-transparent mt-1 px-1 w-full child-count" disabled>
+                                                            <option value=""> Select Age</option>
+                                                            <option value="1"> up to 1</option>
+                                                            <option value="2"> 1 to 2</option>
+                                                            <option value="3"> 2 to 3</option>
+                                                            <option value="4"> 3 to 4</option>
+                                                            <option value="5"> 4 to 5</option>
+                                                            <option value="6"> 5 to 6</option>
+                                                            <option value="7"> 6 to 7</option>
+                                                            <option value="8"> 7 to 8</option>
+                                                            <option value="9"> 8 to 9</option>
+                                                            <option value="10"> 9 to 10</option>
+                                                            <option value="11"> 10 to 11</option>
+                                                            <option value="12"> 11 to 12</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="block relative float-right z-10 max-md:float-none -mt-14 max-md:-mt-0 w-1/5 max-md:w-full text-center submit-btn-center">
+                            <div class="float-left mt-[0.7em] w-1/5 text-left">
+                                <div class="add-passenger-section" onclick="addRoomAndPassengers(this)">
+                                    <svg class="leading-10 cursor-pointer add-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.2235 3H6.7765C4.4105 3 3 4.4105 3 6.7765V12.217C3 14.5895 4.4105 16 6.7765 16H12.217C14.583 16 15.9935 14.5895 15.9935 12.2235V6.7765C16 4.4105 14.5895 3 12.2235 3ZM12.1 9.9875H9.9875V12.1C9.9875 12.3665 9.7665 12.5875 9.5 12.5875C9.2335 12.5875 9.0125 12.3665 9.0125 12.1V9.9875H6.9C6.6335 9.9875 6.4125 9.7665 6.4125 9.5C6.4125 9.2335 6.6335 9.0125 6.9 9.0125H9.0125V6.9C9.0125 6.6335 9.2335 6.4125 9.5 6.4125C9.7665 6.4125 9.9875 6.6335 9.9875 6.9V9.0125H12.1C12.3665 9.0125 12.5875 9.2335 12.5875 9.5C12.5875 9.7665 12.3665 9.9875 12.1 9.9875Z" fill="black" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="float-right  submitForm bg-primary w-4/5 h-10 text-white hover:bg-secondary rounded-lg form_search-btn">
+                                <svg class="inline-block -mt-[2px] mr-1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7.64797 13.7784C10.8757 13.7784 13.4922 11.1618 13.4922 7.9341C13.4922 4.70641 10.8757 2.08984 7.64797 2.08984C4.42027 2.08984 1.80371 4.70641 1.80371 7.9341C1.80371 11.1618 4.42027 13.7784 7.64797 13.7784Z" stroke="white" stroke-width="1.23037" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M14.1057 14.3904L12.8774 13.1621" stroke="white" stroke-width="1.23037" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                Search
+                            </button>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+
+
+                <div class="clear-both"></div>
+                <div class="mt-5 text-xs check-hotel-date">
+                    <input id="Hotel-Date" type="checkbox" onchange="CheckExteraHoteldate(this)" name="Hotel-Date" value="0" />
+                    <label for="Hotel-Date">I only need the hotel for part of the trip</label>
+                </div>
+                <div class="hidden mt-2 w-full Basis_Date_Box check-hotel-date-container">
+                    <div class="relative float-left bg-white rounded-lg w-[48%] h-10 result-for rounded-lg">
+                        <div class="transition cursor-pointer input-container">
+                            <input type="text" value="" placeholder="Departing" class="px-2 rounded-lg w-full h-10 text-sm Basis_Date start_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0" readonly="" name="checkin" />
+
+                            <div class="clear-both"></div>
+                        </div>
+
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="relative float-right bg-white rounded-lg w-[48%] h-10 result-for rounded-lg">
+                        <div class="transition cursor-pointer input-container">
+                            <input type="text" value="" placeholder="Returning" class="px-2 rounded-lg w-full h-10 text-sm Basis_Date end_date nextCalOpeningex" onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0" readonly="" name="checkout" />
+
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="clear-both"></div>
+
+                </div>
+
+            </form>
+        </div>
+
+        <div id="item-Insurance" class="relative hidden mt-4">
+            <form id="insurance-form" class="form-search mx-auto w-[95%]" method="post" action="/Tem3_InSurance_Search_EN.bc">
+                <input type="hidden" name="currentdate" class="currentdate" value="" />
+                <input value="" name="birthday" class="birthday" type="hidden">
+
+                <div class="relative flex justify-between w-full city">
+                    <div class="float-left max-md:hidden w-1/12 text-center">
+                        <svg class="mx-auto mt-2 leading-10" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.9854 25.8277C12.5815 25.8277 12.2077 25.6143 12.0025 25.2667L10.751 23.1499C8.18138 18.806 5.75471 14.7032 4.92565 13.0391C4.3229 11.8031 4.01953 10.4834 4.01953 9.10841C4.01953 4.16459 8.04154 0.142578 12.9854 0.142578C17.9292 0.142578 21.9512 4.16459 21.9512 9.10841C21.9512 10.4826 21.6478 11.8019 21.0502 13.03C21.0431 13.0448 21.0351 13.0596 21.0274 13.0742C20.1823 14.7606 17.7711 18.8371 15.2188 23.1511L13.9682 25.2667C13.7631 25.6143 13.3892 25.8277 12.9854 25.8277Z" fill="#0488DB" />
+                            <path d="M12.9853 13.1783C10.5669 13.1783 8.59912 11.2108 8.59912 8.79242C8.59912 6.37402 10.5669 4.40625 12.9853 4.40625C15.4037 4.40625 17.3712 6.37402 17.3712 8.79242C17.3712 11.2108 15.4037 13.1783 12.9853 13.1783Z" fill="white" />
+                        </svg>
+                    </div>
+
+                    <div class="float-right max-md:float-none bg-white px-2 rounded-lg w-11/12 max-md:w-full h-10 leading-10 transition dep inner-container">
+                        <div class="flex justify-between country-container input-container" onclick="empty_value(this)">
+                            <p class="inline-block font-MazzardH-Medium text-primary capitalize title-inputs-inner">Country</p>
+                            <input type="text" placeholder="country" oninput="city_search(this)" onblur="set_city_search(this)" data-type="5" data-active="0" class="text-value px-2 w-full text-xs country insurancecountry" required="" autocomplete="off" name="insurancecountry" value="" />
+                        </div>
+                        <input class="co-id" aria-label="country-id" name="countryid" type="hidden" value="">
+                        <span class="absolute hidden mini-loading"><i class="fa-spin fa-spinner fas"></i></span>
+                        <div class="absolute text-xs countryFlight"></div>
+                    </div>
+                </div>
+                <div class="flex justify-start my-3 w-full ">
+                    <div class="max-md:hidden w-1/12 text-center">
+                        <svg class="mx-auto" width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.12793 2.4541V4.9336" stroke="black" stroke-width="0.9918" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M13.7393 2.4541V4.9336" stroke="black" stroke-width="0.9918" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M3.4082 8.3125H17.4587" stroke="black" stroke-width="0.9918" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M17.8726 7.82781V14.8531C17.8726 17.3326 16.6329 18.9856 13.7401 18.9856H7.12811C4.23536 18.9856 2.99561 17.3326 2.99561 14.8531V7.82781C2.99561 5.34831 4.23536 3.69531 7.12811 3.69531H13.7401C16.6329 3.69531 17.8726 5.34831 17.8726 7.82781Z" stroke="black" stroke-width="0.9918" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M13.4866 12.1215H13.494" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M13.4866 14.603H13.494" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10.4295 12.1215H10.4369" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10.4295 14.603H10.4369" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M7.36943 12.1215H7.37684" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M7.36943 14.603H7.37684" stroke="black" stroke-width="1.23975" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="float-right flex justify-between w-8/12 max-md:w-full Basis_Date_Box">
+                        <div class="mr-auto rounded-lg w-[48%] result-for rounded-lg">
+                            <div class="transition cursor-pointer input-container relative">
+                                <p class="mt-1 font-MazzardH-Light text-[9.44px] text-gray_3 title-inputs-inner">Travel Date From</p>
+
+                                <input type="text" value="" placeholder="Departing" class="rounded-lg bold-center-content-input sp-start w-full text-sm Basis_Date start_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-active="0" data-cache="0" readonly="" name="fdate" required="" />
+                                
+
+
+                                <div class="clear-both"></div>
+                            </div>
+
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="ml-auto rounded-lg w-[48%] result-for rounded-lg">
+                            <div class="transition cursor-pointer input-container relative">
+                                <p class="mt-1 font-MazzardH-Light text-[9.44px] text-gray_3 title-inputs-inner">To</p>
+
+                                <input type="text" value="" placeholder="Returning" class="rounded-lg bold-center-content-input sp-end w-full text-sm Basis_Date end_date" onclick="Basis_Calendar(this,'[##cms.cms.date##]')" data-lang="en" data-active="0" data-cache="0" readonly="" name="tdate" />
+                                
+
+                                <div class="clear-both"></div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+
+                <div class="relative w-full passenger_section">
+                    <div class="rounded-lg w-full text-xs CountPassenger room">
+                        <div class="relative room-CountPassenger-content rounded-lg">
+
+                            <div class="max-md:block flex justify-start room-CountPassenger mb-3">
+                                <div class="max-md:hidden w-1/12 font-MazzardH-Medium text-[13px] text-primary leading-[3rem] first-part-CountPassenger rooms-tlt"></div>
+                                <div class="w-11/12 max-md:w-full second-part-CountPassenger">
+                                    <div class="flex max-md:flex-wrap justify-between">
+                                        <div class="bg-white mr-3 rounded-lg w-20 h-12 adult-age-selection">
+                                            <label class="block mt-1 ml-1 font-MazzardH-Light text-primary text-xs">Passenger</label>
+                                            <select class="bg-transparent mt-1 px-1 w-full" name="passengercount" class="passengercount" onchange="passengerBirthdate(this)">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap justify-between gap-2 max-md:gap-y-2 max-md:gap-x-0 mt-4 passengers-birthdate">
+                                        <div class="flex justify-between bg-white rounded-lg w-[23%] max-sm:w-full max-md:w-[47%] min-h-10 section-select-birthdate">
+                                            <div class="p-1 w-full BirthdatePassenger"><label class="label">Passenger's date of birth 1</label><input class="block w-full h-5 datepicker" placeholder="Date of birth" type="text" autocomplete="off" readonly="true">
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between bg-disable_field rounded-lg w-[23%] max-sm:w-full max-md:w-[47%] min-h-10 section-select-birthdate">
+                                            <div class="p-1 w-full BirthdatePassenger"><label class="label">Passenger's date of birth 2</label><input class="block w-full h-5 datepicker" placeholder="Date of birth" type="text" autocomplete="off" readonly="true" disabled>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between bg-disable_field rounded-lg w-[23%] max-sm:w-full max-md:w-[47%] min-h-10 section-select-birthdate">
+                                            <div class="p-1 w-full BirthdatePassenger"><label class="label">Passenger's date of birth 3</label><input class="block w-full h-5 datepicker" placeholder="Date of birth" type="text" autocomplete="off" readonly="true" disabled>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between bg-disable_field rounded-lg w-[23%] max-sm:w-full max-md:w-[47%] min-h-10 section-select-birthdate">
+                                            <div class="p-1 w-full BirthdatePassenger"><label class="label">Passenger's date of birth 4</label><input class="block w-full h-5 datepicker" placeholder="Date of birth" type="text" autocomplete="off" readonly="true" disabled>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between bg-disable_field rounded-lg w-[23%] max-sm:w-full max-md:w-[47%] min-h-10 section-select-birthdate">
+                                            <div class="p-1 w-full BirthdatePassenger"><label class="label">Passenger's date of birth 5</label><input class="block w-full h-5 datepicker" placeholder="Date of birth" type="text" autocomplete="off" readonly="true" disabled>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between bg-disable_field rounded-lg w-[23%] max-sm:w-full max-md:w-[47%] min-h-10 section-select-birthdate">
+                                            <div class="p-1 w-full BirthdatePassenger"><label class="label">Passenger's date of birth 6</label><input class="block w-full h-5 datepicker" placeholder="Date of birth" type="text" autocomplete="off" readonly="true" disabled>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between bg-disable_field rounded-lg w-[23%] max-sm:w-full max-md:w-[47%] min-h-10 section-select-birthdate">
+                                            <div class="p-1 w-full BirthdatePassenger"><label class="label">Passenger's date of birth 7</label><input class="block w-full h-5 datepicker" placeholder="Date of birth" type="text" autocomplete="off" readonly="true" disabled>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between bg-disable_field rounded-lg w-[23%] max-sm:w-full max-md:w-[47%] min-h-10 section-select-birthdate">
+                                            <div class="p-1 w-full BirthdatePassenger"><label class="label">Passenger's date of birth 8</label><input class="block w-full h-5 datepicker" placeholder="Date of birth" type="text" autocomplete="off" readonly="true" disabled>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+                <div class="block relative float-right z-10 mb-5 w-11/12 max-md:w-full text-center submit-btn-center">
+                    <button type="submit" class="submitForm bg-primary w-full h-10 text-white hover:bg-secondary rounded-lg form_search-btn">
+                        <svg class="inline-block -mt-[2px] mr-1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.64797 13.7784C10.8757 13.7784 13.4922 11.1618 13.4922 7.9341C13.4922 4.70641 10.8757 2.08984 7.64797 2.08984C4.42027 2.08984 1.80371 4.70641 1.80371 7.9341C1.80371 11.1618 4.42027 13.7784 7.64797 13.7784Z" stroke="white" stroke-width="1.23037" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M14.1057 14.3904L12.8774 13.1621" stroke="white" stroke-width="1.23037" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Search
+                    </button>
+                </div>
+            </form>
+            <div class="clear-both"></div>
+        </div>
+
+
+        <script src="./js/searchengine-tripcenter-en.js" type="text/javascript"></script>
+        <basis core="call" file="Client_MultiLang_Calendar.inc" />
+        <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_multiLang_js_calendar.js" type="text/javascript"></script>
+
+
+    </section>
+    <!-- <div class="flex w-full mt-5 max-xl:justify-center max-md:flex-col max-md:gap-3 hidden">
+        <section class="bg-gradient-to-br from-startColor_box to-endColor_box rounded-2xl w-1/3 min-h-[88px]  p-5 max-xl:w-full ">
+            <h3 class="uppercase font-MazzardH-Regular text-[18.53px] text-black ">AGENCY CREDIT</h3>
+            <h4 class="text-blue_sharp font-MazzardH-Bold text-lg float-left">2,055,102,520</h4><span class="uppercase float-right text-base">IRR</span>
+        </section>
+        <section class="bg-gradient-to-br from-startColor_box to-endColor_box rounded-2xl w-1/3 min-h-[88px] ml-5 p-5 max-xl:w-full max-md:ml-0">
+            <h3 class="uppercase font-MazzardH-Regular text-[18.53px] text-black ">Total buy amount</h3>
+            <h4 class="text-secondary font-MazzardH-Bold text-lg float-left">65,035,921,000</h4><span class="uppercase float-right text-base">IRR</span>
+        </section>
+    </div> -->
+</div>
+
+
+<section class="float-right max-xl:mt-5 w-[470px] max-xl:w-full h-[450px]">
+    <div id="banners" class="w-[470px] max-[470px]:w-full h-[450px] swiper">
+
+    </div>
+</section>
+<div class="clear-both"></div>

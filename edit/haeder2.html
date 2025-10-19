@@ -1,0 +1,80 @@
+<link rel="stylesheet" type="text/css" href="/css/login-register.css">
+
+    <!--favicon icon-->
+    <link rel="icon" href="[##cms.cms.cdn##]/images/favicon.png" type="image/png" sizes="16x16">
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Open+Sans&display=swap"
+          rel="stylesheet">
+
+    <!--Bootstrap css-->
+    <link rel="stylesheet" href="[##cms.cms.cdn##]/css/bootstrap.min.css">
+    <!--Magnific popup css-->
+    <link rel="stylesheet" href="[##cms.cms.cdn##]/css/magnific-popup.css">
+    <!--Themify icon css-->
+    <link rel="stylesheet" href="[##cms.cms.cdn##]/css/themify-icons.css">
+    <!--animated css-->
+    <link rel="stylesheet" href="[##cms.cms.cdn##]/css/animate.min.css">
+    <!--ytplayer css-->
+    <link rel="stylesheet" href="[##cms.cms.cdn##]/css/jquery.mb.YTPlayer.min.css">
+    <!--Owl carousel css-->
+    <link rel="stylesheet" href="[##cms.cms.cdn##]/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="[##cms.cms.cdn##]/css/owl.theme.default.min.css">
+    <!--custom css-->
+    <link rel="stylesheet" href="[##cms.cms.cdn##]/css/style.css">
+    <!--responsive css-->
+    <link rel="stylesheet" href="[##cms.cms.cdn##]/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="[##cms.cms.cdn##]/css/text-slider.css">
+
+<header class="header">
+    <!--start navbar-->
+    <nav class="navbar navbar-expand-lg fixed-top bg-transparent">
+        <div class="container">
+            <a class="navbar-brand" href="/"><img src="[##cms.cms.cdn##]/images/logo-trip.png" width="120" alt="logo"
+                                                           class="img-fluid"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="ti-menu"></span>
+            </button>
+
+            <div class="collapse navbar-collapse main-menu" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link page-scroll dropdown-toggle" href="#" id="navbarDropdownHome" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          صفحه اصلی
+                        </a>
+                    
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#about">ورود همکار</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#features">درباره ما</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#pricing">تماس با ما</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#pricing">درخواست دمو</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--end navbar-->
+</header>
+   
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            $(".log").load("/Client_Login_Information.bc")
+        });
+        $(".header-default .navbar-nav li").each(function () {
+            $(this).click(function () {
+                $(this).addClass("active-menu")
+                $(this).siblings(".header-default .navbar-nav li").removeClass("active-menu")
+            })
+
+        })
+    </script>
