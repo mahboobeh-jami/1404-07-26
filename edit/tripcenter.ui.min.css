@@ -439,4 +439,15 @@ li.category-title{color:#000 !important;}
     border-radius: 0.5rem;
 
 }
+
+.alert-passengers{
+  color: red ;
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin-bottom: auto;
+}
 /* new searchbox */
