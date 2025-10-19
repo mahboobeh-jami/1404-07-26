@@ -203,7 +203,6 @@ li.category-title{color:#000 !important;}
             background-color: rgb(47 47 47 / var(--tw-bg-opacity)) !important;
             height: 42px !important;
             display: inline-block !important;
-            margin-left: 1.25rem !important;
             width: 100% !important;
 }
 .reservation-item > li {
@@ -232,12 +231,16 @@ li.category-title{color:#000 !important;}
 .form-search {
     display: block !important;
 }
-.module-icon.inline-block {
+.module-icon.inline-block  {
   display: none !important;
 }
 
 .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4 {
   width: 100% !important;
+  margin: 0 auto !important;
+}
+.reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4 > div {
+  width: 100% !important; margin: 0 !important;
 }
 
 .module-form {
@@ -288,6 +291,9 @@ li.category-title{color:#000 !important;}
 .search-box-container #flightSearch .h-20 {
   height: 40px !important;
 }
+
+
+
 .search-box-container #flightSearch .label-text ,.search-box-container #flightSearch  .label-routes {
   display: none !important;
 }
@@ -332,7 +338,8 @@ li.category-title{color:#000 !important;}
     padding-top: 0 !important;
 }
 
-.auto-fit.clear-both.text-base.text-textColor.cursor-pointer {
+.auto-fit.clear-both.text-base.text-textColor.cursor-pointer,
+.Basis_Calendar .auto-fit {
   display: none !important;
 }
 
@@ -425,29 +432,93 @@ li.category-title{color:#000 !important;}
     border-radius: 0.5rem;
 }
 
-.r-hotel .reserve-field {margin: 0 !important;}
-.r-hotel .reserve-field.check-destination-hotel {background: unset !important;}
-.r-hotel .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2 {
-  padding: 0;
-  margin: 0;
-}
-.r-hotel .reserve-field.passengers-field.cursor-pointer.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4{
-    width: 100% !important;
-}
-#departure2{
+
+#departure2 , #departure9 , #departure4{
     background: white !important; height: 40px !important; line-height: 40px !important;
     border-radius: 0.5rem;
 
 }
 
 .alert-passengers{
-  color: red ;
-  position: absolute;
-  width: 100%;
-  height: 40px;
-  top: 0;
-  right: 0;
-  left: 0;
-  margin-bottom: auto;
+ color:red;position:absolute;width:100%;height:40px;top:0;right:0;left:0;margin-bottom:auto;
 }
+.reserve-field {
+  border-radius: .5rem !important;
+  margin: 0.5em 0 !important;
+}
+
+.r-hotel .reserve-field{
+  height: 40px;
+  line-height: 40px;
+}
+
+
+.searchList{
+  border-radius: 10px;
+  border: .25px solid var(--fd-primary-700);
+  background: white;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,.25);
+  width: 370px;
+  text-align: center;
+  max-height: 250px;
+  overflow: hidden;
+  height: 250px;
+}
+
+.passengerbox , .FlightClass {
+  border-radius: 10px;
+  border: .25px solid var(--fd-primary-700);
+  background: white;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,.25);
+  max-height: 250px;
+  overflow: hidden;
+  height: 250px;
+}
+
+
+.search-box-container #hotelSearch .h-20 ,
+.search-box-container #tourSearch .h-20 ,
+.search-box-container #flightHotelSearch .h-20 ,
+.search-box-container #insuranceSearch .h-20 {
+  height: 40px ;
+}
+
+
+.r-hotel .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4.check-destination-hotel ,
+.r-tour .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4 ,
+.r-insurance .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4 {
+  height: 80px !important;
+}
+
+
+/* .r-hotel .reserve-field {margin: 0 !important;} */
+.r-hotel .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4.check-destination-hotel ,
+.r-tour .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4 ,
+.r-insurance .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4 ,
+.reserve-field.CheckHotelDate.mb-4.mt-5.clear-both.float-right.w-full{background: unset !important;}
+.r-hotel .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2,
+#insuranceSearch .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2,
+#tourSearch .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2
+{
+  padding: 0;
+  margin: 0;
+}
+.r-hotel .reserve-field.passengers-field.cursor-pointer.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4{
+    width: 100% !important;
+}
+.show-passengers-dropdown .label-text,
+.label-flightclass .label-text{display: none !important;}
+
+.label-dates{
+  display: none !important;
+}
+
+.search-box-container .r-hotel .departure-date::after {
+  display: none !important;
+}
+
+.r-flighthotel .label-routes {
+  display: none !important;
+}
+
 /* new searchbox */
