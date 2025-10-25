@@ -888,11 +888,11 @@ li.bg-bgColor-100.rounded-type-1.text-zinc-950.text-center.text-base.p-1.mb-1 {
 /* new searchlist */
 .ul-list-cat{z-index:100;background:#fdfeff;}
 .gray-text,.search-list{color:#000}
-.center-txt,.search-list ul li:first-child{border-bottom:1px solid var(--color-primary);text-align:center;color: black;}
+/* .center-txt,.search-list ul li:first-child{border-bottom:1px solid var(--color-primary);text-align:center;color: black;} */
 .search-list ul li:hover{background:#b2b2b2;color:#fff;cursor:pointer}
-.search-list ul li:first-child:hover{color:#000;background-color:white;cursor:unset}
+/* .search-list ul li:first-child:hover{color:#000;background-color:white;cursor:unset} */
 .center-txt{font-weight:900;padding:5px 0;margin:0 auto;background-color:var(--color-primary)}
-ul.ul-list-cat{width:50%;display:inline-block}.ul-list-cat::-webkit-scrollbar{width:4px}
+ul.ul-list-cat{width:100%;display:inline-block}.ul-list-cat::-webkit-scrollbar{width:4px}
 .ul-list-cat::-webkit-scrollbar-track{background:#f7f5f5}
 .ul-list-cat::-webkit-scrollbar-thumb{background-color:#000;border-radius:20px}
 .search-list {
@@ -929,5 +929,10 @@ li.category-title{color:#000 !important;}
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
+
+button.book-px-4.book-py-2.book-rounded-xl.book-bg-primary-800.book-text-white {
+    background: var(--color-primary) !important;
+}
+.book-tw__selected{color: var(--color-primary);}
 /* ............................. */
 /* new searchbox mobile*/

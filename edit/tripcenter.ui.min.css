@@ -236,11 +236,11 @@ min-height:40px;line-height:40px;border-bottom:1px solid #ccc}.passengerbox,.Fli
 /* new searchlist */
 .ul-list-cat{z-index:100;background:#fdfeff;max-height:210px;overflow:auto}
 .gray-text,.search-list{color:#000}
-.center-txt,.search-list ul li:first-child{border-bottom:1px solid var(--color-primary);text-align:center;color: black;}
+/* .center-txt,.search-list ul li:first-child{border-bottom:1px solid var(--color-primary);text-align:center;color: black;} */
 .search-list ul li:hover{background:#b2b2b2;color:#fff;cursor:pointer}
-.search-list ul li:first-child:hover{color:#000;background-color:white;cursor:unset}
+/* .search-list ul li:first-child:hover{color:#000;background-color:white;cursor:unset} */
 .center-txt{font-weight:900;padding:5px 0;margin:0 auto;background-color:var(--color-primary)}
-ul.ul-list-cat{width:50%;display:inline-block}.ul-list-cat::-webkit-scrollbar{width:4px}
+ul.ul-list-cat{width:100%;display:inline-block}.ul-list-cat::-webkit-scrollbar{width:4px}
 .ul-list-cat::-webkit-scrollbar-track{background:#f7f5f5}
 .ul-list-cat::-webkit-scrollbar-thumb{background-color:#000;border-radius:20px}
 .search-list {
@@ -251,7 +251,8 @@ ul.ul-list-cat{width:50%;display:inline-block}.ul-list-cat::-webkit-scrollbar{wi
     overflow: hidden;
     height: auto ;
 }
-.search-list ul li:first-child{padding:2px;font-size:14px}.search-list ul li{border-bottom:none;padding:2px;text-align:center;font-size:14px}
+/* .search-list ul li:first-child{padding:2px;font-size:14px} */
+.search-list ul li{border-bottom:none;padding:2px;text-align:center;font-size:14px}
 li.category-title{color:#000 !important;} 
 .form-search-input{width:95%;height:41px;outline:0;border:none;border-bottom:1px solid var(--color-secondary);direction:rtl;padding-right:40px}
 /* new searchlist */
@@ -281,6 +282,18 @@ li.category-title{color:#000 !important;}
 .search-box-container .active-r-btn {
     background-color: unset !important;
 }
+
+
+/* .search-list ul li:first-child {
+    padding: 2px;
+    font-size: 14px;
+}
+.center-txt, .search-list ul li:first-child {
+    border-bottom: unset !important;
+    text-align: center;
+    color: black;
+} */
+
 
 /* searchbox */
 
