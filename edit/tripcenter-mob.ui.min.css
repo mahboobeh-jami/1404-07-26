@@ -1,45 +1,3 @@
-:root {
-    /* Primary colors based on #03A77C */
-    --primary-950: #01261c; /* Very dark shade */
-    --primary: #03A77C;     /* Main primary color */
-    --primary-900: #023d2e; /* Darker shade */
-    --primary-800: #04543f; /* Dark shade */
-    --primary-700: #066b50; /* Slightly darker */
-    --primary-600: #03A77C; /* Base primary color */
-    --primary-500: #0bb68a; /* Slightly lighter */
-    --primary-400: #2cc29b; /* Lighter shade */
-    --primary-300: #4eceac; /* Light shade */
-    --primary-200: #7ddbc2; /* Very light shade */
-    --primary-100: #abe8d8; /* Extremely light */
-    --primary-50: #d9f4ed;  /* Near white */
-  
-    /* Secondary colors based on #FF9900 */
-    --secondary-950: #3f2600; /* Very dark shade */
-    --secondary: #FF9900;     /* Main secondary color */
-    --secondary-900: #662b00; /* Darker shade */
-    --secondary-800: #994200; /* Dark shade */
-    --secondary-700: #cc5800; /* Slightly darker */
-    --secondary-600: #FF9900; /* Base secondary color */
-    --secondary-500: #ffaa33; /* Slightly lighter */
-    --secondary-400: #ffbb66; /* Lighter shade */
-    --secondary-300: #ffcc99; /* Light shade */
-    --secondary-200: #ffddcc; /* Very light shade */
-    --secondary-100: #ffeee5; /* Extremely light */
-    --secondary-50: #fff6f2;  /* Near white */
-  
-    /* Zinc colors (unchanged) */
-    --zinc-950: #09090b;
-    --zinc-900: #18181b;
-    --zinc-800: #27272a;
-    --zinc-700: #3f3f46;
-    --zinc-600: #52525b;
-    --zinc-500: #71717a;
-    --zinc-400: #a1a1aa;
-    --zinc-300: #d4d4d8;
-    --zinc-200: #e4e4e7;
-    --zinc-100: #f4f4f5;
-    --zinc-50: #fafafa;
-  }
 a,hr{color:inherit}progress,sub,sup{vertical-align:baseline}blockquote,body,dd,dl,fieldset,figure,h1,h2,h3,h4,h5,h6,hr,menu,ol,p,pre,ul{margin:0}dialog,fieldset,legend,menu,ol,ul{padding:0}
 .rotate-180,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.line-clamp-1,.overflow-hidden{overflow:hidden}
 .bg-bg_header,.bg-dark_1,.bg-disable_field,.bg-gray_4,.bg-primary,.bg-stone-50,.bg-submenu,.bg-white{--tw-bg-opacity:1}.from-primary,.from-startColor_box{--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.hover\:text-white:hover,.text-black,.text-blue_sharp,.text-dark,.text-dark_1,.text-dark_2,.text-gray-900,.text-gray-950,.text-gray_2,.text-gray_3,.text-gray_5,.text-secondary,.text-white{--tw-text-opacity:1}.content-instagram,.content-telegram,.content-twitter,.content-whatsapp{content:var(--tw-content)}
@@ -117,12 +75,12 @@ p.right-0.bottom-0.left-0.absolute.font-MazzardH-Light.text-\[23\.01px\].text-bl
 /*<!--------------------------------START CSS CALENDAR-------------------------------*/
 
 /* date picker */
-.ui-widget-header .ui-datepicker-month.nice-select,.ui-widget-header .ui-datepicker-year.nice-select{clear:none;display:inline-block;width:30%;height:38px;line-height:2.5;padding-right:10px;text-align:right!important;background:0 0}.ui-datepicker{width:17em;padding:.2em .2em 0;display:none}.ui-datepicker .ui-datepicker-header{position:relative}.ui-datepicker .ui-datepicker-next,.ui-datepicker .ui-datepicker-prev{position:absolute;top:6px;width:1.8em;height:1.8em}.ui-datepicker .ui-datepicker-next{right:2px}.ui-datepicker .ui-datepicker-title{line-height:1.8em;text-align:center}.ui-datepicker .ui-datepicker-title select{font-size:1em;margin:1px 0}.ui-datepicker select.ui-datepicker-month,.ui-datepicker select.ui-datepicker-year{border:1px solid #dedede}.ui-datepicker table{width:100%;font-size:.9em;border-collapse:collapse;margin:0 0 .4em}.ui-datepicker th{color:#153581;padding:.3em;text-align:center;font-weight:700;border:0;width:110px}.ui-datepicker td{border:0}.ui-datepicker td a,.ui-datepicker td span{padding:.2em;text-align:right;text-decoration:none;display:inline-block}.ui-datepicker .ui-datepicker-buttonpane{background-image:none;padding:0 .2em;border-left:0;border-right:0;border-bottom:0}.ui-datepicker .ui-datepicker-buttonpane button{cursor:pointer;width:auto;overflow:visible}.ui-datepicker-multi .ui-datepicker-group,.ui-datepicker-rtl .ui-datepicker-buttonpane button{float:left}.ui-datepicker-multi .ui-datepicker-group table{margin:0 auto .4em}.ui-datepicker-multi-2 .ui-datepicker-group{width:50%}.ui-datepicker-multi-3 .ui-datepicker-group{width:33.3%}.ui-datepicker-multi-4 .ui-datepicker-group{width:25%}.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header{border-left-width:0}.ui-datepicker-multi .ui-datepicker-buttonpane{clear:left}.ui-datepicker-row-break{clear:both;width:100%;font-size:0}.ui-datepicker-rtl{direction:rtl}.ui-datepicker-rtl .ui-datepicker-prev{left:auto}.ui-datepicker-rtl .ui-datepicker-next{left:2px;right:auto}.ui-datepicker-rtl .ui-datepicker-prev:hover{right:1px;left:auto}.ui-datepicker-rtl .ui-datepicker-next:hover{left:1px;right:auto}.ui-datepicker-rtl .ui-datepicker-buttonpane{clear:right}.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header{border-right-width:0;border-left-width:1px}.ui-widget .ui-widget{font-size:1em}.ui-widget button,.ui-widget input,.ui-widget select,.ui-widget textarea{font-family:Arial,Helvetica,sans-serif;font-size:1em}.ui-widget-content{border:1px solid #ddd;background:#fff;color:#333}.ui-widget-content a,.ui-widget-header a{color:#333}.nice-select .option.selected,.ui-priority-primary,.ui-widget-content .ui-priority-primary,.ui-widget-header .ui-datepicker-month,.ui-widget-header .ui-priority-primary{font-weight:700}.ui-state-default,.ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default{background:#ebebeb;font-weight:400;text-align:center;color:#454545;font-family:Gotham,"Helvetica Neue",Helvetica,Arial,sans-serif;position:relative}.ui-state-default a,.ui-state-default a:link,.ui-state-default a:visited{color:#454545;text-decoration:none}.ui-state-focus a,.ui-state-focus a:hover,.ui-state-focus a:link,.ui-state-focus a:visited,.ui-state-hover a,.ui-state-hover a:hover,.ui-state-hover a:link,.ui-state-hover a:visited{color:#2b2b2b;text-decoration:none}.ui-state-active,.ui-widget-content .ui-state-active,.ui-widget-header .ui-state-active{border:1px solid #06789B}.ui-state-active a,.ui-state-active a:link,.ui-state-active a:visited{color:#fff;text-decoration:none}.ui-state-highlight a,.ui-widget-content .ui-state-highlight a,.ui-widget-header .ui-state-highlight a{color:#777620}.ui-state-error,.ui-widget-content .ui-state-error,.ui-widget-header .ui-state-error{border:1px solid #f1a899;background:#fddfdf;color:#5f3f3f}.ui-state-error a,.ui-state-error-text,.ui-widget-content .ui-state-error a,.ui-widget-content .ui-state-error-text,.ui-widget-header .ui-state-error a,.ui-widget-header .ui-state-error-text{color:#5f3f3f}.ui-datepicker .ui-datepicker-next span,.ui-datepicker .ui-datepicker-prev span{right:0;left:0;float:right;width:50px;text-align:center;color:var(--color-primary) !important;top:4px;margin:0;height:30px;line-height:30px;position:relative}.ui-priority-secondary,.ui-widget-content .ui-priority-secondary,.ui-widget-header .ui-priority-secondary{opacity:.7;filter:Alpha(Opacity=70);font-weight:400}.ui-state-disabled,.ui-widget-content .ui-state-disabled,.ui-widget-header .ui-state-disabled{opacity:.35;filter:Alpha(Opacity=35);background-image:none}.datepicker-header{margin:0;padding:13px 0;text-align:center;font-size:14px;background:#f58220;color:#fff;font-weight:700;border-bottom:1px solid #efefef;display:none}.ui-widget-header .ui-icon{background-image:none!important;text-indent:0;font-size:18px;cursor:pointer;color:#fff}.ui-widget-header .ui-datepicker-month.nice-select{font-weight:700;float:right;margin-right:20%;border:none;border-left:1px solid #efefef}.ui-widget-header .ui-datepicker-year.nice-select{font-weight:700;float:right;margin-right:5px;border:none}.ui-widget-header .nice-select.open .list{min-width:100px}.ui-widget-header.ui-state-disabled .ui-icon{cursor:not-allowed}.ui-datepicker .ui-datepicker-header a span{font-size:25px}.ui-datepicker .ui-datepicker-prev span{border:none;display:block}.ui-datepicker.ui-datepicker-rtl .ui-datepicker-prev span{border:none;display:block;top:4px;position:relative;margin:0;height:30px;line-height:30px;text-align:center;background:0 0;color:#34354c}.ui-datepicker-rtl .ui-datepicker-prev{right:2px!important}.ui-datepicker .ui-datepicker-next span{border:none;display:block}.ui-datepicker .ui-datepicker-next,.ui-datepicker .ui-datepicker-prev{color:#414141!important}.ui-datepicker.ui-datepicker-rtl .ui-datepicker-next{left:0!important}.ui-datepicker.ui-datepicker-rtl .ui-datepicker-next span{display:block;top:4px;float:left;position:relative;margin:0;height:30px;line-height:30px;background:0 0;color:#34354c}.ui-datepicker .ui-datepicker-prev{left:12px}.ui-datepicker .ui-datepicker-next span:before,.ui-datepicker.ui-datepicker-rtl .ui-datepicker-prev span:before{content:"\f061";font-family:FontAwesome;float:right;margin-right:5px;font-size:11px;position:relative;top:1px;right:-1px}
+/* .ui-widget-header .ui-datepicker-month.nice-select,.ui-widget-header .ui-datepicker-year.nice-select{clear:none;display:inline-block;width:30%;height:38px;line-height:2.5;padding-right:10px;text-align:right!important;background:0 0}.ui-datepicker{width:17em;padding:.2em .2em 0;display:none}.ui-datepicker .ui-datepicker-header{position:relative}.ui-datepicker .ui-datepicker-next,.ui-datepicker .ui-datepicker-prev{position:absolute;top:6px;width:1.8em;height:1.8em}.ui-datepicker .ui-datepicker-next{right:2px}.ui-datepicker .ui-datepicker-title{line-height:1.8em;text-align:center}.ui-datepicker .ui-datepicker-title select{font-size:1em;margin:1px 0}.ui-datepicker select.ui-datepicker-month,.ui-datepicker select.ui-datepicker-year{border:1px solid #dedede}.ui-datepicker table{width:100%;font-size:.9em;border-collapse:collapse;margin:0 0 .4em}.ui-datepicker th{color:#153581;padding:.3em;text-align:center;font-weight:700;border:0;width:110px}.ui-datepicker td{border:0}.ui-datepicker td a,.ui-datepicker td span{padding:.2em;text-align:right;text-decoration:none;display:inline-block}.ui-datepicker .ui-datepicker-buttonpane{background-image:none;padding:0 .2em;border-left:0;border-right:0;border-bottom:0}.ui-datepicker .ui-datepicker-buttonpane button{cursor:pointer;width:auto;overflow:visible}.ui-datepicker-multi .ui-datepicker-group,.ui-datepicker-rtl .ui-datepicker-buttonpane button{float:left}.ui-datepicker-multi .ui-datepicker-group table{margin:0 auto .4em}.ui-datepicker-multi-2 .ui-datepicker-group{width:50%}.ui-datepicker-multi-3 .ui-datepicker-group{width:33.3%}.ui-datepicker-multi-4 .ui-datepicker-group{width:25%}.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header{border-left-width:0}.ui-datepicker-multi .ui-datepicker-buttonpane{clear:left}.ui-datepicker-row-break{clear:both;width:100%;font-size:0}.ui-datepicker-rtl{direction:rtl}.ui-datepicker-rtl .ui-datepicker-prev{left:auto}.ui-datepicker-rtl .ui-datepicker-next{left:2px;right:auto}.ui-datepicker-rtl .ui-datepicker-prev:hover{right:1px;left:auto}.ui-datepicker-rtl .ui-datepicker-next:hover{left:1px;right:auto}.ui-datepicker-rtl .ui-datepicker-buttonpane{clear:right}.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header{border-right-width:0;border-left-width:1px}.ui-widget .ui-widget{font-size:1em}.ui-widget button,.ui-widget input,.ui-widget select,.ui-widget textarea{font-family:Arial,Helvetica,sans-serif;font-size:1em}.ui-widget-content{border:1px solid #ddd;background:#fff;color:#333}.ui-widget-content a,.ui-widget-header a{color:#333}.nice-select .option.selected,.ui-priority-primary,.ui-widget-content .ui-priority-primary,.ui-widget-header .ui-datepicker-month,.ui-widget-header .ui-priority-primary{font-weight:700}.ui-state-default,.ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default{background:#ebebeb;font-weight:400;text-align:center;color:#454545;font-family:Gotham,"Helvetica Neue",Helvetica,Arial,sans-serif;position:relative}.ui-state-default a,.ui-state-default a:link,.ui-state-default a:visited{color:#454545;text-decoration:none}.ui-state-focus a,.ui-state-focus a:hover,.ui-state-focus a:link,.ui-state-focus a:visited,.ui-state-hover a,.ui-state-hover a:hover,.ui-state-hover a:link,.ui-state-hover a:visited{color:#2b2b2b;text-decoration:none}.ui-state-active,.ui-widget-content .ui-state-active,.ui-widget-header .ui-state-active{border:1px solid #06789B}.ui-state-active a,.ui-state-active a:link,.ui-state-active a:visited{color:#fff;text-decoration:none}.ui-state-highlight a,.ui-widget-content .ui-state-highlight a,.ui-widget-header .ui-state-highlight a{color:#777620}.ui-state-error,.ui-widget-content .ui-state-error,.ui-widget-header .ui-state-error{border:1px solid #f1a899;background:#fddfdf;color:#5f3f3f}.ui-state-error a,.ui-state-error-text,.ui-widget-content .ui-state-error a,.ui-widget-content .ui-state-error-text,.ui-widget-header .ui-state-error a,.ui-widget-header .ui-state-error-text{color:#5f3f3f}.ui-datepicker .ui-datepicker-next span,.ui-datepicker .ui-datepicker-prev span{right:0;left:0;float:right;width:50px;text-align:center;color:var(--color-primary) !important;top:4px;margin:0;height:30px;line-height:30px;position:relative}.ui-priority-secondary,.ui-widget-content .ui-priority-secondary,.ui-widget-header .ui-priority-secondary{opacity:.7;filter:Alpha(Opacity=70);font-weight:400}.ui-state-disabled,.ui-widget-content .ui-state-disabled,.ui-widget-header .ui-state-disabled{opacity:.35;filter:Alpha(Opacity=35);background-image:none}.datepicker-header{margin:0;padding:13px 0;text-align:center;font-size:14px;background:#f58220;color:#fff;font-weight:700;border-bottom:1px solid #efefef;display:none}.ui-widget-header .ui-icon{background-image:none!important;text-indent:0;font-size:18px;cursor:pointer;color:#fff}.ui-widget-header .ui-datepicker-month.nice-select{font-weight:700;float:right;margin-right:20%;border:none;border-left:1px solid #efefef}.ui-widget-header .ui-datepicker-year.nice-select{font-weight:700;float:right;margin-right:5px;border:none}.ui-widget-header .nice-select.open .list{min-width:100px}.ui-widget-header.ui-state-disabled .ui-icon{cursor:not-allowed}.ui-datepicker .ui-datepicker-header a span{font-size:25px}.ui-datepicker .ui-datepicker-prev span{border:none;display:block}.ui-datepicker.ui-datepicker-rtl .ui-datepicker-prev span{border:none;display:block;top:4px;position:relative;margin:0;height:30px;line-height:30px;text-align:center;background:0 0;color:#34354c}.ui-datepicker-rtl .ui-datepicker-prev{right:2px!important}.ui-datepicker .ui-datepicker-next span{border:none;display:block}.ui-datepicker .ui-datepicker-next,.ui-datepicker .ui-datepicker-prev{color:#414141!important}.ui-datepicker.ui-datepicker-rtl .ui-datepicker-next{left:0!important}.ui-datepicker.ui-datepicker-rtl .ui-datepicker-next span{display:block;top:4px;float:left;position:relative;margin:0;height:30px;line-height:30px;background:0 0;color:#34354c}.ui-datepicker .ui-datepicker-prev{left:12px}.ui-datepicker .ui-datepicker-next span:before,.ui-datepicker.ui-datepicker-rtl .ui-datepicker-prev span:before{content:"\f061";font-family:FontAwesome;float:right;margin-right:5px;font-size:11px;position:relative;top:1px;right:-1px}
 .ui-datepicker .ui-datepicker-next span:after{content:"Next";font-size:11px;display:block;font-family: "MazzardH-Light" !important;}
 .ui-datepicker .ui-datepicker-prev span:after{content:"Prev";font-size:11px;display:block;font-family: "MazzardH-Light" !important;}
 .ui-datepicker .ui-datepicker-prev span:before,.ui-datepicker.ui-datepicker-rtl .ui-datepicker-next span:before{content:"\f060";font-family:FontAwesome;float:left;margin-left:5px;font-size:11px;position:relative;top:1px;left:-1px}.ui-datepicker.ui-datepicker-rtl .ui-datepicker-next span:after,.ui-datepicker.ui-datepicker-rtl .ui-datepicker-prev span:after{font-size:10px;display:block}.ui-widget-content.ui-autocomplete{text-align:left;-webkit-box-shadow:-2px 6px 15px 0 rgba(0,0,0,.15);-moz-box-shadow:-2px 6px 15px 0 rgba(0,0,0,.15);box-shadow:-2px 6px 15px 0 rgba(0,0,0,.15)}.ui-autocomplete .ui-menu-item{font-size:12px;padding:5px 10px;text-align:right}.ui-autocomplete .ui-menu-item+.ui-menu-item{border-top:1px solid #f5f5f5}.ui-autocomplete .ui-menu-item:focus,.ui-autocomplete .ui-menu-item:hover{cursor:pointer;background-color:#f5f5f5}.ui-datepicker-days-cell-over .ui-state-default:before,.ui-state-default:before,.ui-widget-content .ui-state-default:before,.ui-widget-header .ui-state-default:before{background-color:#c79c60;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;content:"";position:absolute;right:50%;top:50%;height:0;width:0;z-index:-1;transition:none}.ui-state-active,.ui-widget-content .ui-state-active,.ui-widget-header .ui-state-active{background:rgba(255,117,85,.95);font-weight:400;color:#fff!important;border-radius:0}.ui-state-active,.ui-state-default:focus,.ui-state-default:hover,.ui-widget-content .ui-state-active,.ui-widget-content .ui-state-default:focus,.ui-widget-content .ui-state-default:hover,.ui-widget-header .ui-state-active,.ui-widget-header .ui-state-default:focus,.ui-widget-header .ui-state-default:hover{border:none;color:#fff}.ui-datepicker-days-cell-over .ui-state-default.ui-state-hover.ui-state-highlight,.ui-datepicker-today .ui-state-default:focus,.ui-datepicker-today .ui-state-default:hover,.ui-datepicker-today .ui-state-highlight{color:#000}.ui-state-active:before,.ui-state-default:focus:before,.ui-state-default:hover:before,.ui-widget-content .ui-state-active:before,.ui-widget-content .ui-state-default:focus:before,.ui-widget-content .ui-state-default:hover:before,.ui-widget-header .ui-state-active:before,.ui-widget-header .ui-state-default:focus:before,.ui-widget-header .ui-state-default:hover:before{right:0;top:0;height:100%;width:100%}.ui-datepicker.ui-datepicker-multi{width:45em!important;padding:0!important}.ui-datepicker table thead th{background:var(--color-primary) !important ;color:#fff;font-weight:400}.ui-datepicker table thead th span{color:#fff!important}.ui-datepicker table thead th:last-child{-webkit-border-radius:2px 0 0 2px;-moz-border-radius:2px 0 0 2px;border-radius:2px 0 0 2px}.ui-datepicker table thead th:first-child{-webkit-border-radius:0 2px 2px 0;-moz-border-radius:0 2px 2px 0;border-radius:0 2px 2px 0;border-collapse:separate!important}.ui-datepicker table tbody tr td{border-bottom:1px solid transparent!important;outline:0}.ui-datepicker table tbody tr:last-child td{border:none!important}.ui-datepicker table tbody tr td,.ui-datepicker table tbody tr td:last-child,.ui-datepicker table tbody tr:last-child td,.ui-datepicker table tbody tr:last-child td:last-child{border-left:none!important}.ui-datepicker td{font-size:15px;text-align:center;padding:0}
 .ui-datepicker-buttonpane .ui-datepicker-current,.ui-datepicker-buttonpane .ui-state-default{opacity:1;-webkit-transition:.3s!important;-moz-transition:.3s!important;transition:.3s!important}.ui-datepicker-buttonpane .ui-datepicker-current:before{background-color:transparent}.ui-datepicker-buttonpane .ui-datepicker-current:focus,.ui-datepicker-buttonpane .ui-datepicker-current:hover,.ui-datepicker-buttonpane .ui-state-default:focus,.ui-datepicker-buttonpane .ui-state-default:hover{background-color:#4b515a;border-color:#4b515a;color:#fff;-webkit-box-shadow:0 2px 8px rgba(0,0,0,.45);-moz-box-shadow:0 2px 8px rgba(0,0,0,.45);box-shadow:0 2px 8px rgba(0,0,0,.45)}.ui-datepicker{font-family:IRANSansWeb}.ui-corner-all,.ui-corner-bl,.ui-corner-bottom,.ui-corner-br,.ui-corner-left,.ui-corner-right,.ui-corner-tl,.ui-corner-top,.ui-corner-tr{-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px}.ui-datepicker.ui-widget-content{border:none;-webkit-box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12);-moz-box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12);box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12);padding:0!important;z-index:9999999!important;background:#fff}.ui-widget-content{z-index:3!important;border:none}.ui-datepicker .ui-datepicker-header{background:0 0;color:#34354c;border-radius:0;padding:6px 0;font-size:20px;text-align:center;margin-bottom:5px;border-bottom:1px solid #f8f8f8}.ui-datepicker .ui-datepicker-buttonpane button{background-color:transparent;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;color:#fff;font-family:IRANSansWeb;font-size:12px;padding:8px 17px;font-weight:700;border:none;background:var(--color-primary) !important;float:none;margin:10px auto;display:block}.ui-datepicker-today .ui-state-highlight{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;background:rgba(255,117,85,.45) !important ;}.ui-state-default,.ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default{display:block;height:40px;overflow:hidden;margin:1px;padding:0!important;line-height:40px;transition:150ms}.ui-datepicker select.ui-datepicker-month,.ui-datepicker select.ui-datepicker-year{border:none;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;-webkit-box-shadow:0 0 0 #fff;-moz-box-shadow:0 0 0 #fff;box-shadow:0 0 0 #fff;color:#414141;font-size:14px;margin:0 2px;padding:5px 0;text-align:center;width:35%}.ui-datepicker .ui-datepicker-title{display:inline;font-size:14px;margin:0 auto;font-weight:700;padding:2px 10px;color:#666}.nice-select,.nice-select .option{cursor:pointer;font-weight:400;outline:0}.ui-datepicker .ui-datepicker-header .ui-datepicker-title select{display:inline;font-family:IRANSansWeb;height:32px;width:55px}.ui-datepicker-multi .ui-datepicker-group table{width:92%}.ui-datepicker-multi:not(.ui-datepicker-rtl){direction:ltr}.no-csspointerevents .nice-select .list,.ui-datepicker-close-btn{display:none}.nice-select,.no-csspointerevents .nice-select.open .list{display:block}@media(max-width:991px){.ui-datepicker .ui-datepicker-header .ui-datepicker-title select{width:25%;text-align:center;background:#eee;color:#696969}.ui-state-active,.ui-state-default:focus,.ui-state-default:hover,.ui-widget-content .ui-state-active,.ui-widget-content .ui-state-default:focus,.ui-widget-content .ui-state-default:hover,.ui-widget-header .ui-state-active,.ui-widget-header .ui-state-default:focus,.ui-widget-header .ui-state-default:hover{color:#f58220}.datepicker-header{padding:15px 0 10px;background:#f9f9f9;color:#666}.ui-datepicker .ui-datepicker-buttonpane button{padding:11px 25px;min-width:115px}.ui-widget-content.ui-autocomplete{z-index:999!important}}@media(max-width:767px){.datepicker-header{padding:15px 0;border-bottom:1px solid #eee;font-size:15px;background:#f5f5f5}.ui-datepicker-calendar .ui-state-default,.ui-datepicker-calendar .ui-widget-content .ui-state-default,.ui-datepicker-calendar .ui-widget-header .ui-state-default{height:55px;line-height:55px}.start-date-highlight .ui-state-default,.ui-datepicker-rtl .end-date-highlight .ui-state-default{border-radius:25px 0 0 25px!important}.end-date-highlight .ui-state-default,.ui-datepicker-rtl .start-date-highlight .ui-state-default{border-radius:0 25px 25px 0!important}.ui-datepicker .ui-datepicker-header{border-bottom:1px solid #e9e9e9}.nice-select .current{position:relative;top:6px}.ui-datepicker.ui-widget-content{position:fixed!important;top:0!important;right:0;left:0!important;bottom:0;background:#f6f7f9}.ui-widget-header .ui-datepicker-month.nice-select,.ui-widget-header .ui-datepicker-year.nice-select{line-height:1.8;background:#eee}.ui-datepicker-buttonpane{position:fixed;bottom:10px;right:10px;background:0 0}.ui-datepicker{width:100%!important;left:0!important}.ui-datepicker td a,.ui-datepicker td span{display:inline-block}.ui-datepicker td{text-align:center}.ui-datepicker .ui-datepicker-header .ui-datepicker-title select.ui-datepicker-month{width:25%!important}}.nice-select .list,.nice-select:after{pointer-events:none;position:absolute}.nice-select,.nice-select .list{background-color:#fff;box-sizing:border-box}@media(max-width:550px){.nice-select{margin-bottom:-7px}}@media (hover:none){.ui-datepicker-calendar a:after,.ui-datepicker-calendar a:before{display:none}}.nice-select{-webkit-tap-highlight-color:transparent;border-radius:0;border:1px solid #ccc;clear:both;float:left;font-family:inherit;font-size:14px;height:42px;padding-left:25px;padding-right:30px;position:relative;text-align:left!important;-webkit-transition:.2s ease-in-out;transition:.2s ease-in-out;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;width:auto;line-height:45px;padding-top:0}.nice-select.child-age-select{text-align:center!important}.nice-select:hover{border-color:#dbdbdb}.nice-select:after{border-bottom:2px solid #969696;border-right:2px solid #969696;content:'';display:block;height:8px;margin-top:-7px;left:10px;top:50%;-webkit-transform-origin:66% 66%;-ms-transform-origin:66% 66%;transform-origin:66% 66%;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg);-webkit-transition:.15s ease-in-out;transition:.15s ease-in-out;width:8px}.nice-select.open:after{-webkit-transform:rotate(-135deg);-ms-transform:rotate(-135deg);transform:rotate(-135deg)}.nice-select.open .list{opacity:1;pointer-events:auto;-webkit-transform:scale(1) translateY(0);-ms-transform:scale(1) translateY(0);transform:scale(1) translateY(0);-webkit-box-shadow:-2px 6px 15px 0 rgba(0,0,0,.15);-moz-box-shadow:-2px 6px 15px 0 rgba(0,0,0,.15);box-shadow:-2px 6px 15px 0 rgba(0,0,0,.15)}.nice-select.disabled{border-color:#ededed;color:#999;pointer-events:none}.nice-select.disabled:after{border-color:#ccc}.nice-select.wide{width:100%}.nice-select.wide .list{left:0!important;right:0!important}.nice-select.right{float:right}.nice-select.right .list{left:auto;right:0}.nice-select.small{font-size:12px;height:36px;line-height:34px}.nice-select.small:after{height:4px;width:4px}.nice-select.small .option{line-height:34px;min-height:34px}.nice-select .list{border-radius:0;box-shadow:0 0 0 1px rgba(68,68,68,.11);margin-top:2px;opacity:0;overflow:hidden;padding:0;top:100%;left:0;-webkit-transform-origin:50% 0;-ms-transform-origin:50% 0;transform-origin:50% 0;-webkit-transform:scale(.75) translateY(-21px);-ms-transform:scale(.75) translateY(-21px);transform:scale(.75) translateY(-21px);-webkit-transition:.2s cubic-bezier(.5, 0, 0, 1.25),opacity .15s ease-out;transition:.2s cubic-bezier(.5, 0, 0, 1.25),opacity .15s ease-out;z-index:9;overflow-y:auto;max-height:400px}.nice-select .list:hover .option:not(:hover){background-color:transparent!important}.nice-select .option{line-height:40px;list-style:none;min-height:40px;text-align:left;padding:3px 29px 3px 18px;-webkit-transition:.2s;transition:.2s}.nice-select .option.focus,.nice-select .option.selected.focus,.nice-select .option:hover{background-color:#f6f6f6}.nice-select .option.disabled{background-color:transparent;color:#999;cursor:default}.nice-select.text-right{text-align:right!important;padding-right:5px}.nice-select.text-right .option{padding-right:5px;text-align:right}
-.ui-datepicker{font-family: "MazzardH-Light" !important;}
+.ui-datepicker{font-family: "MazzardH-Light" !important;} */
 
 .message textarea{height:240px!important;resize:vertical}
 
@@ -198,43 +156,737 @@ p.right-0.bottom-0.left-0.absolute.font-MazzardH-Light.text-\[23\.01px\].text-bl
 
 
 /* new searchbox desktop*/
-.Basis_Date_Box input , .date-info-departure , .date-info-destination , .calendar-footer input, .calendar-footer ::placeholder{font-family: 'MazzardH-Regular' !important;}
+/* #search_engine .module-form{text-transform:capitalize!important;padding-top:.5rem!important;padding-bottom:.5rem!important;--tw-gradient-to:#F8F8F9 var(--tw-gradient-to-position)!important;--tw-gradient-from:#EFF2FB var(--tw-gradient-from-position)!important;--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)!important;background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))!important;border-radius:1.5rem!important;width:100%!important;min-height:329px!important;float:left!important}div#search_engine{width:800px!important}.flight-routes.w-2\/5.flex.gap-2.max-xl\:w-full.max-xl\:block.max-xl\:gap-0{column-gap:2.75em}.reservation-item{color:rgb(150 150 150)!important;--tw-bg-opacity:1!important;text-transform:capitalize!important;background-color:rgb(47 47 47 / var(--tw-bg-opacity))!important;height:42px!important;display:inline-block!important;width:100%!important}.reservation-item>li{color:rgb(150 150 150)!important;line-height:43px!important;font-size:1rem!important;line-height:1.5rem!important;display:inline-block!important;margin-left:1rem!important;margin-right:1rem!important;cursor:pointer!important}.reservation-item>li>span{line-height:33px!important}.reservation-item>li:hover{color:white!important}.module-icon-active,.module-icon-deactive{display:none!important;}.search-box-container .group:hover .group-hover\:inline-block{display:none!important}.form-search{display:block!important}.module-icon.inline-block{display:none!important}.reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important;margin:0 auto!important}.reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4>div{width:100%!important;margin:0!important}.module-form{padding:1.5rem!important}.flight-routes.w-2\/5.flex.gap-2.max-xl\:w-full.max-xl\:block.max-xl\:gap-0,.Basis_Date_Box.flex.gap-2.max-xl\:w-full.max-xl\:mb-4.w-1\/5{width:100%!important}.close-passenger-box{display:none!important;}.Flightclass-Passenger.w-2\/5.flex.gap-2.max-xl\:w-full.max-xl\:block.max-xl\:gap-0{width:100%!important}.FlightClass li{padding:0 1em!important}.reserve-field.passengers-field.passengers-field-f.cursor-pointer.w-2\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.active-module{color:white!important}.active-module>span{color:white!important}.reserve-field{background:white!important}.reserve-field{border-radius:.5rem!important;margin:1em 0!important}.search-box-container #flightSearch .h-20{height:40px!important}.search-box-container #flightSearch .label-text,.search-box-container #flightSearch .label-routes{display:none!important}.search-box-container:is(span){font-size:14px!important}.search-nav-bar span{font-size:16px!important}.search-box-container:is(input,select,button){line-height:40px!important;font-family:'MazzardH-Regular'!important;font-size:14px!important}.search-box-container .Basis_Calendar_Box:is(input,select,button){line-height:initial!important;font-family:'MazzardH-Regular'!important}.Basis_Date_Box.w-1\/3.flex.border-type-1.rounded-type-1.max-xl\:w-full.max-xl\:mb-4{column-gap:.5em;height:48px!important}.Basis_Date_Box.w-1\/3.flex.border-type-1.rounded-type-1.max-xl\:w-full.max-xl\:mb-4,.Basis_Date_Box.w-1\/3.flex.gap-2.max-xl\:w-full.max-xl\:mb-4,.reserve-field.passengers-field.cursor-pointer.w-1\/5.h-20.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.reserve-field.departure-date.w-auto.h-20.relative,.reserve-field.return-date.w-1\/2.h-20.relative{width:50%!important}#flightHotelSearch>.flex.gap-2.max-xl\:block.max-xl\:gap-0{display:block!important}.search-box-container .pt-12{padding-top:0}.label-passengers svg:first-child,.label-flightclass svg:first-child{display:none!important}.label-passengers svg.down-icon{display:block!important}.Basis_Date.pt-12{padding-top:0!important}.auto-fit.clear-both.text-base.text-textColor.cursor-pointer,.Basis_Calendar .auto-fit,.auto-fit{display:none!important}.label-dates{line-height:37px!important}.label-dates>svg{display:none!important}.FlightClass-text.float-left.cursor-pointer{float:left;height:40px;line-height:40px;margin-top:-27px}.label-flightclass.label-flightclass-flight.float-right.w-full.cursor-pointer{padding-top:10px}.reserve-search>button:hover{--tw-bg-opacity:1;background-color:rgb(255 153 0 / var(--tw-bg-opacity))}.reserve-search>button{--tw-text-opacity:1;--tw-bg-opacity:1;width:100%;color:rgb(255 255 255 / var(--tw-text-opacity));height:2.5rem;border-radius:.5rem;background-color:var(--color-primary)!important}.reserve-search>button:hover{--tw-text-opacity:1;--tw-bg-opacity:1;width:100%;color:rgb(255 255 255 / var(--tw-text-opacity));height:2.5rem;border-radius:.5rem;background-color:var(--color-secondary)!important}.label-passengers{padding-top:10px}.show-passengers-dropdown{position:relative}.label-passengers{position:absolute;left:-10px;top:0;bottom:0;margin:auto}.show-passengers-dropdown>div{height:40px;line-height:40px;position:absolute!important;left:15px;top:0;bottom:0;margin:auto}.route-content-inner.w-full.flex.gap-2.max-xl\:block.max-xl\:gap-0{height:40px}.multi-route-tlt.mb-2.text-textColor.text-base.w-auto{margin-bottom:unset!important}.route-content.w-full.mb-4.relative.set_Date_Box{height:64px}.r-flight .route-content.w-full.mb-4.relative.set_Date_Box{height:40px}.remove-routs span,.add-routs span,.route-minus-btn span{display:none!important}svg.addroute-icon{width:20px;height:20px}svg.removeroute-icon{width:20px;height:20px}svg.removeall-icon{width:15px;height:14px}.route-minus-btn.text-xl.pr-4.text-red-600.w-1\/4.h-20.leading-\[80px\].max-xl\:absolute.max-xl\:top-0.max-xl\:left-0.max-xl\:h-auto.max-xl\:leading-normal.max-xl\:text-base.max-xl\:text-left.hover\:text-primary.hover\:text-remove-route-hover-color.cursor-pointer{line-height:40px!important}.multicity-flight-form .auto-fit{display:none!important}.multicity-flight-form .reserve-field{border-radius:.5rem!important;margin:0!important}.hidden-box{border-radius:.5rem}#departure2,#departure9,#departure4{background:white!important;height:40px!important;line-height:40px!important;border-radius:.5rem}.alert-passengers,.duplicate-place-error{display:flex;justify-content:center;align-items:center;max-width:1024px;width:90vw;color:red;position:fixed;width:100%;height:40px;top:0;right:0;left:0;bottom:0;z-index:9999999;margin:auto;background-color:rgb(236,179,179);border-radius:.75em;border:2px dashed red}.reserve-field{border-radius:.5rem!important;margin:.25em 0!important}.r-hotel .reserve-field{height:40px;line-height:40px}.searchList{font-family:'MazzardH-Regular'!important;border-radius:10px;border:.25px solid var(--fd-primary-700);background:white;box-shadow:0 4px 4px 0 rgba(0,0,0,.25);width:370px;text-align:center;max-height:250px;overflow:hidden;height:250px;direction:ltr;text-align:left}.locationResult{direction:ltr;width:100%;text-align:left;margin-top:40px}.selectLocation{height:40px;line-height:40px;border-bottom:1px solid #ccc}.passengerbox,.FlightClass{border-radius:10px;border:.25px solid var(--fd-primary-700);background:white;box-shadow:0 4px 4px 0 rgba(0,0,0,.25);max-height:250px;overflow:hidden}.search-box-container #hotelSearch .h-20,.search-box-container #tourSearch .h-20,.search-box-container #flightHotelSearch .h-20,.search-box-container #insuranceSearch .h-20{height:40px}.r-tour .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4,.r-insurance .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4{height:45px!important}.r-hotel .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4.check-destination-hotel{height:45px!important}label.label-routes{height:40px;line-height:40px;width:max-content!important;min-width:120px}.r-hotel .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4.check-destination-hotel,.r-tour .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4,.r-insurance .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4,.reserve-field.CheckHotelDate.mb-4.mt-5.clear-both.float-right.w-full{background:unset!important;}.r-hotel .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2,#insuranceSearch .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2,#tourSearch .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2{display:flex;justify-content:start;padding:0;margin:0}.r-hotel .reserve-field.passengers-field.cursor-pointer.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.show-passengers-dropdown .label-text,.label-flightclass .label-text{display:none!important;}.label-dates{display:none!important}.search-box-container .r-hotel .departure-date::after{display:none!important}.r-flighthotel .label-routes{display:none!important}.flighttype-items-ul span{font-size:.75rem!important}.flighttype-items-ul>li{display:inline-block!important;padding-left:1rem!important;padding-right:1rem!important;line-height:27px!important;cursor:pointer!important;position:relative!important;font-family:"MazzardH-Medium"!important;font-size:.75rem!important;color:var(--dark_2,#333)!important}.flighttype-items-ul>li:not(:first-child){border-left:1px solid #e5e7eb!important}.flighttype-items-ul>li:first-child{border-left:none!important}.flighttype-items-ul>li:hover{color:var(--color-primary,#03a77c)!important}.flighttype-items-ul>li::before{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:2px!important;background:linear-gradient(to right,var(--color-primary,#03a77c),transparent)!important;visibility:hidden!important}.flighttype-items-ul>li:hover::before{visibility:visible!important}.flighttype-items-ul .active-r-btn,.flighttype-items-ul .active-r-btn span{color:var(--color-primary,#03a77c)!important}.flighttype-items-ul .active-r-btn::before{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:2px!important;background:linear-gradient(to right,var(--color-primary,#03a77c),transparent)!important;visibility:visible!important}li.bg-bgColor-100.rounded-type-1.text-zin-950.text-base.text-center.p-1.mb-1,li.bg-bgColor-100.rounded-type-1.text-zinc-950.text-center.text-base.p-1.mb-1{background-color:var(--color-primary);color:white}.minus-count,.plus-count{border:1px solid var(--color-primary);border-radius:.75em}.reserve-field.flightclass-field.flightclass-outof-passengerbox.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4.w-auto{width:40%}.exchangeRoute{right:-2.65rem!important;top:0!important;border-radius:.75em!important;cursor:pointer!important}.exchangeRoute:hover{background-color:#f5832086!important}.exchangeRoute svg{height:20px!important;width:23px!important}.route-content.w-full.mb-4.relative.set_Date_Box{margin-bottom:.5em!important}.down-icon{display:inline-block!important;transform-origin:50% 50%!important;transition:transform 250ms ease!important;height:8px!important;line-height:8px!important}.down-icon.rotate{transform:rotate(180deg)!important}.multi-route-tlt.mb-2.text-textColor.text-base.w-auto{display:none!important}.Add-Remove.reserve-field.w-1\/4.h-20.relative.max-xl\:w-full.max-xl\:mb-4.max-xl\:h-auto.max-xl\:my-2.max-xl\:text-center{background-color:transparent!important}.reserve-search svg.align-middle{height:17px!important;width:17px!important}.reserve-search button{flex-direction:row-reverse}.deleteRoom{color:red!important;}.second-room-type{color:var(--color-primary)!important;}.label-routes .down-icon{display:none!important}.label-routes>svg{width:26px;height:26px}#departure2,#departure4,#departure9{padding:0 .5em!important;}.Wrapper-ExteraHoteldate.w-1\/3.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.search-box-container .Wrapper-CheckHotelDate input:checked~.needhotel-label::after,.search-box-container .Wrapper-PrivateCompartment input:checked~.PrivateCompartment-label::after{color:var(--color-primary)!important}.search-box-container .Wrapper-CheckHotelDate input:checked~.needhotel-label::before,.search-box-container .Wrapper-PrivateCompartment input:checked~.PrivateCompartment-label::before{background-color:#fff!important}.search-box-container .Basis_Date_ExteraHoteldate{padding-top:0!important}.Wrapper-ExteraHoteldate p{display:none!important}.passenger-birthday-dropdown{z-index:30!important}.r-tour .reserve-field.passengers-field.cursor-pointer.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.r-flighthotel .label-flightclass .down-icon{margin-top:17px!important}.h-\[383px\]{height:383px} */
+/* new searchbox desktop*/
 
-.confirm-passenger{
-    background-color: var(--color-primary) !important;
-}
+
+/* new searchbox mobile*/
+.Basis_Date_Box input , .date-info-departure , .date-info-destination , .calendar-footer input, .calendar-footer ::placeholder{font-family: 'MazzardH-Regular' !important;}
 .text-value {
     line-height: 40px !important;
     height: 40px !important;
 }
-#search_engine .module-form{text-transform:capitalize!important;padding-top:.5rem!important;padding-bottom:.5rem!important;--tw-gradient-to:#F8F8F9 var(--tw-gradient-to-position)!important;--tw-gradient-from:#EFF2FB var(--tw-gradient-from-position)!important;--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)!important;background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))!important;border-radius:1.5rem!important;width:100%!important;min-height:329px!important;float:left!important}
+#search_engine .module-form {
+    text-transform: capitalize !important;
+    padding-top: .5rem !important;
+    padding-bottom: .5rem !important;
+    --tw-gradient-to: #F8F8F9 var(--tw-gradient-to-position) !important;
+    --tw-gradient-from: #EFF2FB var(--tw-gradient-from-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+    background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)) !important;
+    border-radius: 1.5rem !important;
+    width: 100% !important;
+    min-height: 329px !important;
+    float: left !important
+}
 
 div#search_engine {
-    max-width: 800px !important;
-    width: calc(100% - 500px);
+    width: 100% !important
 }
 
-.flight-routes.w-2\/5.flex.gap-2.max-xl\:w-full.max-xl\:block.max-xl\:gap-0{column-gap:2.75em}.reservation-item{color:rgb(150 150 150)!important;--tw-bg-opacity:1!important;text-transform:capitalize!important;background-color:rgb(47 47 47 / var(--tw-bg-opacity))!important;height:42px!important;display:inline-block!important;width:100%!important}.reservation-item>li{color:rgb(150 150 150)!important;line-height:43px!important;font-size:1rem!important;line-height:1.5rem!important;display:inline-block!important;margin-left:1rem!important;margin-right:1rem!important;cursor:pointer!important}.reservation-item>li>span{line-height:33px!important}.reservation-item>li:hover{color:white!important}.module-icon-active,.module-icon-deactive{display:none!important;}.search-box-container .group:hover .group-hover\:inline-block{display:none!important}.form-search{display:block!important}.module-icon.inline-block{display:none!important}.reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important;margin:0 auto!important}.reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4>div{width:100%!important;margin:0!important}.module-form{padding:1.5rem!important}.flight-routes.w-2\/5.flex.gap-2.max-xl\:w-full.max-xl\:block.max-xl\:gap-0,.Basis_Date_Box.flex.gap-2.max-xl\:w-full.max-xl\:mb-4.w-1\/5{width:100%!important}.close-passenger-box{display:none!important;}.Flightclass-Passenger.w-2\/5.flex.gap-2.max-xl\:w-full.max-xl\:block.max-xl\:gap-0{width:100%!important}.FlightClass li{padding:0 1em!important}.reserve-field.passengers-field.passengers-field-f.cursor-pointer.w-2\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.active-module{color:white!important}.active-module>span{color:white!important}.reserve-field{background:white!important}.reserve-field{border-radius:.5rem!important;margin:1em 0!important}.search-box-container #flightSearch .h-20{height:40px!important}.search-box-container #flightSearch .label-text,.search-box-container #flightSearch .label-routes{display:none!important}.search-box-container:is(span){font-size:14px!important}.search-nav-bar span{font-size:16px!important}.search-box-container:is(input,select,button){line-height:40px!important;font-family:'MazzardH-Regular'!important;font-size:14px!important}.search-box-container .Basis_Calendar_Box:is(input,select,button){line-height:initial!important;font-family:'MazzardH-Regular'!important}.Basis_Date_Box.w-1\/3.flex.border-type-1.rounded-type-1.max-xl\:w-full.max-xl\:mb-4{column-gap:.5em;height:48px!important}.Basis_Date_Box.w-1\/3.flex.border-type-1.rounded-type-1.max-xl\:w-full.max-xl\:mb-4,.Basis_Date_Box.w-1\/3.flex.gap-2.max-xl\:w-full.max-xl\:mb-4,.reserve-field.passengers-field.cursor-pointer.w-1\/5.h-20.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.reserve-field.departure-date.w-auto.h-20.relative,.reserve-field.return-date.w-1\/2.h-20.relative{width:50%!important}#flightHotelSearch>.flex.gap-2.max-xl\:block.max-xl\:gap-0{display:block!important}.search-box-container .pt-12{padding-top:0}.label-passengers svg:first-child,.label-flightclass svg:first-child{display:none!important}.label-passengers svg.down-icon{display:block!important}.Basis_Date.pt-12{padding-top:0!important}.auto-fit.clear-both.text-base.text-textColor.cursor-pointer,.Basis_Calendar .auto-fit,.auto-fit{display:none!important}.label-dates{line-height:37px!important}.label-dates>svg{display:none!important}.FlightClass-text.float-left.cursor-pointer{float:left;height:40px;line-height:40px;margin-top:-27px}.label-flightclass.label-flightclass-flight.float-right.w-full.cursor-pointer{padding-top:10px}
-.reserve-search{
-    margin-top: 0.5em !important;
+.reservation-item {
+    color: rgb(150 150 150) !important;
+    --tw-bg-opacity: 1 !important;
+    text-transform: capitalize !important;
+    background-color: rgb(47 47 47 / var(--tw-bg-opacity)) !important;
+    height: max-content !important;
+    display: flex !important;
+    width: 100% !important;
+    flex-wrap: wrap;
+    justify-content: center
 }
-.reserve-search>button:hover{--tw-bg-opacity:1;background-color:rgb(255 153 0 / var(--tw-bg-opacity))}.reserve-search>button{--tw-text-opacity:1;--tw-bg-opacity:1;width:100%;color:rgb(255 255 255 / var(--tw-text-opacity));height:2.5rem;border-radius:.5rem;background-color:var(--color-primary)!important}.reserve-search>button:hover{--tw-text-opacity:1;--tw-bg-opacity:1;width:100%;color:rgb(255 255 255 / var(--tw-text-opacity));height:2.5rem;border-radius:.5rem;background-color:var(--color-secondary)!important}.label-passengers{padding-top:10px}.show-passengers-dropdown{position:relative}.label-passengers{position:absolute;left:-10px;top:0;bottom:0;margin:auto}.show-passengers-dropdown>div{height:40px;line-height:40px;position:absolute!important;left:15px;top:0;bottom:0;margin:auto}.route-content-inner.w-full.flex.gap-2.max-xl\:block.max-xl\:gap-0{height:40px}.multi-route-tlt.mb-2.text-textColor.text-base.w-auto{margin-bottom:unset!important}.route-content.w-full.mb-4.relative.set_Date_Box{height:64px}.r-flight .route-content.w-full.mb-4.relative.set_Date_Box{height:40px}.remove-routs span,.add-routs span,.route-minus-btn span{display:none!important}svg.addroute-icon{width:20px;height:20px}svg.removeroute-icon{width:20px;height:20px}svg.removeall-icon{width:15px;height:14px}.route-minus-btn.text-xl.pr-4.text-red-600.w-1\/4.h-20.leading-\[80px\].max-xl\:absolute.max-xl\:top-0.max-xl\:left-0.max-xl\:h-auto.max-xl\:leading-normal.max-xl\:text-base.max-xl\:text-left.hover\:text-primary.hover\:text-remove-route-hover-color.cursor-pointer{line-height:40px!important}.multicity-flight-form .auto-fit{display:none!important}.multicity-flight-form .reserve-field{border-radius:.5rem!important;margin:0!important}.hidden-box{border-radius:.5rem}#departure2,#departure9,#departure4{background:white!important;height:40px!important;line-height:40px!important;border-radius:.5rem}.alert-passengers,.duplicate-place-error{display:flex;justify-content:center;align-items:center;max-width:1024px;width:90vw;color:red;position:fixed;width:100%;height:40px;top:0;right:0;left:0;bottom:0;z-index:9999999;margin:auto;background-color:rgb(236,179,179);border-radius:.75em;border:2px dashed red}.reserve-field{border-radius:.5rem!important;margin:.25em 0!important}
-.r-hotel .reserve-field{height:40px;line-height:40px}
 
-.searchList{font-family:'MazzardH-Regular'!important;border-radius:10px;border:.25px solid var(--fd-primary-700);background:white;
-    box-shadow:0 4px 4px 0 rgba(0,0,0,.25);width:370px;text-align:center;max-height:250px;overflow:hidden;
-    direction:ltr;text-align:left}.locationResult{direction:ltr;width:100%;text-align:left;margin-top:40px}
-.selectLocation{    padding: 0 .5em !important;
-min-height:40px;line-height:40px;border-bottom:1px solid #ccc}.passengerbox,.FlightClass{border-radius:10px;border:.25px solid var(--fd-primary-700);background:white;box-shadow:0 4px 4px 0 rgba(0,0,0,.25);max-height:250px;overflow:hidden}.search-box-container #hotelSearch .h-20,.search-box-container #tourSearch .h-20,.search-box-container #flightHotelSearch .h-20,.search-box-container #insuranceSearch .h-20{height:40px}.r-tour .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4,.r-insurance .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4{height:45px!important}.r-hotel .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4.check-destination-hotel{height:45px!important}label.label-routes{height:40px;line-height:40px;width:max-content!important;min-width:120px}.r-hotel .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4.check-destination-hotel,.r-tour .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4,.r-insurance .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4,.reserve-field.CheckHotelDate.mb-4.mt-5.clear-both.float-right.w-full{background:unset!important;}.r-hotel .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2,#insuranceSearch .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2,#tourSearch .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2{display:flex;justify-content:start;padding:0;margin:0}.r-hotel .reserve-field.passengers-field.cursor-pointer.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.show-passengers-dropdown .label-text,.label-flightclass .label-text{display:none!important;}.label-dates{display:none!important}.search-box-container .r-hotel .departure-date::after{display:none!important}.r-flighthotel .label-routes{display:none!important}.flighttype-items-ul span{font-size:.75rem!important}.flighttype-items-ul>li{display:inline-block!important;padding-left:1rem!important;padding-right:1rem!important;line-height:27px!important;cursor:pointer!important;position:relative!important;font-family:"MazzardH-Medium"!important;font-size:.75rem!important;color:var(--dark_2,#333)!important}.flighttype-items-ul>li:not(:first-child){border-left:1px solid #e5e7eb!important}.flighttype-items-ul>li:first-child{border-left:none!important}.flighttype-items-ul>li:hover{color:var(--color-primary,#03a77c)!important}.flighttype-items-ul>li::before{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:2px!important;background:linear-gradient(to right,var(--color-primary,#03a77c),transparent)!important;visibility:hidden!important}.flighttype-items-ul>li:hover::before{visibility:visible!important}.flighttype-items-ul .active-r-btn,.flighttype-items-ul .active-r-btn span{color:var(--color-primary,#03a77c)!important}.flighttype-items-ul .active-r-btn::before{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:2px!important;background:linear-gradient(to right,var(--color-primary,#03a77c),transparent)!important;visibility:visible!important}li.bg-bgColor-100.rounded-type-1.text-zin-950.text-base.text-center.p-1.mb-1,li.bg-bgColor-100.rounded-type-1.text-zinc-950.text-center.text-base.p-1.mb-1{background-color:var(--color-primary);color:white}.minus-count,.plus-count{border:1px solid var(--color-primary);border-radius:.75em}.reserve-field.flightclass-field.flightclass-outof-passengerbox.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4.w-auto{width:40%}.exchangeRoute{right:-2.65rem!important;top:0!important;border-radius:.75em!important;cursor:pointer!important}
-.exchangeRoute:hover{background-color: var(--color-secondary) !important}
-.exchangeRoute svg{height:20px!important;width:23px!important}.route-content.w-full.mb-4.relative.set_Date_Box{margin-bottom:.5em!important}.down-icon{display:inline-block!important;transform-origin:50% 50%!important;transition:transform 250ms ease!important;height:8px!important;line-height:8px!important}.down-icon.rotate{transform:rotate(180deg)!important}.multi-route-tlt.mb-2.text-textColor.text-base.w-auto{display:none!important}.Add-Remove.reserve-field.w-1\/4.h-20.relative.max-xl\:w-full.max-xl\:mb-4.max-xl\:h-auto.max-xl\:my-2.max-xl\:text-center{background-color:transparent!important}.reserve-search svg.align-middle{height:17px!important;width:17px!important}.reserve-search button{flex-direction:row-reverse}.deleteRoom{color:red!important;}.second-room-type{color:var(--color-primary)!important;}.label-routes .down-icon{display:none!important}.label-routes>svg{width:26px;height:26px}#departure2,#departure4,#departure9{padding:0 .5em!important;}.Wrapper-ExteraHoteldate.w-1\/3.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.search-box-container .Wrapper-CheckHotelDate input:checked~.needhotel-label::after,.search-box-container .Wrapper-PrivateCompartment input:checked~.PrivateCompartment-label::after{color:var(--color-primary)!important}.search-box-container .Wrapper-CheckHotelDate input:checked~.needhotel-label::before,.search-box-container .Wrapper-PrivateCompartment input:checked~.PrivateCompartment-label::before{background-color:#fff!important}.search-box-container .Basis_Date_ExteraHoteldate{padding-top:0!important}.Wrapper-ExteraHoteldate p{display:none!important}.passenger-birthday-dropdown{z-index:30!important}.r-tour .reserve-field.passengers-field.cursor-pointer.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.r-flighthotel .label-flightclass .down-icon{margin-top:17px!important}.h-\[383px\]{height:383px}
-/* new searchbox desktop*/
+.reservation-item>li {
+    color: rgb(150 150 150) !important;
+    line-height: 43px !important;
+    font-size: 1rem !important;
+    line-height: 1.5rem !important;
+    display: inline-block !important;
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+    cursor: pointer !important
+}
+
+.reservation-item>li>span {
+    line-height: 33px !important
+}
+
+.reservation-item>li:hover {
+    color: white !important
+}
+
+.module-icon-active,
+.module-icon-deactive {
+    display: none !important
+}
+
+.search-box-container .group:hover .group-hover\:inline-block {
+    display: none !important
+}
+
+.form-search {
+    display: block !important
+}
+
+.module-icon.inline-block {
+    display: none !important
+}
+
+.reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4 {
+    width: 100% !important;
+    margin: 0 auto !important
+}
+
+.reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4>div {
+    width: 100% !important;
+    margin: 0 !important
+}
+
+.module-form {
+    padding: 1.5rem !important
+}
+
+.flight-routes.w-2\/5.flex.gap-2.max-xl\:w-full.max-xl\:block.max-xl\:gap-0,
+.Basis_Date_Box.flex.gap-2.max-xl\:w-full.max-xl\:mb-4.w-1\/5 {
+    width: 100% !important
+}
+
+.close-passenger-box {
+    display: none !important
+}
+
+.Flightclass-Passenger.w-2\/5.flex.gap-2.max-xl\:w-full.max-xl\:block.max-xl\:gap-0 {
+    width: 100% !important
+}
+
+.FlightClass li {
+    padding: 0 1em !important
+}
+
+.reserve-field.passengers-field.passengers-field-f.cursor-pointer.w-2\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4 {
+    width: 100% !important
+}
+
+.active-module {
+    color: white !important
+}
+
+.active-module>span {
+    color: white !important
+}
+
+.reserve-field {
+    background: white !important
+}
+
+.reserve-field {
+    border-radius: .5rem !important;
+    margin: 1em 0 !important
+}
+
+.Basis_Date_Box .reserve-field {
+    border-radius: .5rem !important;
+    margin:  0 !important;
+    margin-bottom: 0 !important
+}
+
+.search-box-container #flightSearch .h-20 {
+    height: 40px !important
+}
+
+.search-box-container #flightSearch .label-text,
+.search-box-container #flightSearch .label-routes {
+    display: none !important
+}
+
+.search-box-container:is(span) {
+    font-size: 14px !important
+}
+
+.search-nav-bar span {
+    font-size: 16px !important
+}
+
+.search-box-container:is(input, select, button) {
+    line-height: 40px !important;
+    font-family: 'MazzardH-Regular' !important;
+    font-size: 14px !important
+}
+
+.search-box-container .Basis_Calendar_Box:is(input, select, button) {
+    line-height: initial !important;
+    font-family: 'MazzardH-Regular' !important
+}
+
+.Basis_Date_Box.w-1\/3.flex.border-type-1.rounded-type-1.max-xl\:w-full.max-xl\:mb-4 {
+    column-gap: .5em;
+    height: 45px !important
+}
+
+.Basis_Date_Box.w-1\/3.flex.border-type-1.rounded-type-1.max-xl\:w-full.max-xl\:mb-4,
+.Basis_Date_Box.w-1\/3.flex.gap-2.max-xl\:w-full.max-xl\:mb-4,
+.reserve-field.passengers-field.cursor-pointer.w-1\/5.h-20.relative.max-xl\:w-full.max-xl\:mb-4 {
+    width: 100% !important
+}
+
+.reserve-field.departure-date.w-auto.h-20.relative,
+.reserve-field.return-date.w-1\/2.h-20.relative {
+    width: 50% !important
+}
+
+#flightHotelSearch>.flex.gap-2.max-xl\:block.max-xl\:gap-0 {
+    display: block !important
+}
+
+.search-box-container .pt-12 {
+    padding-top: 0
+}
+
+.label-passengers svg:first-child,
+.label-flightclass svg:first-child {
+    display: none !important
+}
+
+.label-passengers svg.down-icon {
+    display: block !important
+}
+
+.Basis_Date.pt-12 {
+    padding-top: 0 !important
+}
+
+.auto-fit.clear-both.text-base.text-textColor.cursor-pointer,
+.Basis_Calendar .auto-fit,
+.auto-fit {
+    display: none !important
+}
+
+.label-dates {
+    line-height: 37px !important
+}
+
+.label-dates>svg {
+    display: none !important
+}
+
+.FlightClass-text.float-left.cursor-pointer {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin-top: -27px
+}
+
+.label-flightclass.label-flightclass-flight.float-right.w-full.cursor-pointer {
+    padding-top: 10px
+}
+
+.reserve-search {
+    margin-top: .5em !important
+}
+
+.reserve-search>button:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 153 0 / var(--tw-bg-opacity))
+}
+
+.reserve-search>button {
+    --tw-text-opacity: 1;
+    --tw-bg-opacity: 1;
+    width: 100%;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    height: 2.5rem;
+    border-radius: .5rem;
+    background-color: var(--color-primary) !important
+}
+
+.reserve-search>button:hover {
+    --tw-text-opacity: 1;
+    --tw-bg-opacity: 1;
+    width: 100%;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    height: 2.5rem;
+    border-radius: .5rem;
+    background-color: var(--color-secondary) !important
+}
+
+.label-passengers {
+    padding-top: 10px
+}
+
+.show-passengers-dropdown {
+    position: relative
+}
+
+.label-passengers {
+    position: absolute;
+    left: -10px;
+    top: 0;
+    bottom: 0;
+    margin: auto
+}
+
+.show-passengers-dropdown>div {
+    height: 40px;
+    line-height: 40px;
+    position: absolute !important;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    margin: auto
+}
+
+.route-content-inner.w-full.flex.gap-2.max-xl\:block.max-xl\:gap-0 {
+    height: 40px
+}
+
+#r-flight .route-content-inner.w-full.flex.gap-2.max-xl\:block.max-xl\:gap-0 {
+    height: unset !important
+}
+
+.multi-route-tlt.mb-2.text-textColor.text-base.w-auto {
+    margin-bottom: unset !important
+}
+
+.route-content.w-full.mb-4.relative.set_Date_Box {
+    height: 64px
+}
+
+.r-flight .route-content.w-full.mb-4.relative.set_Date_Box {
+    height: 40px
+}
+
+.remove-routs span,
+.add-routs span,
+.route-minus-btn span {
+    display: none !important
+}
+
+svg.addroute-icon {
+    width: 20px;
+    height: 20px
+}
+
+svg.removeroute-icon {
+    width: 20px;
+    height: 20px
+}
+
+svg.removeall-icon {
+    width: 15px;
+    height: 14px
+}
+
+.route-minus-btn.text-xl.pr-4.text-red-600.w-1\/4.h-20.leading-\[80px\].max-xl\:absolute.max-xl\:top-0.max-xl\:left-0.max-xl\:h-auto.max-xl\:leading-normal.max-xl\:text-base.max-xl\:text-left.hover\:text-primary.hover\:text-remove-route-hover-color.cursor-pointer {
+    line-height: 40px !important
+}
+
+.multicity-flight-form .auto-fit {
+    display: none !important
+}
+
+.multicity-flight-form .reserve-field {
+    border-radius: .5rem !important;
+        margin: 7px 0 0 0 !important;
+}
+
+.hidden-box {
+    border-radius: .5rem
+}
+
+#departure2,
+#departure9,
+#departure4 {
+    background: white !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    border-radius: .5rem
+}
+
+.alert-passengers,
+.duplicate-place-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1024px;
+    width: 90vw;
+    color: red;
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 9999999;
+    margin: auto;
+    background-color: rgb(236, 179, 179);
+    border-radius: .75em;
+    border: 2px dashed red
+}
+
+.reserve-field {
+    border-radius: .5rem !important;
+    margin: .5em 0 !important
+}
+
+.r-hotel .reserve-field {
+    height: 40px;
+    line-height: 40px
+}
+
+.searchList {
+    font-family: 'MazzardH-Regular' !important;
+    border-radius: 10px;
+    border: .25px solid var(--fd-primary-700);
+    background: white;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .25);
+    width: 100%;
+    text-align: center;
+    direction: ltr;
+    text-align: left;
+    z-index: 30 !important
+}
+
+.locationResult {
+    direction: ltr;
+    width: 100%;
+    text-align: left;
+    margin-top: 40px
+}
+
+.selectLocation {
+    padding: 0 .5em !important;
+    min-height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ccc
+}
+
+.passengerbox,
+.FlightClass {
+    z-index: 30
+}
+
+.search-box-container #hotelSearch .h-20,
+.search-box-container #tourSearch .h-20,
+.search-box-container #flightHotelSearch .h-20,
+.search-box-container #insuranceSearch .h-20 {
+    height: 40px
+}
+
+.r-tour .reserve-field.w-1\/3.h-20.departure-route.relative.w-full.mb-4 ,
+.r-insurance .reserve-field.h-20.departure-route.relative.w-full.mb-4 {
+    height: 81px !important;
+    background: transparent !important;
+}
+
+.r-hotel .reserve-field.h-20.departure-route.relative.w-full.mb-4.check-destination-hotel {
+    height: 81px !important;
+    background: transparent !important;
+}
+
+label.label-routes {
+    height: 40px;
+    line-height: 40px;
+    width: 100%
+}
+
+.r-hotel .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4.check-destination-hotel,
+.r-tour .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4,
+.r-insurance .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4,
+.reserve-field.CheckHotelDate.mb-4.mt-5.clear-both.float-right.w-full {
+    background: unset !important
+}
+
+.r-hotel .reserve-field.passengers-field.cursor-pointer.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4 {
+    width: 100% !important
+}
+
+.show-passengers-dropdown .label-text,
+.label-flightclass .label-text {
+    display: none !important
+}
+
+.label-dates {
+    display: none !important
+}
+
+.search-box-container .r-hotel .departure-date::after {
+    display: none !important
+}
+
+.r-flighthotel .label-routes {
+    display: none !important
+}
+
+.flighttype-items-ul span {
+    font-size: .75rem !important
+}
+
+.flighttype-items-ul>li {
+    display: inline-block !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    line-height: 27px !important;
+    cursor: pointer !important;
+    position: relative !important;
+    font-family: "MazzardH-Medium" !important;
+    font-size: .75rem !important;
+    color: var(--dark_2, #333) !important
+}
+
+.flighttype-items-ul>li:not(:first-child) {
+    border-left: 1px solid #e5e7eb !important
+}
+
+.flighttype-items-ul>li:first-child {
+    border-left: none !important
+}
+
+.flighttype-items-ul>li:hover {
+    color: var(--color-primary, #03a77c) !important
+}
+
+.flighttype-items-ul>li::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 2px !important;
+    background: linear-gradient(to right, var(--color-primary, #03a77c), transparent) !important;
+    visibility: hidden !important
+}
+
+.flighttype-items-ul>li:hover::before {
+    visibility: visible !important
+}
+
+.flighttype-items-ul .active-r-btn,
+.flighttype-items-ul .active-r-btn span {
+    color: var(--color-primary, #03a77c) !important
+}
+
+.flighttype-items-ul .active-r-btn::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 2px !important;
+    background: linear-gradient(to right, var(--color-primary, #03a77c), transparent) !important;
+    visibility: visible !important
+}
+
+li.bg-bgColor-100.rounded-type-1.text-zin-950.text-base.text-center.p-1.mb-1,
+li.bg-bgColor-100.rounded-type-1.text-zinc-950.text-center.text-base.p-1.mb-1 {
+    background-color: var(--color-primary);
+    color: white
+}
+
+.minus-count,
+.plus-count {
+    border: 1px solid var(--color-primary);
+    border-radius: .75em
+}
+
+.reserve-field.flightclass-field.flightclass-outof-passengerbox.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4.w-auto {
+    width: 100% !important
+}
+
+.search-box-container .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2.pl-4 {
+    padding-left: .5em !important
+}
+
+.r-hotel .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2,
+.r-insurance .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2,
+.r-tour .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2 {
+    padding: 0 !important
+}
+
+.exchangeRoute {
+    right: .35rem !important;
+    top: 22px !important;
+    border-radius: .75em !important;
+    cursor: pointer !important
+}
+
+.exchangeRoute:hover {
+    background-color: var(--color-secondary) !important
+}
+
+.exchangeRoute svg {
+    height: 20px !important;
+    width: 23px !important
+}
+
+.route-content.w-full.mb-4.relative.set_Date_Box {
+    margin-bottom: .5em !important
+}
+
+.down-icon {
+    display: inline-block !important;
+    transform-origin: 50% 50% !important;
+    transition: transform 250ms ease !important;
+    height: 8px !important;
+    line-height: 8px !important
+}
+
+.down-icon.rotate {
+    transform: rotate(180deg) !important
+}
+
+.multi-route-tlt.mb-2.text-textColor.text-base.w-auto {
+    display: none !important
+}
+
+.Add-Remove.reserve-field.w-1\/4.h-20.relative.max-xl\:w-full.max-xl\:mb-4.max-xl\:h-auto.max-xl\:my-2.max-xl\:text-center {
+    background-color: transparent !important
+}
+
+.reserve-search svg.align-middle {
+    height: 17px !important;
+    width: 17px !important
+}
+
+.reserve-search button {
+    flex-direction: row-reverse
+}
+
+.deleteRoom {
+    color: red !important
+}
+
+.second-room-type {
+    color: var(--color-primary) !important
+}
+
+.label-routes .down-icon {
+    display: none !important
+}
+
+.label-routes>svg {
+    width: 26px;
+    height: 26px
+}
+
+#departure2,
+#departure4,
+#departure9 {
+    padding: 0 .5em !important
+}
+
+.Wrapper-ExteraHoteldate.w-1\/3.max-xl\:w-full.max-xl\:mb-4 {
+    width: 100% !important
+}
+
+.search-box-container .Wrapper-CheckHotelDate input:checked~.needhotel-label::after,
+.search-box-container .Wrapper-PrivateCompartment input:checked~.PrivateCompartment-label::after {
+    color: var(--color-primary) !important
+}
+
+.search-box-container .Wrapper-CheckHotelDate input:checked~.needhotel-label::before,
+.search-box-container .Wrapper-PrivateCompartment input:checked~.PrivateCompartment-label::before {
+    background-color: #fff !important
+}
+
+.search-box-container .Basis_Date_ExteraHoteldate {
+    padding-top: 0 !important
+}
+
+.Wrapper-ExteraHoteldate p {
+    display: none !important
+}
+
+.passenger-birthday-dropdown {
+    z-index: 30 !important
+}
+
+.r-tour .reserve-field.passengers-field.cursor-pointer.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4 {
+    width: 100% !important
+}
+
+.r-flighthotel .label-flightclass .down-icon {
+    margin-top: 17px !important
+}
+
+.h-\[383px\] {
+    height: 383px
+}
+
+.h-\[313px\] {
+    height: 313px
+}
+
+.confirm-passenger {
+    display: block !important;
+    background-color: var(--color-primary) !important;
+    border-radius: .5em !important;
+    color: white !important
+}
+
+.search-box-container.mobile-search-box .fixed-passengerbox {
+    z-index: 30 !important
+}
+
+.search-box-container.mobile-search-box .fixed-FlightClass,
+.search-box-container.mobile-search-box .fixed-traveltype,
+.search-box-container.mobile-search-box .fixed-flighttype,
+.search-box-container.mobile-search-box .fixed-Compartment,
+.search-box-container.mobile-search-box .fixed-Dropdownflighttype {
+    z-index: 30 !important;
+    bottom: 0 !important
+}
+
+@media not all and (min-width:1280px) {
+    .search-box-container .Basis_Date_Box.w-1\/5.flex.gap-2.max-xl\:w-full.max-xl\:mb-4 {
+        margin-bottom: 0 !important
+    }
+
+    .search-box-container .max-xl\:mb-4 {
+        margin-bottom: 0 !important
+    }
+
+    .search-box-container .max-xl\:text-base {
+        font-size: 1rem;
+        line-height: 1.5rem
+    }
+
+    .search-box-container .text-value.max-xl\:text-base {
+        font-size: 1rem;
+        line-height: 40px !important;
+        height: 40px !important
+    }
+
+    .search-box-container .route-content-inner .max-xl\:mb-4 {
+        margin-bottom: 6px !important
+    }
+
+    .search-box-container .Flightclass-Passenger .reserve-field {
+        margin-bottom: 6px !important
+    }
+    .search-box-container .route-minus-btn.text-xl.pr-4.text-red-600.w-1\/4.h-20.leading-\[80px\].max-xl\:absolute.max-xl\:top-0.max-xl\:left-0.max-xl\:h-auto.max-xl\:leading-normal.max-xl\:text-base.max-xl\:text-left.hover\:text-primary.hover\:text-remove-route-hover-color.cursor-pointer {
+        left: -17px;
+        width: 20px  !important;
+    }
+
+    .search-box-container .Basis_Date_Box.flex.gap-2.w-full.mb-4{
+        margin-bottom: 0.5em !important;
+}
+}
+
+.reserve-location{width: 100% !important;}
+
+
+
 .searchHistory-content{display: none !important;}
 
 
 
+
+
+
 /* new searchlist */
-.ul-list-cat{z-index:100;background:#fdfeff;max-height:210px;overflow:auto}
+.ul-list-cat{z-index:100;background:#fdfeff;}
 .gray-text,.search-list{color:#000}
 .center-txt,.search-list ul li:first-child{border-bottom:1px solid var(--color-primary);text-align:center;color: black;}
 .search-list ul li:hover{background:#b2b2b2;color:#fff;cursor:pointer}
@@ -247,10 +899,23 @@ ul.ul-list-cat{width:50%;display:inline-block}.ul-list-cat::-webkit-scrollbar{wi
     background: white;
     width: 100%;
     text-align: center;
-    max-height: 250px;
-    overflow: hidden;
-    height: auto ;
+    /* max-height: 250px; */
+    /* overflow: hidden; */
+    height: 100% ;
 }
+
+.flex.list-city {
+    display: block !important;
+    height: 75vh !important;
+    overflow: auto !important;
+}
+.list-city {
+    display: block !important;
+    height: 75vh !important;
+    overflow: auto !important;
+}
+
+
 .search-list ul li:first-child{padding:2px;font-size:14px}.search-list ul li{border-bottom:none;padding:2px;text-align:center;font-size:14px}
 li.category-title{color:#000 !important;} 
 .form-search-input{width:95%;height:41px;outline:0;border:none;border-bottom:1px solid var(--color-secondary);direction:rtl;padding-right:40px}
@@ -264,28 +929,5 @@ li.category-title{color:#000 !important;}
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
-
-
-.search-box-container .reserve-btn.active-module {
-    background-color: unset !important;
-    color: #fff !important;
-}
-.search-box-container .hover\:text-primary:hover {
-    color: white !important;
-}
-.search-box-container .minus-count.hover\:text-primary:hover ,
-.search-box-container .plus-count.hover\:text-primary:hover {
-    color: var(--color-primary) !important;
-}
-
-.search-box-container .active-r-btn {
-    background-color: unset !important;
-}
-
-/* searchbox */
-
+/* ............................. */
 /* new searchbox mobile*/
-/* #search_engine .module-form{text-transform:capitalize!important;padding-top:.5rem!important;padding-bottom:.5rem!important;--tw-gradient-to:#F8F8F9 var(--tw-gradient-to-position)!important;--tw-gradient-from:#EFF2FB var(--tw-gradient-from-position)!important;--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)!important;background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))!important;border-radius:1.5rem!important;width:100%!important;min-height:329px!important;float:left!important}div#search_engine{width:800px!important}.flight-routes.w-2\/5.flex.gap-2.max-xl\:w-full.max-xl\:block.max-xl\:gap-0{column-gap:2.75em}.reservation-item{color:rgb(150 150 150)!important;--tw-bg-opacity:1!important;text-transform:capitalize!important;background-color:rgb(47 47 47 / var(--tw-bg-opacity))!important;height:42px!important;display:inline-block!important;width:100%!important}.reservation-item>li{color:rgb(150 150 150)!important;line-height:43px!important;font-size:1rem!important;line-height:1.5rem!important;display:inline-block!important;margin-left:1rem!important;margin-right:1rem!important;cursor:pointer!important}.reservation-item>li>span{line-height:33px!important}.reservation-item>li:hover{color:white!important}.module-icon-active,.module-icon-deactive{display:none!important;}.search-box-container .group:hover .group-hover\:inline-block{display:none!important}.form-search{display:block!important}.module-icon.inline-block{display:none!important}.reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important;margin:0 auto!important}.reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4>div{width:100%!important;margin:0!important}.module-form{padding:1.5rem!important}.flight-routes.w-2\/5.flex.gap-2.max-xl\:w-full.max-xl\:block.max-xl\:gap-0,.Basis_Date_Box.flex.gap-2.max-xl\:w-full.max-xl\:mb-4.w-1\/5{width:100%!important}.close-passenger-box{display:none!important;}.Flightclass-Passenger.w-2\/5.flex.gap-2.max-xl\:w-full.max-xl\:block.max-xl\:gap-0{width:100%!important}.FlightClass li{padding:0 1em!important}.reserve-field.passengers-field.passengers-field-f.cursor-pointer.w-2\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.active-module{color:white!important}.active-module>span{color:white!important}.reserve-field{background:white!important}.reserve-field{border-radius:.5rem!important;margin:1em 0!important}.search-box-container #flightSearch .h-20{height:40px!important}.search-box-container #flightSearch .label-text,.search-box-container #flightSearch .label-routes{display:none!important}.search-box-container:is(span){font-size:14px!important}.search-nav-bar span{font-size:16px!important}.search-box-container:is(input,select,button){line-height:40px!important;font-family:'MazzardH-Regular'!important;font-size:14px!important}.search-box-container .Basis_Calendar_Box:is(input,select,button){line-height:initial!important;font-family:'MazzardH-Regular'!important}.Basis_Date_Box.w-1\/3.flex.border-type-1.rounded-type-1.max-xl\:w-full.max-xl\:mb-4{column-gap:.5em;height:48px!important}.Basis_Date_Box.w-1\/3.flex.border-type-1.rounded-type-1.max-xl\:w-full.max-xl\:mb-4,.Basis_Date_Box.w-1\/3.flex.gap-2.max-xl\:w-full.max-xl\:mb-4,.reserve-field.passengers-field.cursor-pointer.w-1\/5.h-20.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.reserve-field.departure-date.w-auto.h-20.relative,.reserve-field.return-date.w-1\/2.h-20.relative{width:50%!important}#flightHotelSearch>.flex.gap-2.max-xl\:block.max-xl\:gap-0{display:block!important}.search-box-container .pt-12{padding-top:0}.label-passengers svg:first-child,.label-flightclass svg:first-child{display:none!important}.label-passengers svg.down-icon{display:block!important}.Basis_Date.pt-12{padding-top:0!important}.auto-fit.clear-both.text-base.text-textColor.cursor-pointer,.Basis_Calendar .auto-fit,.auto-fit{display:none!important}.label-dates{line-height:37px!important}.label-dates>svg{display:none!important}.FlightClass-text.float-left.cursor-pointer{float:left;height:40px;line-height:40px;margin-top:-27px}.label-flightclass.label-flightclass-flight.float-right.w-full.cursor-pointer{padding-top:10px}.reserve-search>button:hover{--tw-bg-opacity:1;background-color:rgb(255 153 0 / var(--tw-bg-opacity))}.reserve-search>button{--tw-text-opacity:1;--tw-bg-opacity:1;width:100%;color:rgb(255 255 255 / var(--tw-text-opacity));height:2.5rem;border-radius:.5rem;background-color:var(--color-primary)!important}.reserve-search>button:hover{--tw-text-opacity:1;--tw-bg-opacity:1;width:100%;color:rgb(255 255 255 / var(--tw-text-opacity));height:2.5rem;border-radius:.5rem;background-color:var(--color-secondary)!important}.label-passengers{padding-top:10px}.show-passengers-dropdown{position:relative}.label-passengers{position:absolute;left:-10px;top:0;bottom:0;margin:auto}.show-passengers-dropdown>div{height:40px;line-height:40px;position:absolute!important;left:15px;top:0;bottom:0;margin:auto}.route-content-inner.w-full.flex.gap-2.max-xl\:block.max-xl\:gap-0{height:40px}.multi-route-tlt.mb-2.text-textColor.text-base.w-auto{margin-bottom:unset!important}.route-content.w-full.mb-4.relative.set_Date_Box{height:64px}.r-flight .route-content.w-full.mb-4.relative.set_Date_Box{height:40px}.remove-routs span,.add-routs span,.route-minus-btn span{display:none!important}svg.addroute-icon{width:20px;height:20px}svg.removeroute-icon{width:20px;height:20px}svg.removeall-icon{width:15px;height:14px}.route-minus-btn.text-xl.pr-4.text-red-600.w-1\/4.h-20.leading-\[80px\].max-xl\:absolute.max-xl\:top-0.max-xl\:left-0.max-xl\:h-auto.max-xl\:leading-normal.max-xl\:text-base.max-xl\:text-left.hover\:text-primary.hover\:text-remove-route-hover-color.cursor-pointer{line-height:40px!important}.multicity-flight-form .auto-fit{display:none!important}.multicity-flight-form .reserve-field{border-radius:.5rem!important;margin:0!important}.hidden-box{border-radius:.5rem}#departure2,#departure9,#departure4{background:white!important;height:40px!important;line-height:40px!important;border-radius:.5rem}.alert-passengers,.duplicate-place-error{display:flex;justify-content:center;align-items:center;max-width:1024px;width:90vw;color:red;position:fixed;width:100%;height:40px;top:0;right:0;left:0;bottom:0;z-index:9999999;margin:auto;background-color:rgb(236,179,179);border-radius:.75em;border:2px dashed red}.reserve-field{border-radius:.5rem!important;margin:.25em 0!important}.r-hotel .reserve-field{height:40px;line-height:40px}.searchList{font-family:'MazzardH-Regular'!important;border-radius:10px;border:.25px solid var(--fd-primary-700);background:white;box-shadow:0 4px 4px 0 rgba(0,0,0,.25);width:370px;text-align:center;max-height:250px;overflow:hidden;height:250px;direction:ltr;text-align:left}.locationResult{direction:ltr;width:100%;text-align:left;margin-top:40px}.selectLocation{height:40px;line-height:40px;border-bottom:1px solid #ccc}.passengerbox,.FlightClass{border-radius:10px;border:.25px solid var(--fd-primary-700);background:white;box-shadow:0 4px 4px 0 rgba(0,0,0,.25);max-height:250px;overflow:hidden}.search-box-container #hotelSearch .h-20,.search-box-container #tourSearch .h-20,.search-box-container #flightHotelSearch .h-20,.search-box-container #insuranceSearch .h-20{height:40px}.r-tour .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4,.r-insurance .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4{height:45px!important}.r-hotel .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4.check-destination-hotel{height:45px!important}label.label-routes{height:40px;line-height:40px;width:max-content!important;min-width:120px}.r-hotel .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4.check-destination-hotel,.r-tour .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4,.r-insurance .reserve-field.w-1\/3.h-20.departure-route.relative.max-xl\:w-full.max-xl\:mb-4,.reserve-field.CheckHotelDate.mb-4.mt-5.clear-both.float-right.w-full{background:unset!important;}.r-hotel .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2,#insuranceSearch .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2,#tourSearch .click-content.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2{display:flex;justify-content:start;padding:0;margin:0}.r-hotel .reserve-field.passengers-field.cursor-pointer.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.show-passengers-dropdown .label-text,.label-flightclass .label-text{display:none!important;}.label-dates{display:none!important}.search-box-container .r-hotel .departure-date::after{display:none!important}.r-flighthotel .label-routes{display:none!important}.flighttype-items-ul span{font-size:.75rem!important}.flighttype-items-ul>li{display:inline-block!important;padding-left:1rem!important;padding-right:1rem!important;line-height:27px!important;cursor:pointer!important;position:relative!important;font-family:"MazzardH-Medium"!important;font-size:.75rem!important;color:var(--dark_2,#333)!important}.flighttype-items-ul>li:not(:first-child){border-left:1px solid #e5e7eb!important}.flighttype-items-ul>li:first-child{border-left:none!important}.flighttype-items-ul>li:hover{color:var(--color-primary,#03a77c)!important}.flighttype-items-ul>li::before{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:2px!important;background:linear-gradient(to right,var(--color-primary,#03a77c),transparent)!important;visibility:hidden!important}.flighttype-items-ul>li:hover::before{visibility:visible!important}.flighttype-items-ul .active-r-btn,.flighttype-items-ul .active-r-btn span{color:var(--color-primary,#03a77c)!important}.flighttype-items-ul .active-r-btn::before{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:2px!important;background:linear-gradient(to right,var(--color-primary,#03a77c),transparent)!important;visibility:visible!important}li.bg-bgColor-100.rounded-type-1.text-zin-950.text-base.text-center.p-1.mb-1,li.bg-bgColor-100.rounded-type-1.text-zinc-950.text-center.text-base.p-1.mb-1{background-color:var(--color-primary);color:white}.minus-count,.plus-count{border:1px solid var(--color-primary);border-radius:.75em}.reserve-field.flightclass-field.flightclass-outof-passengerbox.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4.w-auto{width:40%}.exchangeRoute{right:-2.65rem!important;top:0!important;border-radius:.75em!important;cursor:pointer!important}.exchangeRoute:hover{background-color:#f5832086!important}.exchangeRoute svg{height:20px!important;width:23px!important}.route-content.w-full.mb-4.relative.set_Date_Box{margin-bottom:.5em!important}.down-icon{display:inline-block!important;transform-origin:50% 50%!important;transition:transform 250ms ease!important;height:8px!important;line-height:8px!important}.down-icon.rotate{transform:rotate(180deg)!important}.multi-route-tlt.mb-2.text-textColor.text-base.w-auto{display:none!important}.Add-Remove.reserve-field.w-1\/4.h-20.relative.max-xl\:w-full.max-xl\:mb-4.max-xl\:h-auto.max-xl\:my-2.max-xl\:text-center{background-color:transparent!important}.reserve-search svg.align-middle{height:17px!important;width:17px!important}.reserve-search button{flex-direction:row-reverse}.deleteRoom{color:red!important;}.second-room-type{color:var(--color-primary)!important;}.label-routes .down-icon{display:none!important}.label-routes>svg{width:26px;height:26px}#departure2,#departure4,#departure9{padding:0 .5em!important;}.Wrapper-ExteraHoteldate.w-1\/3.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.search-box-container .Wrapper-CheckHotelDate input:checked~.needhotel-label::after,.search-box-container .Wrapper-PrivateCompartment input:checked~.PrivateCompartment-label::after{color:var(--color-primary)!important}.search-box-container .Wrapper-CheckHotelDate input:checked~.needhotel-label::before,.search-box-container .Wrapper-PrivateCompartment input:checked~.PrivateCompartment-label::before{background-color:#fff!important}.search-box-container .Basis_Date_ExteraHoteldate{padding-top:0!important}.Wrapper-ExteraHoteldate p{display:none!important}.passenger-birthday-dropdown{z-index:30!important}.r-tour .reserve-field.passengers-field.cursor-pointer.w-1\/3.h-20.relative.max-xl\:w-full.max-xl\:mb-4{width:100%!important}.r-flighthotel .label-flightclass .down-icon{margin-top:17px!important}.h-\[383px\]{height:383px} */
-/* new searchbox mobile*/
-
-

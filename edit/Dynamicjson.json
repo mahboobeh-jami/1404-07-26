@@ -1,0 +1,282 @@
+{
+"flight": {
+    "activeType": "oneway",
+    "departure": { 
+      "labelText": "Departure",
+      "cityName": "Tehran",
+      "input": {
+        "placeholder": "Origin",
+        "value": "Tehran - All airports"
+      },
+      "locationId": "1203548"
+    },
+    "destination": {
+      "labelText": "Destination",
+      "cityName": "Istanbul",
+      "input": {
+        "placeholder": "Destination",
+        "value": "Istanbul - All airports"
+      },
+      "locationId": "1177676"
+    },
+    "dates": {
+      "departure_datelabel": "Departing",
+      "departure_dateplaceholder": "Departing",
+      "destination_datelabel": "Arrival",
+      "destination_dateplaceholder": "Arrival"
+    },
+    "flightclass": {
+      "labelText": "Flight Class",
+      "show_in_PassengerBox": "no"
+    },
+    "passengers": {
+      "labelText": "Passengers"
+    },
+    "search": {
+      "buttonText": "Search"
+    },
+    "multiroute_fields": {
+      "order_elements": "Flightclass-Passenger,Add-Remove,reserve-search",
+      "order_flightclasspassengers": "passengers-field,flightclass-field",
+      "order_addremove": "remove-routs,add-routs"
+    }
+  },
+"hotel": {
+    "destination": {
+      "labelText": "Location",
+      "cityName": "Istanbul",
+      "input": {
+        "placeholder": "City",
+        "value": "Istanbul"
+      },
+      "locationId": "1177676"
+    },
+    "dates": {
+      "checkin_datelabel": "Date",
+      "checkin_dateplaceholder": "checkin date",
+      "checkout_datelabel": "Check out",
+      "checkout_dateplaceholder": "checkout date"
+    },
+   "passengers": {
+      "labelText": "Passengers"
+    },
+    "search": {
+      "buttonText": "Search"
+    }
+  },
+"flighthotel": {
+    "departure": { 
+      "labelText": "Departure",
+      "cityName": "Tehran",
+      "input": {
+        "placeholder": "Origin",
+        "value": "Tehran - All airports"
+      },
+      "locationId": "1203548"
+    },
+    "destination": {
+      "labelText": "Destination",
+      "cityName": "Istanbul",
+      "input": {
+        "placeholder": "Destination",
+        "value": "Istanbul - All airports"
+      },
+      "locationId": "1177676"
+    },
+    "dates": {
+      "departure_datelabel": "Departing",
+      "departure_dateplaceholder": "Departing",
+      "destination_datelabel": "Arrival",
+      "destination_dateplaceholder": "Arrival"
+    },
+    "flightclass": {
+      "labelText": "Flight Class",
+      "show_in_PassengerBox": "no"
+    },
+    "passengers": {
+      "labelText": "Passengers"
+    },
+    "ExteraHoteldate": {
+      "checkin_datelabel": "Check in",
+      "checkin_dateplaceholder": "Check in",
+      "checkout_datelabel": "Check out",
+      "checkout_dateplaceholder": "Check out"
+    },
+    "search": {
+      "buttonText": "Search"
+    }
+  },
+"tour": {
+    "destination": {
+      "labelText": "Location",
+      "tourName": "Tour",
+      "input": {
+        "placeholder": "City"
+      }
+    },
+    "dates": {
+    "departure_datelabel": "Departure",
+    "departure_dateplaceholder": "Departure",
+    "return_datelabel": "Return",
+    "return_dateplaceholder": "Return"
+    },
+   "passengers": {
+      "labelText": "Passengers"
+    },
+    "search": {
+      "buttonText": "Search"
+    }
+  },
+"insurance": {
+    "destination": {
+      "labelText": "Country",
+      "countryName": "",
+      "input": {
+        "placeholder": "Country",
+        "value": "Turkey"
+      },
+      "locationId": "1002247"
+    },
+    "dates": {
+      "departure_datelabel": "Departing",
+      "departure_dateplaceholder": "Departing",
+      "return_datelabel": "Return",
+      "return_dateplaceholder": "Return"
+    },
+   "passengers": {
+      "labelText": "Passengers"
+    },
+    "search": {
+      "buttonText": "Search"
+    }
+  },
+  "cip": {
+    "departure": {
+      "labelText": "Departure",
+      "cityName": "Tehran",
+      "input": {
+        "placeholder": "Tehran - All airports",
+        "value": "City or airport"
+      },
+      "locationId": "1203548"
+    },
+    "dates": {
+      "departure_datelabel": "Entry or Exit",
+      "departure_dateplaceholder": "select date"
+    },
+    "traveltype": {
+        "labelText": "Travel Type"
+    },
+    "flighttype": {
+        "labelText": "Flight Type"
+    },
+   "passengers": {
+      "labelText": "Passengers"
+    },
+    "search": {
+      "buttonText": "Search"
+    }
+  },
+  "visa": {
+    "destination": {
+      "labelText": "Country",
+      "countryName": "",
+      "input": {
+        "placeholder": "Where to?",
+        "value": "Turkey"
+      },
+      "locationId": "1002247"
+    },
+    "search": {
+      "buttonText": "Search"
+    }
+  },
+  "service": {
+    "destination": {
+      "labelText": "City",
+      "cityName": "Kish",
+      "input": {
+        "placeholder": "Where to?",
+        "value": "Iran - Kish"
+      },
+      "locationId": "1211110"
+    },
+    "dates": {
+      "departure_datelabel": "Date",
+      "departure_dateplaceholder": "select date"
+    },
+   "passengers": {
+      "labelText": "Passengers"
+    },
+    "search": {
+      "buttonText": "Search"
+    }
+  },
+  "train": {
+    "activeType": "oneway-train",
+    "departure": { 
+      "labelText": "Departure",
+      "cityName": "Tehran",
+      "input": {
+        "placeholder": "Leaving from",
+        "value": "Tehran - All airports"
+      },
+      "locationId": "1203548"
+    },
+    "destination": {
+      "labelText": "Destination",
+      "cityName": "Istanbul",
+      "input": {
+        "placeholder": "Going to",
+        "value": "Istanbul - All airports"
+      },
+      "locationId": "1177676"
+    },
+    "dates": {
+      "departure_datelabel": "Departure",
+      "departure_dateplaceholder": "select date",
+      "destination_datelabel": "Return",
+      "destination_dateplaceholder": "select date"
+    },
+    "compartment": {
+      "labelText": "Cabin Type"
+    },
+    "passengers": {
+      "labelText": "Passengers"
+    },
+    "search": {
+      "buttonText": "Search"
+    }
+  },
+  "bus": {
+    "departure": { 
+      "labelText": "Departure",
+      "cityName": "Tehran",
+      "input": {
+        "placeholder": "Leaving from",
+        "value": "Tehran - All airports"
+      },
+      "locationId": "1203548"
+    },
+    "destination": {
+      "labelText": "Destination",
+      "cityName": "Istanbul",
+      "input": {
+        "placeholder": "Going to",
+        "value": "Istanbul"
+      },
+      "locationId": "1177676"
+    },
+    "dates": {
+      "departure_datelabel": "Date",
+      "departure_dateplaceholder": "select date",
+      "destination_datelabel": "Return",
+      "destination_dateplaceholder": "select date"
+    },
+    "search": {
+      "buttonText": "Search"
+    }
+  },
+  "landingscrollplace": "#search-box"
+}
+
